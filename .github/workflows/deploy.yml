@@ -1,0 +1,55 @@
+# Puts SavvyMe on the shared server whenever main changes (a static site in the shared Caddy web server, next to
+# Agent Grand Prix and Palasora). One-time setup, in this repo's Settings > Secrets and variables > Actions:
+#   Secrets (the same three values the other projects use):
+#     SERVER_HOST       the server's public IP address
+#     SERVER_USER       the login name (ubuntu on Oracle Cloud)
+#     SERVER_SSH_KEY    the whole private key file (BEGIN ... END lines included)
+#   Variables (optional):
+#     SAVVYME_DOMAIN    the home page's names, main one first, once the domain points at the server
+#                       (A records for @, www, start and app). Example: "savvymeapp.com www.savvymeapp.com".
+#                       Without it the site answers only on the free name savvyme.<IP with dashes>.sslip.io
+#                       (plus start. and app. in front of it).
+name: Deploy to server
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency: deploy-savvyme
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Check the course data loads
+        run: node -e "Promise.all([import('./shared/courses.js'), import('./shared/lessons.js')]).then(([c, l]) => { const miss = c.COURSES.flatMap(x => x.lessons).filter(id => !l.LESSONS[id]); if (miss.length) { console.error('Missing lessons:', miss); process.exit(1); } console.log('Courses OK') })"
+      - name: Pack the site
+        run: tar czf savvyme.tgz index.html favicon.svg site.webmanifest robots.txt shared start app vendor
+      - name: Copy to the server
+        env:
+          HOST: ${{ secrets.SERVER_HOST }}
+          USER: ${{ secrets.SERVER_USER }}
+          KEY: ${{ secrets.SERVER_SSH_KEY }}
+          DOMAIN: ${{ vars.SAVVYME_DOMAIN }}
+        run: |
+          set -euo pipefail
+          if [ -z "$HOST" ] || [ -z "$KEY" ]; then echo '::error::Add the SERVER_HOST, SERVER_USER and SERVER_SSH_KEY secrets first (the same ones Agent Grand Prix uses).'; exit 1; fi
+          HOST=$(printf '%s' "$HOST" | grep -oE '[0-9]{1,3}(\.[0-9]{1,3}){3}|[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+' | tail -1)
+          USER=$(printf '%s' "$USER" | grep -oE '[a-z_][a-z0-9_-]*' | tail -1); USER="${USER:-ubuntu}"
+          install -m 600 /dev/null key && printf '%s\n' "$KEY" | tr -d '\r' | sed -n '/-----BEGIN/,/-----END/p' > key
+          [ -s key ] || { echo '::error::SERVER_SSH_KEY should hold the whole key file, from the -----BEGIN line to the -----END line.'; exit 1; }
+          SPARE="savvyme.$(printf '%s' "$HOST" | tr . -).sslip.io"
+          DOMAIN=$(printf '%s' "$DOMAIN" | tr ',' ' ' | tr -cd 'A-Za-z0-9. -' | xargs)
+          OPTS="-i key -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20"
+          scp $OPTS savvyme.tgz "$USER@$HOST:/tmp/"
+          ssh $OPTS "$USER@$HOST" "SAVVYME_DOMAIN='$DOMAIN' SPARE='$SPARE' bash -s" < server/install.sh
+          rm -f key
+          MAIN="${DOMAIN%% *}"; MAIN="${MAIN:-$SPARE}"
+          echo "URL=https://$MAIN" >> "$GITHUB_ENV"
+          echo "::notice::SavvyMe: https://$MAIN  ·  quiz: https://start.$MAIN  ·  app: https://app.$MAIN"
+      - name: Check the site answers
+        run: |
+          for i in 1 2 3 4 5 6 8 10; do curl -fsS -m 10 -o /dev/null "$URL/" && curl -fsS -m 10 -o /dev/null "${URL/https:\/\//https://start.}/start.js" && { echo "OK: $URL"; exit 0; }; sleep $i; done
+          echo "::warning::Deployed, but $URL did not answer yet (the first HTTPS certificate can take a minute)."
