@@ -1,6 +1,6 @@
 import { logo, link, icon } from './shared/brand.js';
 import { COURSES } from './shared/courses.js';
-import { PRICES } from './shared/prices.js';
+import { PRICES, PRO } from './shared/prices.js';
 import { reveals, countAll, calm } from './shared/motion.js';
 
 const $ = s => document.querySelector(s);
@@ -34,11 +34,22 @@ if (!calm() && matchMedia('(hover: hover)').matches) document.querySelectorAll('
 });
 
 $('#prices').innerHTML = PRICES.map((p, k) => `<div class="card price rv${p.best ? ' best' : ''}" style="--d:${k}">${p.best ? '<span class="chip best">Best value</span>' : ''}
-  <h3>${p.name}</h3><div class="amt">${p.show}<small>${p.per}</small></div><div class="muted" style="min-height:1.5em">${p.note}</div>
+  <h3>${p.name}</h3>${p.best ? `<div class="bill" role="tablist">${PRO.map(b => `<button role="tab" data-b="${b.id}" class="${b.id === 'year' ? 'on' : ''}"><span>${b.label}</span><b>${b.show}</b>${b.save ? `<em>${b.save}</em>` : ''}</button>`).join('')}</div>` : ''}
+  <div class="amt">${p.show}<small>${p.per}</small></div><div class="muted note" style="min-height:1.5em">${p.note}</div>
   <ul>${p.items.map(i => `<li>${icon('check', 18)}<span>${i}</span></li>`).join('')}</ul>
   <a class="btn ${p.best ? 'primary' : 'ghost'} block" href="${link('start')}">${p.cta}</a></div>`).join('');
-const PR = [['x', 'One-tap cancel', 'No calls, no hoops.'], ['check', '14-day refund', 'On web purchases.'], ['lock', 'No ads', 'Not in lessons, not anywhere.'], ['spark', 'No weekly plans', 'Monthly or yearly, up front.']];
+const PR = [['x', 'One-tap cancel', 'No calls, no hoops.'], ['check', '14-day refund', 'On web purchases.'], ['lock', 'No ads', 'Not in lessons, not anywhere.'], ['spark', 'Pay your way', 'Weekly, monthly or yearly.']];
 $('#promise').innerHTML = PR.map(([i, b, s], k) => `<div class="rv" style="--d:${k}">${icon(i, 22)}<b>${b}</b><span>${s}</span></div>`).join('');
+
+// Pro: pick weekly, monthly or yearly; the price rolls to the new amount
+const best = document.querySelector('.price.best');
+best.querySelectorAll('.bill button').forEach(btn => btn.onclick = () => {
+  const b = PRO.find(x => x.id === btn.dataset.b);
+  best.querySelectorAll('.bill button').forEach(x => x.classList.toggle('on', x === btn));
+  const amt = best.querySelector('.amt'); amt.innerHTML = `${b.show}<small>${b.per}</small>`;
+  amt.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 350, easing: 'cubic-bezier(.2,.8,.2,1)' });
+  best.querySelector('.note').textContent = b.note; best.querySelector('.btn').textContent = b.cta;
+});
 
 reveals();
 // count the phone's numbers up when it shows

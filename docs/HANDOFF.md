@@ -20,7 +20,7 @@ AI, explained (30) · Electronics from zero (30) · How machines work (30) · Ho
 Smart home and gadgets (30) · Build your own software (30) · Become an AI builder (90).
 
 ## Plans
-Free (Discover, first week of every course, streaks) · Pro $9.99/month or $59.99/year with a 7-day trial ·
+Free (Discover, first week of every course, streaks) · Pro $2.99/week, $9.99/month or $59.99/year (7-day trial on yearly) ·
 Family $89.99/year for 5. Stripe through the Noveniqe account (as Agent Grand Prix), web first.
 
 ## Next

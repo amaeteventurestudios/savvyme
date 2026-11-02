@@ -171,7 +171,7 @@ function play(id, cid, replay = false, paywall = false) {
     P.innerHTML = `<div class="pbar"><button class="x" id="px">${icon('x')}</button><span style="flex:1"></span></div><div class="pbody"><div class="pin"><div class="hook">
       <div class="art" style="width:90px;height:90px;border-radius:28px;margin:0 auto 16px;display:grid;place-items:center;background:var(--soft);color:var(--brand)">${icon('lock', 40)}</div>
       <h1>Unlock every course</h1><p>Free gives you the first week of every course. Pro opens them all, start to finish.</p></div>
-      <div class="card" style="padding:16px;margin:18px 0"><b>Pro yearly · $59.99</b><div class="muted">7 days free, then $5 a month billed yearly. Or $9.99 a month.</div></div>
+      <div class="card" style="padding:16px;margin:18px 0"><b>Pro yearly · $59.99</b><div class="muted">7 days free, then $1.15 a week, billed yearly. Or $9.99 a month, or $2.99 a week.</div></div>
       <button class="btn primary block" id="pp">Start my 7-day free trial</button><p class="muted" style="text-align:center;font-size:13px">Checkout opens at launch. In this preview Pro is free and nobody is charged.</p></div></div>`;
     $('#px').onclick = close; $('#pp').onclick = () => { St.setProfile({ plan: 'trial' }); S().plan = 'trial'; St.save(); toast('Pro is on for this preview.'); close(); };
     return;

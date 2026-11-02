@@ -224,15 +224,16 @@ function stepPay(m) {
   const c = course(A.course);
   let sel = 'year', monthly = false;
   const tiers = () => [
-    { id: 'year', h: 'Pro yearly', amt: '$59.99/yr', p: '7 days free, then $5 a month billed yearly', best: true },
+    { id: 'year', h: 'Pro yearly', amt: '$59.99/yr', p: '7 days free, then $1.15 a week, billed yearly', best: true },
     { id: 'month', h: 'Pro monthly', amt: '$9.99/mo', p: 'Cancel any time' },
+    { id: 'week', h: 'Pro weekly', amt: '$2.99/wk', p: 'Cancel any time' },
     { id: 'free', h: 'Free', amt: '$0', p: 'The Discover feed and the first week of every course' },
   ];
   const draw = () => {
     m.innerHTML = `<div class="pw"><h1>${A.name ? A.name + ', get' : 'Get'} the whole course</h1><p class="hint">${c.title}: all ${c.lessons.length} lessons, plus every other course.</p>
       <ul class="perks">${['Every course, start to finish', 'Review that brings back what you missed', 'Listen mode and certificates', 'Daily, weekly and monthly streaks'].map(t => `<li>${icon('check', 18)}${t}</li>`).join('')}</ul>
       ${tiers().map(t => `<button class="tier${sel === t.id ? ' sel' : ''}" data-v="${t.id}">${t.best ? '<span class="chip">Best value</span>' : ''}<div class="row"><h3>${t.h}</h3><span class="amt">${t.amt}</span></div><p>${t.p}</p></button>`).join('')}
-      <button class="btn primary block" id="buy">${sel === 'free' ? 'Start learning free' : sel === 'year' ? 'Start my 7-day free trial' : 'Get Pro monthly'}</button>
+      <button class="btn primary block" id="buy">${sel === 'free' ? 'Start learning free' : sel === 'year' ? 'Start my 7-day free trial' : sel === 'week' ? 'Get Pro weekly' : 'Get Pro monthly'}</button>
       <p class="note">One-tap cancel. 14-day refund on web purchases. No ads.</p>
       <p class="note" style="margin-top:14px"><a href="#" id="free">Not now, continue with Free</a></p></div>`;
     m.querySelectorAll('.tier').forEach(b => b.onclick = () => { sel = b.dataset.v; draw(); });

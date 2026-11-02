@@ -156,7 +156,15 @@ section h2 { font-size: clamp(30px, 4.4vw, 48px); font-weight: 800; max-width: 1
 /* ---- pricing ---- */
 .prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
 @media (max-width: 900px) { .prices { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } .price.best { order: -1; margin-top: 10px; } }
-.price { padding: 26px; display: flex; flex-direction: column; position: relative; transition: transform .45s var(--spring); }
+.price { padding: 26px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; transition: transform .45s var(--spring); }
+.price ul { align-self: center; text-align: left; } .price .btn { align-self: stretch; }
+.bill { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: 100%; margin: 8px 0 14px; }
+.bill button { position: relative; border: 1.5px solid var(--line); background: transparent; border-radius: 14px; padding: 9px 4px 8px; cursor: pointer; display: grid; gap: 1px; transition: border-color .2s, background .25s, transform .3s var(--spring); }
+.bill button span { font-size: 12px; font-weight: 700; color: var(--muted); } .bill button b { font-size: 15px; }
+.bill button:hover { transform: translateY(-2px); }
+.bill button.on { border-color: var(--brand); background: color-mix(in srgb, var(--brand) 10%, transparent); }
+.bill button.on span { color: var(--brand); }
+.bill em { position: absolute; top: -9px; left: 50%; transform: translateX(-50%); font-style: normal; font-size: 10px; font-weight: 800; background: var(--teal); color: #fff; padding: 2px 7px; border-radius: 99px; white-space: nowrap; }
 .price:hover { transform: translateY(-6px); }
 .price.best { border: 0; background: var(--card); isolation: isolate; }
 .price.best::before { content: ''; position: absolute; inset: -2px; border-radius: calc(var(--r) + 2px); z-index: -2;
