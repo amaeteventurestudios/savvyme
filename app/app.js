@@ -4,6 +4,7 @@ import { COURSES, WEEK, course } from '../shared/courses.js';
 import { LESSONS } from '../shared/lessons.js';
 import { HOOKS } from '../shared/hooks.js';
 import * as St from '../shared/store.js';
+import { stagger, countAll, confetti, burstFrom, calm } from '../shared/motion.js';
 
 const $ = s => document.querySelector(s);
 const S = St.state;
@@ -11,7 +12,7 @@ const L = id => LESSONS[id] || { title: id, url: '#', checks: [], site: 'build' 
 const SITE = { build: ['Build', 'spark'], circuits: ['Circuits', 'bolt'], cutaways: ['Cutaways', 'gear'] };
 const hook = id => HOOKS[id] || L(id).blurb || L(id).title;
 const courseOf = id => COURSES.find(c => c.lessons.includes(id));
-const colorOf = id => (courseOf(id) || {}).color || '#5B4CF0';
+const colorOf = id => (courseOf(id) || {}).color || '#3E2A6B';
 function toast(t) { const d = document.createElement('div'); d.className = 'toast'; d.textContent = t; document.body.appendChild(d); setTimeout(() => d.remove(), 2600); }
 
 // profile handed over from the quiz (different host, so it rides in the link)
@@ -24,7 +25,15 @@ function tabs() {
   $('#tabs').innerHTML = logo(link('home')) + TABS.map(([id, label, ic]) => `<button class="${tab === id ? 'on' : ''}" data-t="${id}">${icon(ic, 22)}<span>${label}</span></button>`).join('');
   $('#tabs').querySelectorAll('button').forEach(b => b.onclick = () => { tab = b.dataset.t; sub = null; draw(); scrollTo(0, 0); });
 }
-function draw() { tabs(); ({ today, discover, courses, workshop, me })[tab](); }
+let last = null;
+function draw() {
+  tabs(); const v = $('#view'), key = tab + (sub || '');
+  ({ today, discover, courses, workshop, me })[tab]();
+  // a fresh view rises in piece by piece and its numbers count up; a redraw of the same view stays still
+  if (key !== last) { v.classList.remove('stg'); v.offsetHeight; v.classList.add('stg'); stagger(v); countAll(v); }
+  else v.querySelectorAll('[data-count]').forEach(el => el.textContent = el.dataset.count);
+  last = key;
+}
 
 // ---- Today ----
 function today() {
@@ -39,17 +48,17 @@ function today() {
   const hr = new Date().getHours(), hi = hr < 12 ? 'Good morning' : hr < 18 ? 'Good afternoon' : 'Good evening';
   const wk = St.week();
   const lock = id && St.locked(c, n);
-  v.innerHTML = `<div class="top"><h1>${hi}${p.name ? ', ' + esc(p.name) : ''}</h1>
-      <span class="pill fire${s.daily ? '' : ' off'}" title="Daily streak">${icon('flame', 18, true)}${s.daily}</span><span class="pill spark" title="Sparks">${icon('spark', 16, true)}${S().sparks}</span></div>
-    <div class="card weekstrip">${wk.map(d => `<div class="d${d.on ? ' on' : ''}${d.today ? ' today' : ''}"><i>${icon('check', 14)}</i>${d.label}</div>`).join('')}
+  v.innerHTML = `<div class="top hi"><h1>${hi}${p.name ? `, <span class="serif">${esc(p.name)}</span>` : ''}</h1>
+      <div class="pills"><span class="pill fire${s.daily ? '' : ' off'}" title="Daily streak">${icon('flame', 18, true)}<span data-count="${s.daily}">${s.daily}</span></span><span class="pill spark" title="Sparks">${icon('spark', 16, true)}<span data-count="${S().sparks}">${S().sparks}</span></span></div></div>
+    <div class="card weekstrip">${wk.map((d, k) => `<div style="--i:${k}" class="d${d.on ? ' on' : ''}${d.today ? ' today' : ''}"><i>${icon('check', 14)}</i>${d.label}</div>`).join('')}
       <div class="goal"><b>${s.weekDays}/${s.goal}</b>this week</div></div>
-    ${id ? `<div class="hero" style="background:linear-gradient(135deg, ${c.color}, color-mix(in srgb, ${c.color} 55%, #000))">
+    ${id ? `<div class="hero notch" style="background:linear-gradient(135deg, ${c.color}, color-mix(in srgb, ${c.color} 55%, #000))">
       <small>${c.title} · Day ${n + 1} of ${c.lessons.length} · ${c.units[Math.floor(n / 7)] || ''}</small>
       <h2>${hook(id)}</h2><p>${L(id).title} · about 5 min</p>
       ${doneToday ? `<div class="done">${icon('check', 20)} Today's lesson done. Want another?</div><p></p>` : ''}
       <button class="btn" id="go">${lock ? icon('lock', 18) + ' Unlock with Pro' : icon('play', 18, true) + (doneToday ? ' Keep going' : ' Start today\'s lesson')}</button></div>`
       : `<div class="hero" style="background:${c.color}"><small>${c.title}</small><h2>Course complete!</h2><p>Your certificate is on its way. Pick your next course.</p><button class="btn" id="go">Choose a course</button></div>`}
-    <div class="streaks"><div class="card">${icon('flame', 20, true)}<b>${s.daily}</b><span>day streak</span></div><div class="card"><b>${s.weekly}</b><span>week streak</span></div><div class="card"><b>${s.monthly}</b><span>month streak</span></div></div>
+    <div class="streaks"><div class="card">${icon('flame', 20, true)}<b data-count="${s.daily}">${s.daily}</b><span>day streak</span></div><div class="card">${icon('calendar', 20)}<b data-count="${s.weekly}">${s.weekly}</b><span>week streak</span></div><div class="card">${icon('trophy', 20)}<b data-count="${s.monthly}">${s.monthly}</b><span>month streak</span></div></div>
     <div class="card lvl"><div class="t"><span>Level ${lv.n}: ${lv.name}</span><span class="muted">${lv.next ? `${S().sparks} / ${lv.next} Sparks` : 'Top level'}</span></div><div class="meter"><i style="width:${Math.round(lv.pct * 100)}%"></i></div></div>
     <div class="row2">${reviewTile()}${discoverTile()}</div>`;
   $('#go').onclick = () => { if (!id) { tab = 'courses'; draw(); } else if (lock) upsell(); else play(id, c.id); };
@@ -73,12 +82,12 @@ function discoverTile() {
 function discover() {
   const v = $('#view'), today = new Date().getDay();
   const cards = [...Array(7)].map((_, k) => WEEK[(today + k) % 7]).map((w, k) => {
-    const id = discoverPick(w, 0), c = id ? colorOf(id) : '#2B2D42';
-    return `<button class="fc" ${id ? `data-play="${id}"` : ''} style="background:linear-gradient(160deg, ${c}, color-mix(in srgb, ${c} 50%, #000))">
+    const id = discoverPick(w, 0), c = id ? colorOf(id) : '#1F2A44';
+    return `<button class="fc" ${id ? `data-play="${id}"` : ''} style="background:linear-gradient(160deg, ${c}, color-mix(in srgb, ${c} 50%, #141B2D))">
       <small>${k === 0 ? 'Today' : w.day} · ${w.theme}</small><div><h2>${id ? hook(id) : 'Fix-it challenge: a broken machine arrives'}</h2><span>${id ? L(id).title : 'Find the fault against the clock. Opens at launch.'}</span></div>
       <span>${id ? (k === 0 ? 'Tap to open · free' : 'Free on ' + w.day) : 'Sunday'}</span></button>`;
   }).join('');
-  v.innerHTML = `<div class="top"><h1>Discover</h1></div><p class="muted" style="margin-top:-6px">One free lesson a day, on a different theme each day of the week.</p><div class="feed">${cards}</div>`;
+  v.innerHTML = `<div class="top"><h1>Discover</h1></div><p class="muted sub">One free lesson a day, on a different theme each day of the week.</p><div class="feed">${cards}</div>`;
   v.querySelectorAll('[data-play]').forEach((b, k) => b.onclick = () => { if (k > 0 && !St.pro()) return toast('That one opens on its day. Pro opens them all.'); play(b.dataset.play, null); });
 }
 
@@ -86,7 +95,7 @@ function discover() {
 function courses() {
   const v = $('#view');
   if (sub) return courseDetail(sub);
-  v.innerHTML = `<div class="top"><h1>Courses</h1></div><div class="clist">${COURSES.map(c => {
+  v.innerHTML = `<div class="top"><h1>Courses</h1></div><p class="muted sub">Each day builds on the last. Pick one as your course.</p><div class="clist">${COURSES.map(c => {
     const d = St.doneIn(c.id).length;
     return `<button class="card cc" data-c="${c.id}"><span class="ic" style="background:${c.color}">${icon(c.icon, 24)}</span><span class="tx"><b>${c.title} ${S().active === c.id ? '<span class="badge">Your course</span>' : ''}</b>
       <span>${c.days} days · ${c.units.length} units</span><div class="meter"><i style="width:${(d / c.lessons.length) * 100}%;background:${c.color}"></i></div></span></button>`;
@@ -101,7 +110,7 @@ function courseDetail(cid) {
       return `<button class="ll${isDone ? ' done' : ''}${i === nx && S().active === cid ? ' next' : ''}${lock ? ' lock' : ''}" data-i="${i}"><span class="n">${isDone ? icon('check', 14) : i + 1}</span><span class="t">${L(id).title}</span><span class="end">${lock ? icon('lock', 16) : ''}</span></button>`; }).join('')}</div>`;
   }).join('');
   v.innerHTML = `<button class="back" id="bk">${icon('back', 18)} Courses</button>
-    <div class="hero" style="background:linear-gradient(135deg, ${c.color}, color-mix(in srgb, ${c.color} 55%, #000))"><small>${c.days} days · ${c.lessons.length} lessons</small><h2>${c.title}</h2><p>${c.outcome}</p>
+    <div class="hero notch" style="background:linear-gradient(135deg, ${c.color}, color-mix(in srgb, ${c.color} 55%, #000))"><small>${c.days} days · ${c.lessons.length} lessons</small><h2>${c.title}</h2><p>${c.outcome}</p>
     ${S().active === cid ? '<div class="done">' + icon('check', 20) + ' This is your course</div>' : '<button class="btn" id="pick">Make this my course</button>'}</div>${units}`;
   $('#bk').onclick = () => { sub = null; draw(); };
   $('#pick') && ($('#pick').onclick = () => { St.startCourse(cid); toast(`${c.title} is now your course.`); draw(); });
@@ -112,7 +121,7 @@ function courseDetail(cid) {
 function workshop() {
   const v = $('#view'), sh = S().shelf;
   v.innerHTML = `<div class="top"><h1>Your workshop</h1><span class="pill">${sh.length}</span></div>
-    ${sh.length ? `<p class="muted" style="margin-top:-6px">Every machine, circuit and model you've finished. Tap one to replay it.</p><div class="shelf">${sh.map(id => {
+    ${sh.length ? `<p class="muted sub">Every machine, circuit and model you've finished. Tap one to replay it.</p><div class="shelf">${sh.map(id => {
       const l = L(id), c = colorOf(id); return `<button class="item" data-play="${id}" style="background:linear-gradient(150deg, ${c}, color-mix(in srgb, ${c} 55%, #000))">${icon(SITE[l.site][1], 26)}<b>${l.title}</b></button>`; }).join('')}</div>`
     : `<div class="empty"><div class="art">${icon('shelf', 40)}</div><b>Your shelf is empty</b><p>Finish a lesson and its machine lands here.</p></div>`}`;
   v.querySelectorAll('[data-play]').forEach(b => b.onclick = () => play(b.dataset.play, null, true));
@@ -123,7 +132,7 @@ function me() {
   const v = $('#view'), p = S().profile, lv = St.level(), s = St.streaks();
   const plan = S().plan === 'free' ? 'Free' : S().plan === 'trial' ? 'Pro (preview)' : 'Pro';
   v.innerHTML = `<div class="card me"><div class="av">${esc((p.name || 'S')[0].toUpperCase())}</div><div><b style="font-size:19px">${esc(p.name || 'Savvy learner')}</b><div class="muted">Level ${lv.n}: ${lv.name} · ${S().sparks} Sparks</div><span class="badge">${plan}</span></div></div>
-    <div class="streaks"><div class="card">${icon('flame', 20, true)}<b>${s.daily}</b><span>days</span></div><div class="card"><b>${s.weekly}</b><span>weeks</span></div><div class="card"><b>${s.monthly}</b><span>months</span></div></div>
+    <div class="streaks"><div class="card">${icon('flame', 20, true)}<b data-count="${s.daily}">${s.daily}</b><span>days</span></div><div class="card">${icon('calendar', 20)}<b data-count="${s.weekly}">${s.weekly}</b><span>weeks</span></div><div class="card">${icon('trophy', 20)}<b data-count="${s.monthly}">${s.monthly}</b><span>months</span></div></div>
     <div class="card lvl"><div class="t"><span>${icon('trophy', 16)} Weekly league</span><span class="muted">Opens at launch</span></div><div class="muted" style="font-size:14px">Groups of about 20 learners, ranked by Sparks each week. You can turn it off.</div></div>
     <h3 class="sec">Settings</h3>
     <div class="card set">
@@ -155,7 +164,7 @@ function play(id, cid, replay = false, paywall = false) {
   let step = 0, right = 0;
   const l = id && L(id), checks = l ? l.checks : [];
   const c = cid ? course(cid) : courseOf(id || '');
-  const color = (c && c.color) || '#5B4CF0';
+  const color = (c && c.color) || '#3E2A6B';
   const close = () => { P.hidden = true; P.innerHTML = ''; document.body.style.overflow = ''; draw(); };
   const bar = n => `<div class="pbar"><button class="x" id="px" aria-label="Close">${icon('x')}</button><div class="steps">${[0, 1, 2, 3].map(k => `<i class="${k <= n ? 'on' : ''}"></i>`).join('')}</div><span style="width:40px"></span></div>`;
   if (paywall) {
@@ -182,6 +191,7 @@ function play(id, cid, replay = false, paywall = false) {
       P.innerHTML = bar(2) + `<div class="pbody"><div class="pin q"><span class="chip">Check ${qi + 1} of ${checks.length}</span><h2>${q.q}</h2><div id="opts">${q.a.map((a, k) => `<button class="opt" data-k="${k}">${a}</button>`).join('')}</div><div id="why"></div></div></div>`;
       P.querySelectorAll('.opt').forEach(b => b.onclick = () => {
         const k = +b.dataset.k, ok = k === q.ok; if (ok) right++;
+        if (ok) burstFrom(b, 36);
         P.querySelectorAll('.opt').forEach(x => { x.disabled = true; x.classList.toggle('right', +x.dataset.k === q.ok); x.classList.toggle('wrong', +x.dataset.k === k && !ok); });
         $('#why').innerHTML = `<div class="why"><b style="color:var(--${ok ? 'ok' : 'bad'})">${ok ? 'Right!' : 'Not quite.'}</b>${q.why || ''}</div><button class="btn primary block" id="nx">${qi + 1 < checks.length ? 'Next' : 'Finish'}</button>`;
         $('#nx').onclick = () => { qi++; if (qi >= checks.length) step = 3; scene(); };
@@ -195,10 +205,11 @@ function play(id, cid, replay = false, paywall = false) {
       P.innerHTML = bar(3) + `<div class="pbody"><div class="pin"><div class="res"><div class="flame">${icon('flame', 110, true)}</div><h1>${msg}</h1>
         <p class="muted">${checks.length ? `${right} of ${checks.length} right. ` : ''}${l.title} is on your shelf.${right < checks.length ? ' The ones you missed come back for review.' : ''}</p>
         <div class="gain"><span class="pill spark">${icon('spark', 16, true)} +${out.sparks} Sparks</span><span class="pill fire">${icon('flame', 16, true)} ${s.daily} day${s.daily === 1 ? '' : 's'}</span><span class="pill">${s.weekDays}/${s.goal} this week</span></div>
-        <div class="sharecard" style="background:linear-gradient(135deg, ${color}, color-mix(in srgb, ${color} 55%, #000))"><small>I learned on SavvyMe today</small><b>${hook(id)}</b><span>${l.title} · in 5 minutes</span></div>
+        <div class="sharecard notch" style="background:linear-gradient(135deg, ${color}, color-mix(in srgb, ${color} 55%, #000))"><small>I learned on SavvyMe today</small><b>${hook(id)}</b><span>${l.title} · in 5 minutes</span></div>
         <div style="display:flex;gap:10px"><button class="btn ghost" id="sh" style="flex:1">${icon('share', 18)} Share</button><button class="btn primary" id="nx" style="flex:1">Done</button></div></div></div></div>`;
       $('#sh').onclick = async () => { const t = `I learned "${hook(id)}" on SavvyMe in 5 minutes.`; const u = link('home');
         try { if (navigator.share) await navigator.share({ title: 'SavvyMe', text: t, url: u }); else { await navigator.clipboard.writeText(t + ' ' + u); toast('Copied, paste it anywhere.'); } } catch {} };
+      setTimeout(() => confetti(innerWidth / 2, innerHeight * .3, out.milestone ? 160 : 110), 250);
       $('#nx').onclick = close; $('#px').onclick = close; return;
     }
     $('#px').onclick = close;

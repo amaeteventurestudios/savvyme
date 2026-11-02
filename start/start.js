@@ -4,6 +4,7 @@ import { logo, link, icon } from '../shared/brand.js';
 import { COURSES, GOALS, course } from '../shared/courses.js';
 import { LESSONS } from '../shared/lessons.js';
 import { encodeProfile } from '../shared/store.js';
+import { stagger, burstFrom, confetti } from '../shared/motion.js';
 
 const $ = s => document.querySelector(s);
 const STAGES = ['You', 'Try it', 'Your style', 'Your plan'];
@@ -21,13 +22,13 @@ const STEPS = [
   { id: 'age', stage: 0, type: 'single', title: 'How old are you?', two: true,
     opts: [['u18', 'Under 18'], ['18', '18 to 24'], ['25', '25 to 34'], ['35', '35 to 44'], ['45', '45 to 54'], ['55', '55 or over']] },
   { id: 'rate', stage: 0, type: 'scale', title: 'How would you rate your tech know-how?', lo: 'Total beginner', hi: 'I build things' },
-  { id: 'i1', stage: 0, type: 'info', big: '5 min', title: 'That\'s all it takes.', text: 'Short, hands-on sessions every day beat a long one once a week. Your brain keeps what it uses.' },
+  { id: 'i1', stage: 0, type: 'info', big: '5 min', title: 'That\'s <span class="serif">all</span> it takes.', text: 'Short, hands-on sessions every day beat a long one once a week. Your brain keeps what it uses.' },
 
   { id: 'engine', stage: 1, type: 'engine', title: 'Quick test: which part makes most of the push?', hint: 'Tap a part on the engine, or pick below. Drag to turn it.' },
   { id: 'apart', stage: 1, type: 'single', title: 'Have you ever taken something apart to see how it works?',
     opts: [['yes', 'Yes, all the time'], ['once', 'Once or twice'], ['want', 'No, but I\'ve always wanted to'], ['no', 'No, never']] },
   { id: 'circuit', stage: 1, type: 'circuit', title: 'This LED is lit. What happens if we take out the resistor?' },
-  { id: 'i2', stage: 1, type: 'info', art: 'hand', title: 'That\'s the SavvyMe way.', text: 'You don\'t just read about it. You try it, break it, and see why. Every lesson works like this.' },
+  { id: 'i2', stage: 1, type: 'info', art: 'hand', title: 'That\'s the <span class="serif">SavvyMe</span> way.', text: 'You don\'t just read about it. You try it, break it, and see why. Every lesson works like this.' },
   { id: 'word', stage: 1, type: 'word', title: 'Think like a chatbot. Which word comes next?' },
 
   { id: 'style', stage: 2, type: 'single', title: 'How do you like to learn something new?',
@@ -49,7 +50,7 @@ const STEPS = [
   { id: 'pay', stage: 3, type: 'pay' },
 ];
 
-let i = 0;
+let i = 0, dir = 1;
 const hist = [];
 
 function progress() {
@@ -62,10 +63,10 @@ function progress() {
   $('#back').hidden = i === 0 || STEPS[i].type === 'building';
 }
 
-function go(n) { if (engine) { engine.dispose(); engine = null; } if (n > i) hist.push(i); i = n; render(); scrollTo(0, 0); }
+function go(n) { if (engine) { engine.dispose(); engine = null; } if (n > i) hist.push(i); dir = n >= i ? 1 : -1; i = n; render(); scrollTo(0, 0); }
 const next = () => go(i + 1);
 $('#back').innerHTML = icon('back');
-$('#back').onclick = () => { if (hist.length) { const p = hist.pop(); if (engine) { engine.dispose(); engine = null; } i = p; render(); } };
+$('#back').onclick = () => { if (hist.length) { const p = hist.pop(); if (engine) { engine.dispose(); engine = null; } dir = -1; i = p; render(); } };
 $('#logo').innerHTML = logo(link('home'));
 
 const optBtn = (v, label, ic, multi) => `<button class="opt" data-v="${v}">${ic ? `<span class="ic">${icon(ic, 20)}</span>` : ''}<span>${label}</span>${multi ? `<span class="tick">${icon('check', 14)}</span>` : ''}</button>`;
@@ -74,7 +75,7 @@ const foot = (label = 'Continue', dis = false) => `<div class="foot"><button cla
 function render() {
   const S = STEPS[i], m = $('#step');
   progress();
-  m.style.animation = 'none'; m.offsetHeight; m.style.animation = '';
+  m.classList.toggle('b', dir < 0); m.style.animation = 'none'; m.offsetHeight; m.style.animation = '';
   const head = S.title ? `<h1>${S.title}</h1>${S.hint ? `<p class="hint">${S.hint}</p>` : ''}` : '';
   const opts = (S.opts || []).map(o => Array.isArray(o) ? { v: o[0], label: o[1] } : o);
 
@@ -105,7 +106,11 @@ function render() {
   if (S.type === 'plan') stepPlan(m);
   if (S.type === 'name') stepName(m);
   if (S.type === 'pay') stepPay(m);
+  // lists come in one after another
+  m.querySelectorAll('.opts, .scale, .words').forEach(el => { el.classList.add('stg'); stagger(el); });
+  m.querySelectorAll('.facts, .wk, .perks').forEach(stagger);
 }
+const cheer = el => el && burstFrom(el, 46);
 
 // ---- try it 1: the jet engine (the big fan at the front makes most of the thrust in an airliner engine) ----
 async function stepEngine(m, head) {
@@ -117,7 +122,7 @@ async function stepEngine(m, head) {
   const answer = v => {
     if (answered) return; answered = true; A.engine = v; const ok = v === 'fan'; if (ok) score++;
     m.querySelectorAll('#ch .opt').forEach(b => { b.classList.toggle('right', b.dataset.v === 'fan'); b.classList.toggle('wrong', b.dataset.v === v && !ok); b.disabled = true; });
-    engine.open(true); engine.highlight('fan');
+    engine.open(true); engine.highlight('fan'); if (ok) cheer(m.querySelector('#ch [data-v="fan"]'));
     $('#rv').innerHTML = `<div class="reveal ${ok ? 'ok' : 'no'}"><b>${ok ? 'Spot on!' : 'Most people guess that.'}</b>In an airliner engine the big fan pushes about 80% of the air, and so most of the thrust. Watch the blue air flow around the core. Only a little goes through the fire.</div>` + foot();
     $('#next').onclick = next; $('#rv').scrollIntoView({ behavior: 'smooth', block: 'end' });
   };
@@ -141,7 +146,7 @@ function stepCircuit(m, head) {
   m.querySelectorAll('#ch .opt').forEach(b => b.onclick = () => {
     const v = b.dataset.v, ok = v === 'burn'; if (ok) score++; A.circuit = v;
     m.querySelectorAll('#ch .opt').forEach(x => { x.disabled = true; x.classList.toggle('right', x.dataset.v === 'burn'); x.classList.toggle('wrong', x.dataset.v === v && !ok); });
-    const res = $('#res'), led = $('#led'), halo = $('#halo');
+    const res = $('#res'), led = $('#led'), halo = $('#halo'); if (ok) setTimeout(() => cheer(b), 1200);
     res.animate([{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(-40px)', opacity: 0 }], { duration: 500, fill: 'forwards' });
     setTimeout(() => {
       $('#cv path').setAttribute('d', 'M60 60 H300 V150 H60 V60'); $('#flow path').setAttribute('d', 'M60 60 H300 V150 H60 V60');
@@ -164,7 +169,7 @@ function stepWord(m, head) {
   m.querySelectorAll('#ch .opt').forEach(b => b.onclick = () => {
     const v = b.dataset.v, ok = v === 'practice'; if (ok) score++; A.word = v;
     m.querySelectorAll('#ch .opt').forEach(x => { x.disabled = true; x.classList.add('showp'); x.querySelector('.fill').style.width = x.dataset.p * 2 + '%'; if (x === b) x.classList.add('sel'); });
-    $('#blank').textContent = 'practice';
+    $('#blank').textContent = 'practice'; $('#blank').animate([{ transform: 'scale(.6)', opacity: 0 }, { transform: 'scale(1.1)' }, { transform: 'none', opacity: 1 }], { duration: 500, easing: 'ease-out' }); if (ok) setTimeout(() => cheer(b), 300);
     setTimeout(() => {
       $('#rv').innerHTML = `<div class="reveal ${ok ? 'ok' : ''}"><b>${ok ? 'You think like a chatbot.' : 'Good pick, but the odds say "practice".'}</b>A chatbot doesn't look up answers. It scores every possible next word and picks from those odds, one word at a time. That's also why it sometimes says things that sound right but aren't.</div>` + foot();
       $('#next').onclick = next; $('#rv').scrollIntoView({ behavior: 'smooth', block: 'end' });
@@ -198,11 +203,12 @@ function stepPlan(m) {
   const c = course(pickCourse()); A.course = c.id; A.level = level();
   const wk = c.lessons.slice(0, 7).map((id, d) => `<div><em>Day ${d + 1}</em>${LESSONS[id]?.title || id}</div>`).join('');
   const goalTxt = A.weekly === '7' ? 'Every day' : `${A.weekly || 5} days a week`;
-  m.innerHTML = `<h1>Your plan is ready</h1><p class="hint">Built from your answers. You can switch course any time.</p>
-    <div class="plan" style="background:linear-gradient(135deg, ${c.color}, color-mix(in srgb, ${c.color} 60%, #000))"><small>Your course · ${c.days} days</small><h2>${c.title}</h2><p>${c.outcome}</p></div>
+  m.innerHTML = `<h1>Your plan is <span class="serif">ready</span></h1><p class="hint">Built from your answers. You can switch course any time.</p>
+    <div class="plan notch" style="background:linear-gradient(135deg, ${c.color}, color-mix(in srgb, ${c.color} 55%, #141B2D))"><small>Your course · ${c.days} days</small><h2>${c.title}</h2><p>${c.outcome}</p><div class="lv"><span>Starts today</span><span>${c.units.length} units · ${c.lessons.length} lessons</span></div></div>
     <div class="facts"><div><b>${A.minutes || 5} min</b><span>a day</span></div><div><b>${goalTxt.split(' ')[0]}</b><span>${A.weekly === '7' ? '' : 'days a week'}</span></div><div><b>${A.level}</b><span>you got ${score}/3</span></div></div>
     <h3 style="margin:4px 0 8px">Your first week: ${c.units[0]}</h3><div class="wk">${wk}</div>` + foot('Continue');
   $('#next').onclick = next;
+  setTimeout(() => confetti(innerWidth / 2, innerHeight * .28, 110), 350);
 }
 
 function stepName(m) {

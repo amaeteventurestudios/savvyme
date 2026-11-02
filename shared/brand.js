@@ -2,10 +2,10 @@
 // savvymeapp.com (home), start.savvymeapp.com (sign-up quiz) and app.savvymeapp.com (the app).
 // On any other host (a preview, localhost) the same parts live at /, /start/ and /app/.
 
-export const LOGO = `<svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="9" fill="var(--brand)"/>
-<path d="M9 21.5l7 4 7-4v-8l-7-4-7 4z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
-<path d="M9 13.5l7 4 7-4M16 17.5v8" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
-<circle cx="16" cy="6.2" r="2.2" fill="var(--sun)"/></svg>`;
+export const LOGO = `<svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="9" fill="#141B2D" stroke="#F6F1E7" stroke-opacity=".28" stroke-width="1.2"/>
+<path d="M9 21.5l7 4 7-4v-8l-7-4-7 4z" fill="none" stroke="#F6F1E7" stroke-width="2" stroke-linejoin="round"/>
+<path d="M9 13.5l7 4 7-4M16 17.5v8" fill="none" stroke="#F6F1E7" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="16" cy="6.2" r="2.4" fill="#FF5B2E"/></svg>`;
 export const logo = (href = link('home')) => `<a class="logo" href="${href}">${LOGO}<span>savvy<b>me</b></span></a>`;
 
 const PARTS = ['start', 'app'];
@@ -40,6 +40,7 @@ const I = {
   lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>',
   play: '<path d="M7 4.5v15l13-7.5z"/>',
   share: '<path d="M12 3v13M7 8l5-5 5 5M5 14v5a2 2 0 002 2h10a2 2 0 002-2v-5"/>',
+  calendar: '<rect x="3.5" y="5" width="17" height="16" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
   snow: '<path d="M12 2v20M4 6.5l16 11M20 6.5l-16 11"/>',
   trophy: '<path d="M8 4h8v5a4 4 0 01-8 0zM8 6H4a3 3 0 003 4M16 6h4a3 3 0 01-3 4M12 13v4M8 21h8M9 21l1-4h4l1 4"/>',
   sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',

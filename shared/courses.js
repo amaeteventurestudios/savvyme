@@ -8,7 +8,7 @@ const k = s => s.trim().split(/\s+/).map(x => 'cutaways:' + x);
 
 export const COURSES = [
   {
-    id: 'ai-explained', title: 'AI, explained', days: 30, color: '#5B4CF0', icon: 'spark',
+    id: 'ai-explained', title: 'AI, explained', days: 30, color: '#4B2E83', icon: 'spark',
     goal: 'ai', blurb: 'How machines learn, see and talk, and where they go wrong. No maths degree needed.',
     outcome: 'Explain how a chatbot really works, and spot when it is making things up.',
     units: ['How a machine learns', 'Brains made of numbers', 'How it sees and talks', 'Inside a chatbot', 'Pictures and phones'],
@@ -21,7 +21,7 @@ export const COURSES = [
     ],
   },
   {
-    id: 'electronics', title: 'Electronics from zero', days: 30, color: '#E8590C', icon: 'bolt',
+    id: 'electronics', title: 'Electronics from zero', days: 30, color: '#E0531F', icon: 'bolt',
     goal: 'gadgets', blurb: 'Volts, LEDs, sensors and your first code on a board, wired by your own hand.',
     outcome: 'Wire and program your own small gadgets.',
     units: ['What electricity is', 'The parts', 'First light', 'Sensing the world', 'Your first builds'],
@@ -34,7 +34,7 @@ export const COURSES = [
     ],
   },
   {
-    id: 'machines', title: 'How machines work', days: 30, color: '#0E7C6B', icon: 'gear',
+    id: 'machines', title: 'How machines work', days: 30, color: '#13877A', icon: 'gear',
     goal: 'machines', blurb: 'Open up engines, dams, cranes and rockets while they run.',
     outcome: 'Explain the engines, pumps and wings that move the modern world.',
     units: ['Power', 'Moving people', 'Building big', 'Flight', 'Into space'],
@@ -47,7 +47,7 @@ export const COURSES = [
     ],
   },
   {
-    id: 'made', title: 'How things are made', days: 21, color: '#B5452B', icon: 'hand',
+    id: 'made', title: 'How things are made', days: 21, color: '#B7791F', icon: 'hand',
     goal: 'made', blurb: 'From cocoa pod to chocolate bar, cotton to kente, sand to glass fibre.',
     outcome: 'Follow a product from raw material to the shelf.',
     units: ['Food', 'Cloth, metal and clay', 'Things in your bag'],
@@ -58,7 +58,7 @@ export const COURSES = [
     ],
   },
   {
-    id: 'smart-home', title: 'Smart home and gadgets', days: 30, color: '#1971C2', icon: 'wifi',
+    id: 'smart-home', title: 'Smart home and gadgets', days: 30, color: '#2F5DA8', icon: 'wifi',
     goal: 'gadgets', blurb: 'Wi-Fi boards, phone alerts and dashboards for the home, shop and farm.',
     outcome: 'Build sensors and alarms that talk to your phone.',
     units: ['Your first Wi-Fi board', 'Keep people safe', 'Money and community', 'Talking machines', 'Big builds'],
@@ -71,7 +71,7 @@ export const COURSES = [
     ],
   },
   {
-    id: 'build-software', title: 'Build your own software', days: 30, color: '#7048E8', icon: 'code',
+    id: 'build-software', title: 'Build your own software', days: 30, color: '#8A2D5C', icon: 'code',
     goal: 'code', blurb: 'Build a database, a shell, a compiler and a game server from nothing.',
     outcome: 'Know what really happens inside the software you use every day.',
     units: ['Store it', 'Run it', 'Talk over the network', 'Make pictures', 'Trust and money'],
@@ -84,7 +84,7 @@ export const COURSES = [
     ],
   },
   {
-    id: 'ai-builder', title: 'Become an AI builder', days: 90, color: '#2B2D42', icon: 'robot',
+    id: 'ai-builder', title: 'Become an AI builder', days: 90, color: '#1F2A44', icon: 'robot',
     goal: 'career', blurb: 'The long road: maths, models, language, agents and running them safely.',
     outcome: 'Build and run an AI agent, and be ready for an associate exam.',
     units: ['Setup', 'The maths that matters', 'Machine learning', 'Neural networks', 'Language', 'Transformers',
