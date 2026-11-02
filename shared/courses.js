@@ -29,7 +29,7 @@ export const COURSES = [
       ...c('what-electricity-is volts-amps-ohms how-a-breadboard-works meet-the-board resistors-colour-code leds buttons-switches-knobs'),
       ...c('diodes capacitors transistors-as-switches motors-and-drivers sensors-digital-analog the-multimeter reading-a-circuit-diagram'),
       ...c('blink-an-led flashing-open-sign push-button-doorbell dimmer-knob rgb-mood-light serial-monitor traffic-light'),
-      ...c('queue-number-display reaction-time-game ringtone-buzzer dusk-streetlight pepper-soup-thermometer harmattan-heat-index reversing-sensor'),
+      ...c('queue-number-display reaction-time-game ringtone-buzzer dusk-streetlight lcd-clock sound-level-meter reversing-sensor'),
       ...c('shop-motion-alarm control-a-motor'),
     ],
   },
@@ -48,26 +48,26 @@ export const COURSES = [
   },
   {
     id: 'made', title: 'How things are made', days: 21, color: '#B7791F', icon: 'hand',
-    goal: 'made', blurb: 'From cocoa pod to chocolate bar, cotton to kente, sand to glass fibre.',
-    outcome: 'Follow a product from raw material to the shelf.',
-    units: ['Food', 'Cloth, metal and clay', 'Things in your bag'],
+    goal: 'made', blurb: 'From cocoa bean to chocolate bar, crude oil to petrol, and the fridge, zipper and phone in between.',
+    outcome: 'Explain how the things in your kitchen, home and pocket are made and how they work.',
+    units: ['Kitchen and fuel', 'Around the house', 'In your pocket'],
     lessons: [
-      ...k('cocoa-to-chocolate garri palm-oil-mill coffee-ceremony espresso-machine oil-refinery desalination'),
-      ...k('kente-loom adire benin-bronze nok-kiln talking-drum kora swahili-dhow'),
-      ...k('ballpoint-pen zipper inkjet-printer 3d-printer fibre-optic smartphone undersea-cable'),
+      ...k('cocoa-to-chocolate espresso-machine electric-kettle microwave fridge oil-refinery desalination'),
+      ...k('washing-machine air-conditioner toilet-cistern lock-and-key sewing-machine piano-action camera'),
+      ...k('ballpoint-pen zipper inkjet-printer 3d-printer touchscreen smartphone fibre-optic'),
     ],
   },
   {
     id: 'smart-home', title: 'Smart home and gadgets', days: 30, color: '#2F5DA8', icon: 'wifi',
-    goal: 'gadgets', blurb: 'Wi-Fi boards, phone alerts and dashboards for the home, shop and farm.',
+    goal: 'gadgets', blurb: 'Wi-Fi boards, phone alerts and dashboards for your home.',
     outcome: 'Build sensors and alarms that talk to your phone.',
-    units: ['Your first Wi-Fi board', 'Keep people safe', 'Money and community', 'Talking machines', 'Big builds'],
+    units: ['Your first Wi-Fi board', 'Keep your home safe', 'Around the house', 'Talking machines', 'Big builds'],
     lessons: [
-      ...c('meet-the-esp32 hello-esp32 gas-leak-alarm generator-fumes-alarm market-stall-fire-alarm intruder-alert security-light'),
-      ...c('phone-doorbell fridge-door-alarm fall-alert okada-helmet scale-with-receipt charging-kiosk-billing prepaid-energy-meter'),
-      ...c('pure-water-vending visitor-counter clinic-queue-caller pill-reminder vaccine-fridge-monitor keke-tracker brt-arrival-board'),
-      ...c('bluetooth-phone-control live-sensor-dashboard sms-alert-gsm esp-now-two-boards lora-village-radio sd-weather-logger internet-clock'),
-      ...c('smart-water solar-home-kit'),
+      ...c('meet-the-esp32 hello-esp32 security-light phone-doorbell internet-clock bluetooth-phone-control live-sensor-dashboard'),
+      ...c('gas-leak-alarm intruder-alert sink-leak-alarm fridge-door-alarm keypad-door-lock fall-alert pill-reminder'),
+      ...c('ir-remote-tv-ac auto-water-garden smart-bin fan-follows-heat rain-gauge visitor-counter update-over-wifi'),
+      ...c('sms-alert-gsm esp-now-two-boards sd-weather-logger roadside-air-quality vaccine-fridge-monitor farm-sensor-mesh community-weather-station'),
+      ...c('smart-water shop-security-system'),
     ],
   },
   {
@@ -107,22 +107,26 @@ export const COURSES = [
   },
 ];
 
+// The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
+const ORDER = ['machines', 'made', 'electronics', 'smart-home', 'ai-explained', 'build-software', 'ai-builder'];
+COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
+
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
 export const WEEK = [
   { day: 'Sun', theme: 'Fix-it challenge', site: null },
-  { day: 'Mon', theme: 'How AI works', pool: b('tokens next-word word-embeddings rag image-generation-diffusion self-attention gradient-descent') },
-  { day: 'Tue', theme: 'Inside a machine', pool: k('v8-engine wind-turbine elevator helicopter submarine tower-crane rocket-staging') },
+  { day: 'Mon', theme: 'Inside a machine', pool: k('v8-engine wind-turbine elevator helicopter submarine tower-crane rocket-staging') },
+  { day: 'Tue', theme: 'How it\'s made', pool: k('fridge microwave touchscreen headphones lock-and-key car-airbag washing-machine air-conditioner') },
   { day: 'Wed', theme: 'Make it', pool: c('dusk-streetlight traffic-light reaction-time-game push-button-doorbell rgb-mood-light reversing-sensor') },
-  { day: 'Thu', theme: 'Everyday wonders', pool: k('fridge microwave touchscreen headphones lock-and-key car-airbag washing-machine air-conditioner') },
+  { day: 'Thu', theme: 'How AI works', pool: b('tokens next-word word-embeddings rag image-generation-diffusion self-attention gradient-descent') },
   { day: 'Fri', theme: 'Build it yourself', pool: b('build-a-database build-a-shell build-a-web-server build-a-regex-engine build-a-ray-tracer') },
   { day: 'Sat', theme: 'Nature and the body', pool: k('human-heart eye lungs neuron photosynthesis thunderstorm volcano beehive') },
 ];
 
 export const GOALS = [
-  { id: 'ai', label: 'Understand how AI really works', icon: 'spark' },
-  { id: 'gadgets', label: 'Build gadgets and electronics', icon: 'bolt' },
   { id: 'machines', label: 'Know how machines work', icon: 'gear' },
   { id: 'made', label: 'See how things are made', icon: 'hand' },
+  { id: 'gadgets', label: 'Build gadgets and electronics', icon: 'bolt' },
+  { id: 'ai', label: 'Understand how AI really works', icon: 'spark' },
   { id: 'code', label: 'Build my own software', icon: 'code' },
   { id: 'career', label: 'Start a career in AI', icon: 'robot' },
 ];

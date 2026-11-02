@@ -16,7 +16,7 @@ A SmartyMe-style daily learning app made from what we already built. The differe
 - Progress is stored in the browser for now (`shared/store.js`).
 
 ## Courses
-AI, explained (30) · Electronics from zero (30) · How machines work (30) · How things are made (21) ·
+How machines work (30) · How things are made (21) · Electronics from zero (30) · AI, explained (30) ·
 Smart home and gadgets (30) · Build your own software (30) · Become an AI builder (90).
 
 ## Plans

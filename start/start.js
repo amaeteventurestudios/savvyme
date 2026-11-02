@@ -179,9 +179,9 @@ function stepWord(m, head) {
 
 // ---- your plan ----
 function pickCourse() {
-  const g = (A.goals || ['ai']).filter(x => goalCourse[x]);
+  const g = (A.goals || ['machines']).filter(x => goalCourse[x]);
   if (A.why === 'career' && g.includes('ai')) return 'ai-builder';
-  return goalCourse[g[0] || 'ai'];
+  return goalCourse[g[0] || 'machines'];
 }
 function level() { const r = A.rate || 2; const s = r + score; return s >= 7 ? 'Advanced' : s >= 4 ? 'Intermediate' : 'Beginner'; }
 
