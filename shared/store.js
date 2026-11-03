@@ -1,4 +1,5 @@
-// Progress, streaks and Sparks. Kept in the browser for now; accounts on the shared Noveniqe backend come next.
+// Progress, streaks and Sparks. Always kept in the browser; when someone signs in, shared/account.js also keeps a copy
+// on the server (PocketBase) and merges the two, so progress follows them to any device.
 import { COURSES, course } from './courses.js';
 
 const KEY = 'savvyme-v1';
@@ -6,7 +7,21 @@ const blank = () => ({ profile: {}, active: null, progress: {}, days: {}, sparks
 let S = blank();
 try { S = { ...blank(), ...JSON.parse(localStorage.getItem(KEY) || '{}') }; } catch {}
 export const state = () => S;
-export function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} }
+let onSave = null;
+export const setSaver = fn => { onSave = fn; };
+export function save() { S.savedAt = Date.now(); try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} onSave && onSave(S); }
+export function replace(next) { S = { ...blank(), ...next }; try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} }
+
+// two copies of progress (this device and the server) become one: nothing finished on either is lost
+export function merge(a, b) {
+  if (!b) return a; if (!a) return b;
+  const [old, nu] = (a.savedAt || 0) >= (b.savedAt || 0) ? [b, a] : [a, b];
+  const days = { ...old.days }; for (const [k, v] of Object.entries(nu.days || {})) days[k] = Math.max(days[k] || 0, v);
+  const progress = { ...old.progress }; for (const [k, v] of Object.entries(nu.progress || {})) progress[k] = [...new Set([...(progress[k] || []), ...v])];
+  const seen = new Set(), reviews = [...(old.reviews || []), ...(nu.reviews || [])].filter(r => { const k = r.id + r.due; if (seen.has(k)) return false; seen.add(k); return true; });
+  return { ...old, ...nu, profile: { ...old.profile, ...nu.profile }, days, progress, reviews,
+    shelf: [...new Set([...(old.shelf || []), ...(nu.shelf || [])])], sparks: Math.max(old.sparks || 0, nu.sparks || 0), savedAt: Math.max(old.savedAt || 0, nu.savedAt || 0) };
+}
 export function reset() { S = blank(); save(); }
 
 // ---- dates (local time) ----

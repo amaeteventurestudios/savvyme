@@ -4,6 +4,8 @@
 #     SERVER_HOST       the server's public IP address
 #     SERVER_USER       the login name (ubuntu on Oracle Cloud)
 #     SERVER_SSH_KEY    the whole private key file (BEGIN ... END lines included)
+#     PB_ADMIN_EMAIL    (optional) the admin sign-in for app.<domain>/admin/ and the PocketBase dashboard at /_/
+#     PB_ADMIN_PASSWORD (optional) its password, 10 characters or more
 #   Variables (optional):
 #     SAVVYME_DOMAIN    the home page's names, main one first, once the domain points at the server
 #                       (A records for @, www, start and app). Example: "savvymeapp.com www.savvymeapp.com".
@@ -26,13 +28,15 @@ jobs:
       - name: Check the course data loads
         run: node -e "Promise.all([import('./shared/courses.js'), import('./shared/lessons.js')]).then(([c, l]) => { const miss = c.COURSES.flatMap(x => x.lessons).filter(id => !l.LESSONS[id]); if (miss.length) { console.error('Missing lessons:', miss); process.exit(1); } console.log('Courses OK') })"
       - name: Pack the site
-        run: tar czf savvyme.tgz index.html home.css home.js favicon.svg site.webmanifest robots.txt shared start app vendor
+        run: tar czf savvyme.tgz index.html home.css home.js favicon.svg site.webmanifest robots.txt shared start app vendor server/pb_migrations server/pb_hooks
       - name: Copy to the server
         env:
           HOST: ${{ secrets.SERVER_HOST }}
           USER: ${{ secrets.SERVER_USER }}
           KEY: ${{ secrets.SERVER_SSH_KEY }}
           DOMAIN: ${{ vars.SAVVYME_DOMAIN }}
+          PB_ADMIN_EMAIL: ${{ secrets.PB_ADMIN_EMAIL }}
+          PB_ADMIN_PASSWORD: ${{ secrets.PB_ADMIN_PASSWORD }}
         run: |
           set -euo pipefail
           if [ -z "$HOST" ] || [ -z "$KEY" ]; then echo '::error::Add the SERVER_HOST, SERVER_USER and SERVER_SSH_KEY secrets first (the same ones Agent Grand Prix uses).'; exit 1; fi
@@ -44,7 +48,8 @@ jobs:
           DOMAIN=$(printf '%s' "$DOMAIN" | tr ',' ' ' | tr -cd 'A-Za-z0-9. -' | xargs)
           OPTS="-i key -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20"
           scp $OPTS savvyme.tgz "$USER@$HOST:/tmp/"
-          ssh $OPTS "$USER@$HOST" "SAVVYME_DOMAIN='$DOMAIN' SPARE='$SPARE' bash -s" < server/install.sh
+          # the admin sign-in rides in on the script's first lines, quoted, so it never shows in the log or the command line
+          { printf 'export PB_ADMIN_EMAIL=%q PB_ADMIN_PASSWORD=%q\n' "$PB_ADMIN_EMAIL" "$PB_ADMIN_PASSWORD"; cat server/install.sh; } | ssh $OPTS "$USER@$HOST" "SAVVYME_DOMAIN='$DOMAIN' SPARE='$SPARE' bash -s"
           rm -f key
           MAIN="${DOMAIN%% *}"; MAIN="${MAIN:-$SPARE}"
           echo "URL=https://$MAIN" >> "$GITHUB_ENV"

@@ -2,11 +2,12 @@ import { logo, link, icon } from './shared/brand.js';
 import { COURSES } from './shared/courses.js';
 import { PRICES, PRO } from './shared/prices.js';
 import { reveals, countAll, calm } from './shared/motion.js';
+import { track } from './shared/analytics.js';
 
 const $ = s => document.querySelector(s);
 $('#logo').innerHTML = logo('#top');
 $('#flogo').innerHTML = logo('#top');
-document.querySelectorAll('.go').forEach(a => a.href = link('start'));
+document.querySelectorAll('.go').forEach(a => { a.href = link('start'); a.addEventListener('click', () => track('start_click', { from: a.closest('section, header')?.className || 'page' })); });
 $('#login').href = link('app');
 const head = $('#top');
 const onScroll = () => head.classList.toggle('scrolled', scrollY > 40);

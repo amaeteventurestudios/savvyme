@@ -23,8 +23,28 @@ Smart home and gadgets (30) · Build your own software (30) · Become an AI buil
 Free (Discover, first week of every course, streaks) · Pro $2.99/week, $9.99/month or $59.99/year (7-day trial on yearly) ·
 Family $89.99/year for 5. Stripe through the Noveniqe account (as Agent Grand Prix), web first.
 
+## Accounts, analytics, admin (3 Nov 2026)
+- **Accounts:** SavvyMe's own PocketBase (0.40.5) on the server at 127.0.0.1:8196, reached through the app host at
+  `/api` (and its dashboard at `/_/`). Learners are the built-in `users` collection (server/pb_migrations): the whole
+  progress blob in `state`, plus copies for the admin page (course, sparks, streak, lessons, goal, last_day, quiz).
+  `plan` is billing truth: server/pb_hooks/plan.pb.js stops learners setting it; Stripe will set it as a superuser.
+- **Sign-in:** email and password in the app's Me tab (shared/account.js, plain fetch). Progress always stays in the
+  browser too; on sign-in and on every app start the two copies merge (store.js `merge`: days, courses, shelf and
+  reviews are unions, so nothing finished on either device is lost). Email codes and Google/Apple sign-in need SMTP
+  and OAuth keys first.
+- **PostHog:** shared/analytics.js, switched on by the project key in shared/config.js (empty = off). Events:
+  `start_click` (home), `quiz_step`, `quiz_try`, `quiz_plan`, `plan_pick`, `quiz_finish` (quiz), `lesson_start`,
+  `lesson_finish`, `paywall_view`, `trial_start`, `signup`, `login` (app), plus page views. One cookie across the
+  subdomains so a visitor is the same person from start. to app.; no session recordings.
+- **Admin:** app.<domain>/admin/ (app/admin): sign in with the PocketBase superuser (repo secrets PB_ADMIN_EMAIL and
+  PB_ADMIN_PASSWORD). Learners, learned today, active this week, paying, lessons finished, sign-ups for 14 days,
+  streaks, courses, plans, newest 100. The quiz funnel lives in PostHog.
+- **Backups:** nightly SQLite copy to /var/backups/savvyme on the server, 14 days kept.
+- **Local test:** run PocketBase with `--http 127.0.0.1:8196 --migrationsDir server/pb_migrations --hooksDir
+  server/pb_hooks`, then in the browser `localStorage['sm-api'] = 'http://127.0.0.1:8196'`.
+
 ## Next
-1. Accounts and progress on the shared Noveniqe backend (sign-in, sync between quiz, app and phones).
+1. Email codes (SMTP, e.g. a free transactional mail plan) and Google/Apple sign-in.
 2. Stripe checkout and the Customer portal (copy the Agent Grand Prix pass code).
 3. Lesson pages: an `?embed` mode that hides their own menus inside the player, and a 5-minute cut (a `daily` field).
 4. Spaced review with ts-fsrs (MIT), push reminders, the home-screen streak widget.
@@ -32,6 +52,7 @@ Family $89.99/year for 5. Stripe through the Noveniqe account (as Agent Grand Pr
 6. Capacitor (MIT) wrappers for the App Store and Google Play.
 
 ## Deploy
-Push to main deploys to the shared Oracle server. Needs the repo secrets SERVER_HOST, SERVER_USER, SERVER_SSH_KEY.
+Push to main deploys to the shared Oracle server. Needs the repo secrets SERVER_HOST, SERVER_USER, SERVER_SSH_KEY,
+plus PB_ADMIN_EMAIL and PB_ADMIN_PASSWORD for the admin sign-in.
 Without a domain it answers on savvyme.<IP with dashes>.sslip.io (and start./app. in front). With the domain: point
 A records for @, www, start and app at the server, then set the repo variable SAVVYME_DOMAIN="savvymeapp.com www.savvymeapp.com".

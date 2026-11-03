@@ -5,6 +5,8 @@ import { LESSONS } from '../shared/lessons.js';
 import { HOOKS } from '../shared/hooks.js';
 import * as St from '../shared/store.js';
 import { stagger, countAll, confetti, burstFrom, calm } from '../shared/motion.js';
+import * as Acc from '../shared/account.js';
+import { track, who } from '../shared/analytics.js';
 
 const $ = s => document.querySelector(s);
 const S = St.state;
@@ -131,7 +133,7 @@ function workshop() {
 function me() {
   const v = $('#view'), p = S().profile, lv = St.level(), s = St.streaks();
   const plan = S().plan === 'free' ? 'Free' : S().plan === 'trial' ? 'Pro (preview)' : 'Pro';
-  v.innerHTML = `<div class="card me"><div class="av">${esc((p.name || 'S')[0].toUpperCase())}</div><div><b style="font-size:19px">${esc(p.name || 'Savvy learner')}</b><div class="muted">Level ${lv.n}: ${lv.name} · ${S().sparks} Sparks</div><span class="badge">${plan}</span></div></div>
+  v.innerHTML = accountCard() + `<div class="card me"><div class="av">${esc((p.name || 'S')[0].toUpperCase())}</div><div><b style="font-size:19px">${esc(p.name || 'Savvy learner')}</b><div class="muted">Level ${lv.n}: ${lv.name} · ${S().sparks} Sparks</div><span class="badge">${plan}</span></div></div>
     <div class="streaks"><div class="card">${icon('flame', 20, true)}<b data-count="${s.daily}">${s.daily}</b><span>days</span></div><div class="card">${icon('calendar', 20)}<b data-count="${s.weekly}">${s.weekly}</b><span>weeks</span></div><div class="card">${icon('trophy', 20)}<b data-count="${s.monthly}">${s.monthly}</b><span>months</span></div></div>
     <div class="card lvl"><div class="t"><span>${icon('trophy', 16)} Weekly league</span><span class="muted">Opens at launch</span></div><div class="muted" style="font-size:14px">Groups of about 20 learners, ranked by Sparks each week. You can turn it off.</div></div>
     <h3 class="sec">Settings</h3>
@@ -151,6 +153,37 @@ function me() {
   $('#demo').onclick = () => { St.demo(); toast('Filled 3 weeks of practice days.'); draw(); };
   $('#rst').onclick = () => { if (confirm('Reset all your progress on this device?')) { St.reset(); location.reload(); } };
   $('#pro') && ($('#pro').onclick = upsell);
+  wireAccount();
+}
+
+// ---- account: save progress to the server so it follows you to any device ----
+let mode = 'up';
+function accountCard() {
+  if (!Acc.enabled()) return `<div class="card acct"><b>${icon('lock', 18)} Your progress is saved on this device</b><p class="muted">Accounts open at launch, so your streak can follow you to any phone or computer.</p></div>`;
+  const u = Acc.user();
+  if (u) return `<div class="card acct on"><b>${icon('check', 18)} Saved to your account</b><p class="muted">${esc(u.email)} · your streak follows you to any device.</p><button class="btn ghost sm" id="out">Sign out</button></div>`;
+  const p = S().profile;
+  return `<form class="card acct" id="af"><b>${mode === 'up' ? 'Save your progress' : 'Welcome back'}</b>
+    <p class="muted">${mode === 'up' ? 'Make a free account so your streak and Sparks follow you to any device.' : 'Sign in and we\'ll merge this device\'s progress with your account.'}</p>
+    ${mode === 'up' ? `<input name="name" autocomplete="given-name" placeholder="First name" value="${esc(p.name || '')}" maxlength="60">` : ''}
+    <input name="email" type="email" autocomplete="email" placeholder="Email" required>
+    <input name="password" type="password" autocomplete="${mode === 'up' ? 'new-password' : 'current-password'}" placeholder="Password (8 or more characters)" minlength="8" required>
+    <div class="err" id="aerr" role="alert"></div>
+    <button class="btn primary block" id="ago">${mode === 'up' ? 'Create my free account' : 'Sign in'}</button>
+    <button type="button" class="link" id="aswap">${mode === 'up' ? 'I already have an account' : 'New here? Make an account'}</button></form>`;
+}
+function wireAccount() {
+  $('#out') && ($('#out').onclick = () => { Acc.signOut(); who(null); toast('Signed out. Your progress stays on this device too.'); draw(); });
+  const f = $('#af'); if (!f) return;
+  $('#aswap').onclick = () => { mode = mode === 'up' ? 'in' : 'up'; draw(); };
+  f.onsubmit = async e => {
+    e.preventDefault(); const d = new FormData(f), b = $('#ago'); b.disabled = true; $('#aerr').textContent = '';
+    try {
+      const u = mode === 'up' ? await Acc.signUp(d.get('email'), d.get('password'), d.get('name')) : await Acc.signIn(d.get('email'), d.get('password'));
+      who(u.id, { course: S().active, plan: S().plan }); track(mode === 'up' ? 'signup' : 'login');
+      toast(mode === 'up' ? 'Account made. Your progress is saved.' : 'Signed in. Progress merged.'); draw();
+    } catch (err) { $('#aerr').textContent = err.message; b.disabled = false; }
+  };
 }
 
 function upsell() {
@@ -168,14 +201,16 @@ function play(id, cid, replay = false, paywall = false) {
   const close = () => { P.hidden = true; P.innerHTML = ''; document.body.style.overflow = ''; draw(); };
   const bar = n => `<div class="pbar"><button class="x" id="px" aria-label="Close">${icon('x')}</button><div class="steps">${[0, 1, 2, 3].map(k => `<i class="${k <= n ? 'on' : ''}"></i>`).join('')}</div><span style="width:40px"></span></div>`;
   if (paywall) {
+    track('paywall_view');
     P.innerHTML = `<div class="pbar"><button class="x" id="px">${icon('x')}</button><span style="flex:1"></span></div><div class="pbody"><div class="pin"><div class="hook">
       <div class="art" style="width:90px;height:90px;border-radius:28px;margin:0 auto 16px;display:grid;place-items:center;background:var(--soft);color:var(--brand)">${icon('lock', 40)}</div>
       <h1>Unlock every course</h1><p>Free gives you the first week of every course. Pro opens them all, start to finish.</p></div>
       <div class="card" style="padding:16px;margin:18px 0"><b>Pro yearly · $59.99</b><div class="muted">7 days free, then $1.15 a week, billed yearly. Or $9.99 a month, or $2.99 a week.</div></div>
       <button class="btn primary block" id="pp">Start my 7-day free trial</button><p class="muted" style="text-align:center;font-size:13px">Checkout opens at launch. In this preview Pro is free and nobody is charged.</p></div></div>`;
-    $('#px').onclick = close; $('#pp').onclick = () => { St.setProfile({ plan: 'trial' }); S().plan = 'trial'; St.save(); toast('Pro is on for this preview.'); close(); };
+    $('#px').onclick = close; $('#pp').onclick = () => { track('trial_start', { from: 'paywall' }); St.setProfile({ plan: 'trial' }); S().plan = 'trial'; St.save(); toast('Pro is on for this preview.'); close(); };
     return;
   }
+  track('lesson_start', { lesson: id, course: c && c.id, replay });
   const scene = () => {
     if (step === 0) {
       P.innerHTML = bar(0) + `<div class="pbody"><div class="pin"><div class="hook"><span class="chip src">${icon(SITE[l.site][1], 15)} ${SITE[l.site][0]}${c ? ' · ' + c.title : ''}</span>
@@ -201,6 +236,7 @@ function play(id, cid, replay = false, paywall = false) {
     if (step === 3) {
       const out = St.finish(id, cid || (c && S().active === c.id ? c.id : null), right, checks.length);
       const s = out.after;
+      track('lesson_finish', { lesson: id, course: c && c.id, right, total: checks.length, streak: s.daily, first_today: out.first });
       const msg = out.milestone ? `${out.milestone}-day streak!` : out.first ? (s.daily > 1 ? `${s.daily} days in a row!` : 'Streak started!') : 'Nice work!';
       P.innerHTML = bar(3) + `<div class="pbody"><div class="pin"><div class="res"><div class="flame">${icon('flame', 110, true)}</div><h1>${msg}</h1>
         <p class="muted">${checks.length ? `${right} of ${checks.length} right. ` : ''}${l.title} is on your shelf.${right < checks.length ? ' The ones you missed come back for review.' : ''}</p>
@@ -222,4 +258,6 @@ function play(id, cid, replay = false, paywall = false) {
 const esc = s => String(s || '').replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[ch]);
 addEventListener('keydown', e => { if (e.key === 'Escape' && !P.hidden) $('#px')?.click(); });
 draw();
+// signed in on this device: renew the sign-in, merge with the server's copy, then redraw with the merged progress
+if (Acc.user()) { who(Acc.user().id); Acc.start().then(() => draw()); }
 window.__savvy = { play, St, go: t => { tab = t; sub = null; draw(); } };

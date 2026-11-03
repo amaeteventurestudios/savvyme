@@ -11,6 +11,9 @@ A daily learning app, phone first: 5-minute hands-on 3D lessons in real courses,
 - Lessons are the Amaete lesson pages, opened in the player's frame. After changing `shared/courses.js` run
   `node tools/lessons.mjs` (needs ../build, ../circuits and ../cutaways next to this repo) to rewrite `shared/lessons.js`.
   Circuits lessons have no quiz of their own: their checks live in `tools/checks.mjs`.
+- Accounts: SavvyMe's own PocketBase (server/), reached at `/api` on the app host; progress is merged with the browser copy
+  (shared/account.js). PostHog key lives in shared/config.js (public key; empty = off). Admin page at app/admin/.
+  Learners never set `plan` (pb_hooks/plan.pb.js).
 - Money in US dollars for now; Pro weekly, monthly or yearly (user asked for weekly, 2026-11-02), one-tap cancel, no ads, no fake timers or made-up scores.
 - Public content never mentions USG companies or Palasora. Real place names are fine.
 - Phone first: check 390×844 and 1280×800, light and dark. Respect prefers-reduced-motion.

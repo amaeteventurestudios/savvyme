@@ -5,6 +5,7 @@ import { COURSES, GOALS, course } from '../shared/courses.js';
 import { LESSONS } from '../shared/lessons.js';
 import { encodeProfile } from '../shared/store.js';
 import { stagger, burstFrom, confetti } from '../shared/motion.js';
+import { track } from '../shared/analytics.js';
 
 const $ = s => document.querySelector(s);
 const STAGES = ['You', 'Try it', 'Your style', 'Your plan'];
@@ -74,7 +75,7 @@ const foot = (label = 'Continue', dis = false) => `<div class="foot"><button cla
 
 function render() {
   const S = STEPS[i], m = $('#step');
-  progress();
+  progress(); track('quiz_step', { step: S.id, n: i + 1, of: STEPS.length });
   m.classList.toggle('b', dir < 0); m.style.animation = 'none'; m.offsetHeight; m.style.animation = '';
   const head = S.title ? `<h1>${S.title}</h1>${S.hint ? `<p class="hint">${S.hint}</p>` : ''}` : '';
   const opts = (S.opts || []).map(o => Array.isArray(o) ? { v: o[0], label: o[1] } : o);
@@ -120,7 +121,7 @@ async function stepEngine(m, head) {
   const { mountEngine } = await import('../shared/engine3d.js');
   let answered = false;
   const answer = v => {
-    if (answered) return; answered = true; A.engine = v; const ok = v === 'fan'; if (ok) score++;
+    if (answered) return; answered = true; A.engine = v; const ok = v === 'fan'; if (ok) score++; track('quiz_try', { step: 'engine', right: ok });
     m.querySelectorAll('#ch .opt').forEach(b => { b.classList.toggle('right', b.dataset.v === 'fan'); b.classList.toggle('wrong', b.dataset.v === v && !ok); b.disabled = true; });
     engine.open(true); engine.highlight('fan'); if (ok) cheer(m.querySelector('#ch [data-v="fan"]'));
     $('#rv').innerHTML = `<div class="reveal ${ok ? 'ok' : 'no'}"><b>${ok ? 'Spot on!' : 'Most people guess that.'}</b>In an airliner engine the big fan pushes about 80% of the air, and so most of the thrust. Watch the blue air flow around the core. Only a little goes through the fire.</div>` + foot();
@@ -144,7 +145,7 @@ function stepCircuit(m, head) {
     <g id="smoke" opacity="0"><circle cx="300" cy="78" r="9" fill="#9aa0b4"/><circle cx="292" cy="64" r="7" fill="#b7bccd"/><circle cx="306" cy="52" r="6" fill="#ccd0de"/></g>
   </svg></div><div class="opts" id="ch" style="margin-top:12px">${choices.map(([v, l]) => `<button class="opt center" data-v="${v}">${l}</button>`).join('')}</div><div id="rv"></div>`;
   m.querySelectorAll('#ch .opt').forEach(b => b.onclick = () => {
-    const v = b.dataset.v, ok = v === 'burn'; if (ok) score++; A.circuit = v;
+    const v = b.dataset.v, ok = v === 'burn'; if (ok) score++; A.circuit = v; track('quiz_try', { step: 'circuit', right: ok });
     m.querySelectorAll('#ch .opt').forEach(x => { x.disabled = true; x.classList.toggle('right', x.dataset.v === 'burn'); x.classList.toggle('wrong', x.dataset.v === v && !ok); });
     const res = $('#res'), led = $('#led'), halo = $('#halo'); if (ok) setTimeout(() => cheer(b), 1200);
     res.animate([{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(-40px)', opacity: 0 }], { duration: 500, fill: 'forwards' });
@@ -167,7 +168,7 @@ function stepWord(m, head) {
   m.innerHTML = head + `<p class="sentence">"The best way to learn something is to <u id="blank">&nbsp;</u>"</p>
     <div class="words" id="ch">${W.map(([w, p]) => `<button class="opt word" data-v="${w}" data-p="${p}"><span class="fill"></span><span>${w}</span><span class="pct">${p}%</span></button>`).join('')}</div><div id="rv"></div>`;
   m.querySelectorAll('#ch .opt').forEach(b => b.onclick = () => {
-    const v = b.dataset.v, ok = v === 'practice'; if (ok) score++; A.word = v;
+    const v = b.dataset.v, ok = v === 'practice'; if (ok) score++; A.word = v; track('quiz_try', { step: 'word', right: ok });
     m.querySelectorAll('#ch .opt').forEach(x => { x.disabled = true; x.classList.add('showp'); x.querySelector('.fill').style.width = x.dataset.p * 2 + '%'; if (x === b) x.classList.add('sel'); });
     $('#blank').textContent = 'practice'; $('#blank').animate([{ transform: 'scale(.6)', opacity: 0 }, { transform: 'scale(1.1)' }, { transform: 'none', opacity: 1 }], { duration: 500, easing: 'ease-out' }); if (ok) setTimeout(() => cheer(b), 300);
     setTimeout(() => {
@@ -200,7 +201,7 @@ function stepBuilding(m) {
 }
 
 function stepPlan(m) {
-  const c = course(pickCourse()); A.course = c.id; A.level = level();
+  const c = course(pickCourse()); A.course = c.id; A.level = level(); track('quiz_plan', { course: c.id, level: A.level, score });
   const wk = c.lessons.slice(0, 7).map((id, d) => `<div><em>Day ${d + 1}</em>${LESSONS[id]?.title || id}</div>`).join('');
   const goalTxt = A.weekly === '7' ? 'Every day' : `${A.weekly || 5} days a week`;
   m.innerHTML = `<h1>Your plan is <span class="serif">ready</span></h1><p class="hint">Built from your answers. You can switch course any time.</p>
@@ -236,7 +237,7 @@ function stepPay(m) {
       <button class="btn primary block" id="buy">${sel === 'free' ? 'Start learning free' : sel === 'year' ? 'Start my 7-day free trial' : sel === 'week' ? 'Get Pro weekly' : 'Get Pro monthly'}</button>
       <p class="note">One-tap cancel. 14-day refund on web purchases. No ads.</p>
       <p class="note" style="margin-top:14px"><a href="#" id="free">Not now, continue with Free</a></p></div>`;
-    m.querySelectorAll('.tier').forEach(b => b.onclick = () => { sel = b.dataset.v; draw(); });
+    m.querySelectorAll('.tier').forEach(b => b.onclick = () => { sel = b.dataset.v; track('plan_pick', { plan: sel }); draw(); });
     $('#buy').onclick = () => finish(sel === 'free' ? 'free' : 'trial', sel !== 'free');
     $('#free').onclick = e => { e.preventDefault(); finish('free'); };
   };
@@ -246,6 +247,7 @@ function stepPay(m) {
 function finish(plan, showNote) {
   const profile = { name: A.name, goals: A.goals, why: A.why, age: A.age, rate: A.rate, level: A.level, course: A.course,
     style: A.style, listen: A.listen, when: A.when, minutes: +(A.minutes || 5), weeklyGoal: +(A.weekly || 5), quit: A.quit, plan, joined: Date.now() };
+  track('quiz_finish', { plan, tier: plan === 'free' ? 'free' : 'trial', course: A.course });
   const go = () => { location.href = link('app', '#p=' + encodeProfile(profile)); };
   if (showNote) {
     const t = document.createElement('div'); t.className = 'toast'; t.textContent = 'Checkout opens at launch. For this preview, Pro is on us. Nobody is charged.';
