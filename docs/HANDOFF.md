@@ -54,5 +54,8 @@ Family $89.99/year for 5. Stripe through the Noveniqe account (as Agent Grand Pr
 ## Deploy
 Push to main deploys to the shared Oracle server. Needs the repo secrets SERVER_HOST, SERVER_USER, SERVER_SSH_KEY,
 plus PB_ADMIN_EMAIL and PB_ADMIN_PASSWORD for the admin sign-in.
-Without a domain it answers on savvyme.<IP with dashes>.sslip.io (and start./app. in front). With the domain: point
-A records for @, www, start and app at the server, then set the repo variable SAVVYME_DOMAIN="savvymeapp.com www.savvymeapp.com".
+Without a domain it answers on savvyme.<IP with dashes>.sslip.io (and start./app. in front).
+The chosen home (5 Nov 2026) is **savvyme.noveniqe.com**: one A record (DNS only) for `savvyme` in the noveniqe.com
+zone pointing at the server, then the repo variable SAVVYME_DOMAIN="savvyme.noveniqe.com". A subdomain like this serves
+everything on one host: home at /, quiz at /start/, app at /app/, accounts at /api, admin at /app/admin/.
+A full domain of its own (savvymeapp.com) would instead get start. and app. hosts.

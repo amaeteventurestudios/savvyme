@@ -2,7 +2,8 @@
 # Puts SavvyMe on the shared server, next to the other projects there: the static site, plus its own PocketBase
 # (accounts and saved progress) on 127.0.0.1:8196, reached through the app host at /api and /_/ (the dashboard).
 # Run by .github/workflows/deploy.yml with SAVVYME_DOMAIN (the home page's names, main one first) and SPARE (a free
-# sslip.io name for the server's IP). The quiz answers on start.<name> and the app on app.<name> for every name.
+# sslip.io name for the server's IP). The quiz answers on start.<name> and the app on app.<name> for every name,
+# except a subdomain such as savvyme.noveniqe.com, which serves everything on one host: /, /start/, /app/ and /api.
 # Never touches /etc/caddy/Caddyfile or another project's site file.
 set -euo pipefail
 WEB=/var/www/savvyme
@@ -56,9 +57,12 @@ CRON
 command -v sqlite3 >/dev/null || sudo apt-get install -y -qq sqlite3 >/dev/null 2>&1 || true
 
 NAMES=($SAVVYME_DOMAIN $SPARE)
-HOME_N=() START_N=() APP_N=() WWW_N=()
+HOME_N=() START_N=() APP_N=() WWW_N=() ONE_N=()
 for n in "${NAMES[@]}"; do
   case "$n" in www.*) WWW_N+=("$n"); continue;; esac
+  # a subdomain of another site (savvyme.noveniqe.com) is one host: the quiz at /start/, the app at /app/, accounts at /api
+  dots="${n//[^.]/}"
+  if [ "$n" != "$SPARE" ] && [ ${#dots} -ge 2 ]; then ONE_N+=("$n"); continue; fi
   HOME_N+=("$n"); START_N+=("start.$n"); APP_N+=("app.$n")
 done
 join() { local IFS=,; echo "$*" | sed 's/,/, /g'; }
@@ -92,9 +96,15 @@ BLOCK
   echo "$(join "${START_N[@]}") {"; part start; echo "}"
   echo "$(join "${APP_N[@]}") {"; part app; echo "}"
   if [ ${#WWW_N[@]} -gt 0 ]; then echo "$(join "${WWW_N[@]}") {"; echo "	redir https://${HOME_N[0]}{uri} permanent"; echo "}"; fi
+  if [ ${#ONE_N[@]} -gt 0 ]; then
+    echo "$(join "${ONE_N[@]}") {"
+    printf '\thandle /api/* {\n\t\treverse_proxy 127.0.0.1:8196\n\t}\n\thandle /_/* {\n\t\treverse_proxy 127.0.0.1:8196\n\t}\n'
+    printf '\thandle {\n\t\troot * %s\n\t\tencode zstd gzip\n\t\theader /vendor/* Cache-Control "public, max-age=31536000, immutable"\n\t\tfile_server\n\t}\n' "$WEB"
+    echo "}"
+  fi
 } | sudo tee /etc/caddy/sites/savvyme.caddy >/dev/null
 if ! sudo /usr/local/bin/caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile >/dev/null; then
   sudo rm -f /etc/caddy/sites/savvyme.caddy; echo 'The SavvyMe site file did not validate, so it was taken out again. The other sites are untouched.'; exit 1
 fi
 sudo systemctl reload caddy
-echo "SavvyMe is up: $(printf 'https://%s ' "${HOME_N[@]}")"
+echo "SavvyMe is up: $(printf 'https://%s ' "${ONE_N[@]}" "${HOME_N[@]}")"

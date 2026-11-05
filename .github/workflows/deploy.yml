@@ -9,6 +9,8 @@
 #   Variables (optional):
 #     SAVVYME_DOMAIN    the home page's names, main one first, once the domain points at the server
 #                       (A records for @, www, start and app). Example: "savvymeapp.com www.savvymeapp.com".
+#                       A subdomain such as "savvyme.noveniqe.com" needs one A record and serves everything on one
+#                       host: the quiz at /start/, the app at /app/, accounts at /api.
 #                       Without it the site answers only on the free name savvyme.<IP with dashes>.sslip.io
 #                       (plus start. and app. in front of it).
 name: Deploy to server
@@ -53,8 +55,11 @@ jobs:
           rm -f key
           MAIN="${DOMAIN%% *}"; MAIN="${MAIN:-$SPARE}"
           echo "URL=https://$MAIN" >> "$GITHUB_ENV"
-          echo "::notice::SavvyMe: https://$MAIN  ·  quiz: https://start.$MAIN  ·  app: https://app.$MAIN"
+          D="${MAIN//[^.]/}"
+          if [ "$MAIN" != "$SPARE" ] && [ ${#D} -ge 2 ]; then Q="https://$MAIN/start/"; A="https://$MAIN/app/"; else Q="https://start.$MAIN"; A="https://app.$MAIN"; fi
+          echo "QUIZ=$Q" >> "$GITHUB_ENV"
+          echo "::notice::SavvyMe: https://$MAIN  ·  quiz: $Q  ·  app: $A"
       - name: Check the site answers
         run: |
-          for i in 1 2 3 4 5 6 8 10; do curl -fsS -m 10 -o /dev/null "$URL/" && curl -fsS -m 10 -o /dev/null "${URL/https:\/\//https://start.}/start.js" && { echo "OK: $URL"; exit 0; }; sleep $i; done
+          for i in 1 2 3 4 5 6 8 10; do curl -fsS -m 10 -o /dev/null "$URL/" && curl -fsS -m 10 -o /dev/null "${QUIZ%/}/start.js" && { echo "OK: $URL"; exit 0; }; sleep $i; done
           echo "::warning::Deployed, but $URL did not answer yet (the first HTTPS certificate can take a minute)."
