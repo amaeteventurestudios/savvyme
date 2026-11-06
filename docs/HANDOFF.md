@@ -56,7 +56,7 @@ SavvyMe deploys from the **noveniqe** repo (workflow "SavvyMe (deploy)"), like J
 secrets noveniqe already has, checks this repo's main every 30 minutes and deploys what changed. This repo needs no
 secrets; its own deploy.yml only runs by hand. Optional noveniqe secrets SAVVYME_ADMIN_EMAIL and SAVVYME_ADMIN_PASSWORD
 set the admin sign-in. It always answers on savvyme.<IP with dashes>.sslip.io.
-The chosen home (5 Nov 2026) is **savvyme.noveniqe.com** (the default): one A record (DNS only) for `savvyme` in the
-noveniqe.com zone pointing at the server; the next run adds it to Caddy by itself. A subdomain like this serves
+The chosen home (6 Nov 2026, was savvyme.noveniqe.com) is **savvyme.amaete.com** (the default): one A record (DNS only)
+for `savvyme` in the amaete.com zone (Cloudflare) pointing at the server; the next run adds it to Caddy by itself. A subdomain like this serves
 everything on one host: home at /, quiz at /start/, app at /app/, accounts at /api, admin at /app/admin/.
 A full domain of its own (savvymeapp.com) would instead get start. and app. hosts.

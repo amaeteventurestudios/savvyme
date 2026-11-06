@@ -3,7 +3,7 @@
 # (accounts and saved progress) on 127.0.0.1:8196, reached through the app host at /api and /_/ (the dashboard).
 # Run by .github/workflows/deploy.yml with SAVVYME_DOMAIN (the home page's names, main one first) and SPARE (a free
 # sslip.io name for the server's IP). The quiz answers on start.<name> and the app on app.<name> for every name,
-# except a subdomain such as savvyme.noveniqe.com, which serves everything on one host: /, /start/, /app/ and /api.
+# except a subdomain such as savvyme.amaete.com, which serves everything on one host: /, /start/, /app/ and /api.
 # Never touches /etc/caddy/Caddyfile or another project's site file.
 set -euo pipefail
 WEB=/var/www/savvyme
@@ -60,7 +60,7 @@ NAMES=($SAVVYME_DOMAIN $SPARE)
 HOME_N=() START_N=() APP_N=() WWW_N=() ONE_N=()
 for n in "${NAMES[@]}"; do
   case "$n" in www.*) WWW_N+=("$n"); continue;; esac
-  # a subdomain of another site (savvyme.noveniqe.com) is one host: the quiz at /start/, the app at /app/, accounts at /api
+  # a subdomain of another site (savvyme.amaete.com) is one host: the quiz at /start/, the app at /app/, accounts at /api
   dots="${n//[^.]/}"
   if [ "$n" != "$SPARE" ] && [ ${#dots} -ge 2 ]; then ONE_N+=("$n"); continue; fi
   HOME_N+=("$n"); START_N+=("start.$n"); APP_N+=("app.$n")

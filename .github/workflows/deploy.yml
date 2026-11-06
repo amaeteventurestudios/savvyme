@@ -9,7 +9,7 @@
 #   Variables (optional):
 #     SAVVYME_DOMAIN    the home page's names, main one first, once the domain points at the server
 #                       (A records for @, www, start and app). Example: "savvymeapp.com www.savvymeapp.com".
-#                       A subdomain such as "savvyme.noveniqe.com" needs one A record and serves everything on one
+#                       A subdomain such as "savvyme.amaete.com" needs one A record and serves everything on one
 #                       host: the quiz at /start/, the app at /app/, accounts at /api.
 #                       Without it the site answers only on the free name savvyme.<IP with dashes>.sslip.io
 #                       (plus start. and app. in front of it).
