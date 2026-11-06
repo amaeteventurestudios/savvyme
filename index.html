@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SavvyMe: get savvy in 5 minutes a day</title>
+<meta name="description" content="Swap scrolling for 5 minutes a day with a real 3D machine in your hands. Courses on how machines work, how things are made, electronics and AI. Turn it, break it, fix it.">
+<meta property="og:title" content="SavvyMe: get savvy in 5 minutes a day">
+<meta property="og:description" content="Hands-on 3D lessons on machines, how things are made, electronics and AI. Turn it, break it, fix it.">
+<meta name="theme-color" content="#141B2D">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/theme.css">
+<link rel="stylesheet" href="home.css">
+<script type="importmap">{ "imports": { "three": "./vendor/three/three.module.min.js" } }</script>
+</head>
+<body>
+<header id="top"><div class="wrap"><span id="logo"></span>
+  <nav><a class="t hide" href="#courses">Courses</a><a class="t hide" href="#pricing">Pricing</a><a class="t" id="login" href="#">Log in</a><a class="btn primary go sm" href="#">Start now</a></nav>
+</div></header>
+
+<section class="hero">
+  <div class="aurora"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div><div class="grain"></div>
+  <div class="wrap hgrid">
+    <div class="htext">
+      <span class="chip glass rv" style="--d:0"><i class="dot"></i> 5 minutes a day</span>
+      <h1 class="rv" style="--d:1">Get savvy about how the world <span class="serif hl">actually<svg viewBox="0 0 220 18" preserveAspectRatio="none"><path d="M3 13 C 60 3, 150 3, 217 11"/></svg></span> works.</h1>
+      <p class="lead rv" style="--d:2">Swap five minutes of scrolling for a real 3D machine in your hands. Turn it, break it, fix it, in real courses on machines, how things are made, electronics and AI.</p>
+      <div class="ctas rv" style="--d:3"><a class="btn primary go" href="#">Start now, it's free</a><a class="btn glassbtn" href="#day">See a lesson</a></div>
+      <div class="proof rv" style="--d:4"><span>7 courses</span><i></i><span>242 hands-on lessons</span><i></i><span>Narrated</span></div>
+    </div>
+    <div class="porthole rv s" style="--d:2">
+      <svg class="orbit" viewBox="0 0 200 200"><circle cx="100" cy="100" r="97"/></svg>
+      <svg class="orbit o2" viewBox="0 0 200 200"><circle cx="100" cy="100" r="97"/></svg>
+      <div class="window"><div class="eng" id="eng"></div></div>
+      <span class="tag t1"><b>The fan</b> makes most of the push</span>
+      <span class="tag t2"><i></i> Live 3D · drag to turn</span>
+      <span class="tag t3">Day 1 · How machines work</span>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 40 C 240 90 480 0 720 30 C 960 60 1200 10 1440 40 V80 H0z"/></svg>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="marq"></div></div>
+
+<section id="why"><div class="wrap">
+  <div class="head rv"><div class="eyebrow">Why SavvyMe</div><h2>You can't learn this from a book or a video.</h2>
+  <p class="sub">A book describes a jet engine. A video shows you one. Here you pull a part out of a running one and watch what happens.</p></div>
+  <div class="grid4" id="feats"></div>
+</div></section>
+
+<section id="day" class="dayband"><div class="wrap">
+  <div class="head rv"><div class="eyebrow">A day on SavvyMe</div><h2>Five minutes. <span class="serif">One real thing.</span></h2>
+  <p class="sub">Every lesson has the same short shape, so it fits in a coffee break.</p></div>
+  <ol class="timeline rv" id="tl">
+    <li><span class="t">0:00</span><b>A question</b><span>"Why does ChatGPT make things up?"</span></li>
+    <li><span class="t">0:10</span><b>Open it</b><span>The 3D model plays and talks you through it.</span></li>
+    <li><span class="t">2:00</span><b>Break it</b><span>Pull a part, change a setting, watch it fail.</span></li>
+    <li><span class="t">3:30</span><b>Three checks</b><span>Wrong ones come back later to stick.</span></li>
+    <li><span class="t">5:00</span><b>Streak +1</b><span>Sparks, your streak, a new machine on your shelf.</span></li>
+  </ol>
+</div></section>
+
+<section id="courses"><div class="wrap">
+  <div class="head rv"><div class="eyebrow">Courses</div><h2>A real curriculum, <span class="serif">not random facts.</span></h2>
+  <p class="sub">Pick a course and each day builds on yesterday. Weekly units, a final build, and a certificate at the end.</p></div>
+  <div class="courses" id="courseList"></div>
+</div></section>
+
+<section class="plumband">
+  <div class="grain"></div>
+  <div class="wrap pgrid">
+    <div class="head rv l"><div class="eyebrow light">Built to keep you going</div><h2>Streaks that forgive <span class="serif">a bad day.</span></h2>
+      <p class="sub">A daily streak, a weekly goal you set, and a monthly streak for the long haul. Miss one day and your week still counts. Earn Sparks, climb from Apprentice to Engineer, and fill your workshop with every machine you've mastered.</p>
+      <ul class="ticks"><li>One free streak freeze every week</li><li>A fix-it challenge every Sunday</li><li>Weekly leagues with friends, if you want them</li></ul></div>
+    <div class="phone rv r" id="phone">
+      <div class="scr">
+        <div class="ph-top"><b>Good morning</b><span class="fl"><svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 002.5 2.5z"/></svg><span data-count="23">0</span></span></div>
+        <div class="ph-week"><i class="on" style="--i:0">M</i><i class="on" style="--i:1">T</i><i class="on" style="--i:2">W</i><i class="on" style="--i:3">T</i><i class="on" style="--i:4">F</i><i style="--i:5">S</i><i style="--i:6">S</i></div>
+        <div class="ph-card"><small>How machines work · Day 12</small><b>Why doesn't a tower crane tip over?</b><span class="pb">Start today's lesson</span></div>
+        <div class="ph-stats"><div><b data-count="23">0</b><span>days</span></div><div><b data-count="4">0</b><span>weeks</span></div><div><b data-count="1">0</b><span>month</span></div></div>
+        <div class="ph-lvl"><span>Level 3 · Maker</span><i><em></em></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing"><div class="wrap">
+  <div class="head rv"><div class="eyebrow">Pricing</div><h2>Start free. <span class="serif">Go Pro when you're hooked.</span></h2>
+  <p class="sub">Prices in US dollars. Cancel any time in one tap.</p></div>
+  <div class="prices" id="prices"></div>
+  <div class="promise" id="promise"></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap faq">
+  <h2 class="rv">Questions</h2>
+  <details class="rv"><summary>Do I need to know maths or code?</summary><p>No. Every course starts from zero and explains with things you can see and touch. The longer courses go deeper as you go.</p></details>
+  <details class="rv"><summary>Does it work on my phone?</summary><p>Yes. SavvyMe is made for phones first, and works on tablets and computers too. Apps for iPhone and Android are on the way.</p></details>
+  <details class="rv"><summary>How long is a lesson?</summary><p>About five minutes. You can do more if you want, and set your own daily and weekly goal.</p></details>
+  <details class="rv"><summary>What do I get for free?</summary><p>The Discover feed every day, the whole first week of every course, and your streaks. Pro unlocks every course from start to finish.</p></details>
+  <details class="rv"><summary>Can my kids use it?</summary><p>Yes. The Family plan covers up to five people, each with their own streak.</p></details>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="final rv s"><div class="grain"></div><i class="b1"></i><i class="b2"></i><i class="b3"></i>
+    <h2>Swap five minutes of scrolling for something <span class="serif">you'll remember.</span></h2><p>Take the 2-minute quiz and get your own course plan.</p><a class="btn go" href="#">Start now</a></div>
+</div></section>
+<footer><div class="wrap"><span id="flogo"></span><span>© 2026 SavvyMe</span><a href="#pricing">Pricing</a><a href="mailto:hello@savvymeapp.com">Contact</a><span>Lessons from <a href="https://build.amaete.com">Amaete Build</a>, <a href="https://circuits.amaete.com">Circuits</a> and <a href="https://cutaways.amaete.com">Cutaways</a></span></div></footer>
+<script type="module" src="home.js"></script>
+</body>
+</html>

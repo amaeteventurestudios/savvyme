@@ -1,0 +1,22 @@
+.wrap { max-width: 1100px; margin: 0 auto; padding: 18px 16px 60px; }
+header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; } header .sp { flex: 1; }
+.tag { font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 99px; background: var(--plum); color: #fff; }
+.login { max-width: 380px; margin: 10vh auto; padding: 24px; display: grid; gap: 12px; }
+.login h1 { font-size: 24px; margin: 0; } .login input { padding: 13px 14px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); font: inherit; }
+.err { color: var(--bad); font-weight: 600; } .err:empty { display: none; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.kpi { padding: 16px; } .kpi span { font-size: 13px; font-weight: 700; color: var(--muted); } .kpi b { display: block; font-size: 32px; letter-spacing: -0.03em; }
+.kpi small { color: var(--muted); }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+@media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+.panel { padding: 16px 18px; } .panel h2 { font-size: 16px; margin: 0 0 12px; }
+.bars div { display: grid; grid-template-columns: 170px 1fr 44px; gap: 10px; align-items: center; font-size: 14px; margin: 7px 0; }
+.bars i { height: 10px; border-radius: 9px; background: linear-gradient(90deg, var(--brand), var(--sun)); display: block; min-width: 2px; }
+.bars em { font-style: normal; font-weight: 800; text-align: right; }
+.days { display: flex; align-items: flex-end; gap: 4px; height: 120px; } .days div { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px; height: 100%; font-size: 10px; color: var(--muted); }
+.days i { width: 100%; border-radius: 5px 5px 2px 2px; background: var(--plum2); min-height: 2px; display: block; }
+.tbl { overflow-x: auto; } table { width: 100%; border-collapse: collapse; font-size: 14px; } th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.pl { font-size: 12px; font-weight: 800; padding: 3px 8px; border-radius: 99px; background: var(--soft); color: var(--brand); }
+.links { display: flex; gap: 10px; flex-wrap: wrap; margin: 6px 0 18px; } .links a { font-weight: 700; }
+.top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; } .top h1 { margin: 0; font-size: 26px; flex: 1; }

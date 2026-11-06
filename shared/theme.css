@@ -1,0 +1,76 @@
+/* SavvyMe: shared look for the home page, the sign-up quiz and the app.
+   Palette "Ink, Ember and Plum": warm paper, deep ink, an ember orange for action, a deep plum, teal and sun for accents. */
+:root {
+  --bg: #F6F1E7; --bg2: #EEE6D6; --card: #FFFCF6; --ink: #141B2D; --muted: #5E6475; --line: #E3D8C6;
+  --brand: #FF5B2E; --brand2: #FF7A4F; --brand-ink: #FFFFFF; --soft: #FFE5D9;
+  --plum: #3E2A6B; --plum2: #5B3F99; --teal: #13877A; --sun: #FFC23D; --sun-ink: #3A2600; --night: #141B2D;
+  --ok: #13877A; --bad: #D9480F; --shadow: 0 1px 2px rgba(20,27,45,.06), 0 10px 30px rgba(20,27,45,.08);
+  --r: 20px; --font: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --display: 'Fraunces', Georgia, serif;
+  --ease: cubic-bezier(.2,.8,.2,1); --spring: cubic-bezier(.3,1.5,.6,1);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1320; --bg2: #151B2C; --card: #192034; --ink: #F4EFE6; --muted: #A3A9B9; --line: #283049;
+    --brand: #FF6B3D; --brand2: #FF8A63; --brand-ink: #FFFFFF; --soft: #3A2219; --plum: #8F78E0; --plum2: #A893F0; --teal: #2BB3A2;
+    --ok: #2BB3A2; --bad: #FF7A4F; --shadow: none; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1320; --bg2: #151B2C; --card: #192034; --ink: #F4EFE6; --muted: #A3A9B9; --line: #283049;
+  --brand: #FF6B3D; --brand2: #FF8A63; --brand-ink: #FFFFFF; --soft: #3A2219; --plum: #8F78E0; --plum2: #A893F0; --teal: #2BB3A2;
+  --ok: #2BB3A2; --bad: #FF7A4F; --shadow: none; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: var(--brand); }
+button { font: inherit; color: inherit; }
+h1, h2, h3 { line-height: 1.12; letter-spacing: -0.025em; margin: 0 0 .4em; }
+.serif { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; font-style: italic; }
+.btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: .5em; border: 0; border-radius: 999px;
+  padding: 15px 24px; font-weight: 700; font-size: 17px; cursor: pointer; text-decoration: none; overflow: hidden;
+  transition: transform .25s var(--spring), background .2s, box-shadow .25s, opacity .2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: scale(.96); }
+.btn.primary { background: var(--brand); color: var(--brand-ink); box-shadow: 0 8px 22px color-mix(in srgb, var(--brand) 38%, transparent); }
+.btn.primary:hover { background: var(--brand2); box-shadow: 0 12px 30px color-mix(in srgb, var(--brand) 45%, transparent); }
+.btn.primary::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%);
+  transform: translateX(-120%); animation: shine 4.5s 1.5s infinite; }
+@keyframes shine { 0%, 70% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+.btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+.btn.ghost:hover { border-color: var(--ink); }
+.btn.sun { background: var(--sun); color: var(--sun-ink); }
+.btn.block { width: 100%; }
+.btn[disabled] { opacity: .35; pointer-events: none; box-shadow: none; }
+.btn[disabled]::after { display: none; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); }
+/* a ticket-style card with round bites cut out of both sides */
+.notch { --n: 12px; --y: 62%; -webkit-mask: radial-gradient(circle var(--n) at 0 var(--y), #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle var(--n) at 100% var(--y), #0000 98%, #000) right / 51% 100% no-repeat;
+  mask: radial-gradient(circle var(--n) at 0 var(--y), #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle var(--n) at 100% var(--y), #0000 98%, #000) right / 51% 100% no-repeat; }
+.logo { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 21px; color: var(--ink); text-decoration: none; letter-spacing: -0.03em; }
+.logo svg { width: 30px; height: 30px; transition: transform .5s var(--spring); }
+.logo:hover svg { transform: rotate(-12deg) scale(1.08); }
+.logo b { color: var(--brand); font-weight: 800; }
+.muted { color: var(--muted); }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: var(--soft); color: var(--brand); font-weight: 700; font-size: 13px; }
+.grain { position: absolute; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+/* scroll reveals: add .rv, motion.js adds .in when it comes on screen; --d staggers */
+.rv { opacity: 0; transform: translateY(26px); filter: blur(6px); transition: opacity .8s var(--ease), transform .8s var(--ease), filter .8s var(--ease); transition-delay: calc(var(--d, 0) * 90ms); }
+.rv.in { opacity: 1; transform: none; filter: none; }
+.rv.l { transform: translateX(-30px); } .rv.r { transform: translateX(30px); } .rv.s { transform: scale(.92); }
+.rv.l.in, .rv.r.in, .rv.s.in { transform: none; }
+/* staggered entry for lists that appear (app views, quiz options) */
+.stg > * { animation: rise .55s var(--ease) both; animation-delay: calc(var(--i, 0) * 55ms); }
+@keyframes rise { from { opacity: 0; transform: translateY(14px) scale(.985); } }
+@keyframes pop { 0% { transform: scale(.4); opacity: 0; } 70% { transform: scale(1.08); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+@keyframes flicker { 0%, 100% { transform: scale(1) rotate(-2deg); } 50% { transform: scale(1.07, .96) rotate(2deg); } }
+@keyframes floaty { 50% { transform: translateY(-10px) rotate(4deg); } }
+.confetti { position: fixed; inset: 0; pointer-events: none; z-index: 200; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .rv { opacity: 1; transform: none; filter: none; }
+}
