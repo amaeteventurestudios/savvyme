@@ -14,7 +14,7 @@ const onScroll = () => head.classList.toggle('scrolled', scrollY > 40);
 addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
 const F = [['play', 'Hands-on 3D', 'Every lesson is a live model you can turn, open and break. Not a video.', '#FF5B2E'],
-  ['book', 'Real courses', 'Five courses that build day by day, from machines and how things are made to electronics, smart homes and AI.', '#5B3F99'],
+  ['book', 'Real courses', 'Courses that build day by day: machines, how things are made, your body and nature, electronics, smart homes and AI.', '#5B3F99'],
   ['flame', 'Five minutes a day', 'Short enough for a coffee break. Long enough to actually stick.', '#B7791F'],
   ['share', 'Listen on the go', 'Every lesson is narrated. Listen mode works with your phone in your pocket.', '#13877A']];
 $('#feats').innerHTML = F.map(([i, h, p, c], k) => `<div class="card feat notch rv" style="--d:${k}"><div class="ic" style="background:${c}">${icon(i, 24, i === 'flame')}</div><h3>${h}</h3><p>${p}</p></div>`).join('');

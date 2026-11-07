@@ -14,13 +14,17 @@
 - The first week of every course is free. SavvyMe Pro unlocks every course. No ads.
 
 ## Courses
-### How machines work (35 days)
+### How machines work (47 days)
 Open up your car, engines, dams, cranes and rockets while they run. By the end: Explain the engines, brakes, pumps and wings that move the modern world.
 First week: Car engine (V8), Automatic transmission, Car brakes and ABS, The differential, Turbocharger, Electric car, Car airbag.
 
 ### How things are made (35 days)
 From crayons, chips and soda cans to the dishwasher, fridge and phone in your home. By the end: Explain how the everyday things around you are made, and how the machines at home work.
 First week: Crayons, Pencils, Coins, Potato chips, Toy bricks, Toilet paper, Aluminum cans.
+
+### Your body and the natural world (21 days)
+Your heart, eyes and brain, plus bees, storms, volcanoes and the whole Earth, opened up while they work. By the end: Explain how your own body works and the natural forces around you.
+First week: The human heart, The lungs, The eye, The inner ear, Neuron firing, The kidney, The digestive system.
 
 ### Electronics from zero (30 days)
 Volts, LEDs, sensors and your first code on a board, wired by your own hand. By the end: Wire and program your own small gadgets.
@@ -35,4 +39,4 @@ How machines learn, see and talk, and where they go wrong. No maths degree neede
 First week: What is machine learning?, Linear regression, Gradient descent, Logistic regression: the chance of rain, Decision trees: twenty questions for data, Model evaluation: how good is it really?, Bias and variance: too stiff, too floppy.
 
 ## About
-SavvyMe has 5 courses and 160 hands-on lessons, and adds new ones every week.
+SavvyMe has 6 courses and 193 hands-on lessons, and adds new ones every week.

@@ -34,16 +34,18 @@ export const COURSES = [
     ],
   },
   {
-    id: 'machines', title: 'How machines work', days: 35, color: '#13877A', icon: 'gear',
+    id: 'machines', title: 'How machines work', days: 47, color: '#13877A', icon: 'gear',
     goal: 'machines', blurb: 'Open up your car, engines, dams, cranes and rockets while they run.',
     outcome: 'Explain the engines, brakes, pumps and wings that move the modern world.',
-    units: ['Your car', 'Power', 'Moving people', 'Building big', 'Flight and space'],
+    units: ['Your car', 'Power', 'Moving people', 'Building big', 'Flight and space', 'Signals and light', 'Space and robots'],
     lessons: [
       ...k('v8-engine automatic-transmission car-brakes differential turbocharger electric-car car-airbag'),
       ...k('hydro-dam wind-turbine nuclear-reactor lithium-battery solar-light steam-locomotive ship-engine'),
       ...k('elevator escalator canal-lock submarine landing-gear bicycle-gears helicopter'),
       ...k('tower-crane excavator tunnel-boring offshore-rig combine-harvester cement-kiln lighthouse'),
       ...k('airplane-wing wind-tunnel quadcopter hot-air-balloon gps rocket-staging mars-rover'),
+      ...k('transistor phone-call fibre-optic undersea-cable headphones lidar mri-scanner'),
+      ...k('robotic-arm cubesat-3u cubesat-6u space-telescope space-station'),
     ],
   },
   {
@@ -72,10 +74,21 @@ export const COURSES = [
       ...c('smart-water shop-security-system'),
     ],
   },
+  {
+    id: 'nature', title: 'Your body and the natural world', days: 21, color: '#2E7D4F', icon: 'leaf',
+    goal: 'nature', blurb: 'Your heart, eyes and brain, plus bees, storms, volcanoes and the whole Earth, opened up while they work.',
+    outcome: 'Explain how your own body works and the natural forces around you.',
+    units: ['Inside your body', 'Living things', 'Earth and sky'],
+    lessons: [
+      ...k('human-heart lungs eye inner-ear neuron kidney digestive-system'),
+      ...k('hand-skeleton whole-body malaria beehive termite-mound weaver-nest bird-wing'),
+      ...k('seed-germination photosynthesis baobab-tree thunderstorm ocean-waves volcano whole-earth'),
+    ],
+  },
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'made', 'electronics', 'smart-home', 'ai-explained'];
+const ORDER = ['machines', 'made', 'nature', 'electronics', 'smart-home', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
@@ -92,6 +105,7 @@ export const WEEK = [
 export const GOALS = [
   { id: 'machines', label: 'Know how machines work', icon: 'gear' },
   { id: 'made', label: 'See how things are made', icon: 'hand' },
+  { id: 'nature', label: 'Understand the body and nature', icon: 'leaf' },
   { id: 'gadgets', label: 'Build gadgets and electronics', icon: 'bolt' },
   { id: 'ai', label: 'Understand how AI really works', icon: 'spark' },
 ];
