@@ -13,7 +13,7 @@ const A = {};               // answers
 let score = 0;              // right guesses on the three try-it steps
 let engine = null;
 
-const goalCourse = { ai: 'ai-explained', gadgets: 'electronics', machines: 'machines', made: 'made', code: 'build-software', career: 'ai-builder' };
+const goalCourse = { ai: 'ai-explained', gadgets: 'electronics', machines: 'machines', made: 'made' };
 
 const STEPS = [
   { id: 'goals', stage: 0, type: 'multi', title: 'What do you want to get savvy about?', hint: 'Pick as many as you like.',
@@ -181,7 +181,6 @@ function stepWord(m, head) {
 // ---- your plan ----
 function pickCourse() {
   const g = (A.goals || ['machines']).filter(x => goalCourse[x]);
-  if (A.why === 'career' && g.includes('ai')) return 'ai-builder';
   return goalCourse[g[0] || 'machines'];
 }
 function level() { const r = A.rate || 2; const s = r + score; return s >= 7 ? 'Advanced' : s >= 4 ? 'Intermediate' : 'Beginner'; }
