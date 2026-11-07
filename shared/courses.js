@@ -72,45 +72,10 @@ export const COURSES = [
       ...c('smart-water shop-security-system'),
     ],
   },
-  {
-    id: 'build-software', title: 'Build your own software', days: 30, color: '#8A2D5C', icon: 'code',
-    goal: 'code', blurb: 'Build a database, a shell, a compiler and a game server from nothing.',
-    outcome: 'Know what really happens inside the software you use every day.',
-    units: ['Store it', 'Run it', 'Talk over the network', 'Make pictures', 'Trust and money'],
-    lessons: [
-      ...b('build-a-database build-a-hash-table build-a-btree-database build-a-message-log build-a-time-travel-database build-a-graph-database build-a-cli-tool'),
-      ...b('build-a-shell build-an-interpreter build-a-compiler build-a-regex-engine build-a-template-engine build-a-flag-parser build-a-package-manager'),
-      ...b('build-a-web-server build-a-dns-resolver build-a-cache-cdn build-a-network-game build-a-virtual-switch same-origin-policy build-a-ci-system'),
-      ...b('build-a-software-renderer build-a-ray-tracer build-a-3d-modeller build-a-video-codec build-a-virtual-dom build-a-ui-framework build-an-emulator'),
-      ...b('build-a-blockchain build-a-signed-ledger'),
-    ],
-  },
-  {
-    id: 'ai-builder', title: 'Become an AI builder', days: 90, color: '#1F2A44', icon: 'robot',
-    goal: 'career', blurb: 'The long road: maths, models, language, agents and running them safely.',
-    outcome: 'Build and run an AI agent, and be ready for an associate exam.',
-    units: ['Setup', 'The maths that matters', 'Machine learning', 'Neural networks', 'Language', 'Transformers',
-      'Making an LLM', 'Using LLMs', 'Agents', 'Agents at work', 'Running it safely', 'Your capstone', 'Exam week'],
-    lessons: [
-      ...b('dev-environment git-basics api-keys notebooks python-for-ai terminal-pipes gpu-basics'),
-      ...b('vectors matrix-transformations derivatives autodiff probability bayes gradient-descent'),
-      ...b('what-is-ml linear-regression logistic-regression decision-trees model-evaluation bias-variance ensembles'),
-      ...b('perceptron multi-layer-networks backpropagation activation-functions loss-functions optimizers intro-to-pytorch'),
-      ...b('tokens text-processing word-embeddings subword-tokenization attention-mechanism sequence-to-sequence structured-outputs-constrained-decoding'),
-      ...b('why-transformers self-attention multi-head-attention positional-encoding full-transformer kv-cache-flash-attention mixture-of-experts'),
-      ...b('next-word pre-training-mini-gpt instruction-tuning-sft rlhf dpo evaluation quantization'),
-      ...b('prompt-engineering few-shot-cot structured-outputs embeddings context-engineering rag advanced-rag'),
-      ...b('function-calling model-context-protocol agent-loop langgraph-state-machines agent-framework-tradeoffs caching-cost guardrails'),
-      ...b('production-app prompt-caching fine-tuning-lora evaluation-2 a2a-protocol agent-observability-platforms agent-workbench-why-models-fail'),
-      ...b('ai-gateways ab-testing-llm-features alignment-faking ai-control-protocols anomaly-detection agent-harness-loop-contract agent-negotiation'),
-      ...b('build-a-transformer-capstone agent-workbench-capstone vision-pipeline-capstone building-complete-llm-pipeline anthropic-workflow-patterns agent-consensus-bft agno-and-mastra-runtimes'),
-      ...b('exam-tool-design'),
-    ],
-  },
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'made', 'electronics', 'smart-home', 'ai-explained', 'build-software', 'ai-builder'];
+const ORDER = ['machines', 'made', 'electronics', 'smart-home', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
@@ -120,7 +85,7 @@ export const WEEK = [
   { day: 'Tue', theme: 'How it\'s made', pool: k('crayons potato-chips aluminum-cans ice-cream toy-bricks coins glass-bottles soda-bottling toilet-paper pencils') },
   { day: 'Wed', theme: 'Make it', pool: c('dusk-streetlight traffic-light reaction-time-game push-button-doorbell rgb-mood-light reversing-sensor') },
   { day: 'Thu', theme: 'How AI works', pool: b('tokens next-word word-embeddings rag image-generation-diffusion self-attention gradient-descent') },
-  { day: 'Fri', theme: 'Build it yourself', pool: b('build-a-database build-a-shell build-a-web-server build-a-regex-engine build-a-ray-tracer') },
+  { day: 'Fri', theme: 'Around the house', pool: k('dishwasher garage-door smoke-detector toaster washing-machine fridge microwave mechanical-watch') },
   { day: 'Sat', theme: 'Nature and the body', pool: k('human-heart eye lungs neuron photosynthesis thunderstorm volcano beehive') },
 ];
 
@@ -129,8 +94,6 @@ export const GOALS = [
   { id: 'made', label: 'See how things are made', icon: 'hand' },
   { id: 'gadgets', label: 'Build gadgets and electronics', icon: 'bolt' },
   { id: 'ai', label: 'Understand how AI really works', icon: 'spark' },
-  { id: 'code', label: 'Build my own software', icon: 'code' },
-  { id: 'career', label: 'Start a career in AI', icon: 'robot' },
 ];
 
 export const course = id => COURSES.find(c => c.id === id);
