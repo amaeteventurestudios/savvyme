@@ -1,0 +1,124 @@
+lessons scanned 248 with African refs 123 {"cutaways":83,"build":20,"circuits":20}
+cutaways:phone-call | 120 | kano nairobi africa african nigeria kenya lagos mombasa
+cutaways:whole-earth | 74 | africa african kenya kilimanjaro tanzania ethiopia sahara kenyan
+cutaways:space-station | 63 | africa sahara lagos cairo kinshasa johannesburg nairobi addis
+build:word-embeddings | 59 | abuja nigeria kenya nairobi ghana accra senegal dakar
+cutaways:headphones | 57 | lagos danfo nigeria nairobi matatu
+cutaways:hydro-dam | 42 | ghana volta tema accra africa benin ethiopian nigeria
+cutaways:lungs | 36 | harmattan kano nigeria sahara addis africa african lagos
+cutaways:solar-light | 33 | kano nigeria harmattan sahara naira africa
+cutaways:gps | 31 | kampala boda uganda africa kenya
+cutaways:espresso-machine | 30 | addis ethiopian ethiopia africa
+cutaways:cubesat-3u | 29 | africa kenya ghanasat nigeriaedusat nairobi ghana nigeria african
+cutaways:ocean-waves | 29 | mombasa kenya africa african cape town ghana lagos
+cutaways:undersea-cable | 28 | lagos nigeria africa
+cutaways:electric-kettle | 28 | addis lagos nairobi kilimanjaro ethiopia africa ethiopian
+cutaways:lithium-battery | 25 | nairobi kenya kigali congo zimbabwe africa kenyan
+cutaways:steam-locomotive | 25 | uganda nairobi kenya mombasa kampala africa
+cutaways:bicycle-gears | 25 | rwandan kigali rwanda africa uganda kenya boda
+cutaways:fridge | 25 | nepa lagos nigeria kenya nigerian jollof  (DONE, the reference)
+cutaways:helicopter | 24 | nairobi kenya africa mombasa
+cutaways:cubesat-6u | 24 | niger nigeria kenya african cairo egypt africa
+cutaways:kidney | 24 | kano nigeria sahel harmattan africa african
+cutaways:microwave | 23 | jollof lagos nigeria nepa
+cutaways:airplane-wing | 22 | addis ethiopia africa mombasa lagos
+build:tokens | 22 | pidgin yoruba swahili african
+cutaways:electric-car | 21 | kigali rwanda kenya africa nairobi
+cutaways:air-conditioner | 21 | accra ghana harmattan ghanaian lagos african
+cutaways:thunderstorm | 21 | kampala uganda kilimanjaro africa congo
+cutaways:oil-refinery | 20 | niger keke okada nigeria port harcourt africa
+cutaways:beehive | 20 | kenyan ethiopia africa ethiopian addis
+cutaways:baobab-tree | 20 | senegal dakar nigeria african africa zimbabwe ghana sahara
+circuits:keke-tracker | 19 | keke
+cutaways:fibre-optic | 18 | kigali swahili hausa rwanda african lagos nairobi accra
+cutaways:smartphone | 18 | ikeja congo nigeria lagos africa egypt
+cutaways:whole-body | 18 | nairobi kenya mombasa lagos addis
+circuits:rainwater-tank-switcher | 18 | borehole
+cutaways:space-telescope | 17 | south africa africa ghana african
+cutaways:eye | 17 | africa niger ghana mali african
+circuits:smart-water | 17 | ibadan borehole
+cutaways:ship-engine | 16 | tema ghana accra lagos lekki africa african mombasa
+cutaways:rocket-staging | 16 | kenya swahili nigeria africa cairo cape town egypt south africa
+cutaways:nuclear-reactor | 15 | south africa cape town africa egypt
+cutaways:toilet-cistern | 15 | cape town south africa
+cutaways:sewing-machine | 15 | aba nigeria africa
+circuits:pure-water-vending | 15 | sachet
+cutaways:landing-gear | 14 | addis ethiopia africa lagos ethiopian
+cutaways:touchscreen | 14 | nairobi kenya kenyans shilling
+build:function-calling | 14 | mombasa ikeja lekki
+cutaways:wind-turbine | 12 | kenya africa ethiopian african nairobi kenyan
+cutaways:elevator | 12 | lagos nigeria victoria island
+cutaways:lidar | 12 | south africa johannesburg harmattan sahara africa african congo
+cutaways:lock-and-key | 12 | accra ghana lagos egypt nigeria
+cutaways:digestive-system | 12 | lagos nigeria africa garri
+cutaways:malaria | 12 | ghana africa kenya african
+cutaways:weaver-nest | 12 | senegal africa sahara african
+cutaways:seed-germination | 12 | ghana harmattan nigeria niger ghanaian
+cutaways:v8-engine | 11 | lagos nigeria africa african harmattan
+cutaways:offshore-rig | 11 | nigeria niger port harcourt lagos
+cutaways:ballpoint-pen | 11 | ibadan nigeria ghana african africa puff-puff
+cutaways:inner-ear | 11 | yoruba nigeria
+cutaways:car-airbag | 10 | lagos ibadan nigeria africa
+cutaways:tower-crane | 10 | lagos nigeria victoria island
+cutaways:mars-rover | 10 | morocco africa egypt
+cutaways:cocoa-to-chocolate | 10 | ghana ghanaian
+cutaways:hand-skeleton | 10 | accra ghana
+cutaways:bird-wing | 10 | kenya south africa africa african
+build:linear-regression | 10 | okada lagos boda kampala
+circuits:pump-stops-when-full | 10 | borehole
+cutaways:submarine | 9 | south africa south african cape town african
+cutaways:quadcopter | 9 | rwanda kigali kenya
+cutaways:mri-scanner | 9 | ibadan nigeria africa african
+cutaways:zipper | 9 | kano nigeria
+cutaways:inkjet-printer | 9 | ibadan nigeria
+cutaways:human-heart | 9 | kenya africa nigeria
+cutaways:neuron | 9 | accra ghana africa
+cutaways:volcano | 9 | congo african rwanda swahili africa
+build:attention-mechanism | 9 | swahili
+build:pre-training-mini-gpt | 9 | kampala african uganda kenya nigeria
+cutaways:canal-lock | 8 | egypt kainji niger nigeria africa
+cutaways:robotic-arm | 8 | morocco africa south africa
+cutaways:washing-machine | 8 | nairobi kenya
+build:reward-modeling-rlhf | 8 | swahili dar es salaam
+cutaways:wind-tunnel | 7 | south africa johannesburg nigeria kenya egypt
+cutaways:desalination | 7 | algeria egypt
+cutaways:3d-printer | 7 | lagos nigeria africa
+cutaways:termite-mound | 7 | zimbabwe africa kenya tanzania
+circuits:internet-clock | 7 | enugu nigeria
+circuits:roadside-air-quality | 7 | lagos harmattan
+build:activation-functions | 7 | lagos
+build:self-attention | 7 | danfo matatu nairobi accra
+circuits:ugu-soil-moisture | 7 | ugu
+circuits:nepa-is-back | 7 | nepa
+circuits:borehole-pump-timer | 7 | borehole
+circuits:brt-arrival-board | 7 | ikeja keke lagos
+cutaways:tunnel-boring | 6 | south africa cairo africa
+cutaways:combine-harvester | 6 | kenya african
+cutaways:cement-kiln | 6 | nigeria niger africa
+cutaways:transistor | 6 | lagos nigeria
+cutaways:piano-action | 6 | lagos nigeria
+build:next-word | 6 | jollof rand
+build:instruction-tuning-sft | 6 | ibadan nigeria ghana kenya
+cutaways:excavator | 5 | nigeria nigerian lagos abuja
+circuits:pepper-soup-thermometer | 5 | pepper soup
+circuits:harmattan-heat-index | 5 | harmattan
+circuits:is-the-water-clean | 5 | borehole sachet
+circuits:okada-helmet | 5 | okada
+circuits:scale-with-receipt | 5 | garri
+cutaways:lighthouse | 4 | south africa africa african
+cutaways:photosynthesis | 4 | kenya
+circuits:load-shedding-scheduler | 4 | load-shedding borehole
+build:logistic-regression | 3 | kampala
+build:regularization | 3 | kenya rand
+build:rag | 3 | garri
+build:guardrails | 3 | mombasa
+cutaways:hot-air-balloon | 2 | kenya
+cutaways:camera | 2 | mali
+build:image-fundamentals | 2 | tanzania
+build:image-classification | 2 | kenya
+build:prompt-engineering | 2 | kampala
+circuits:grain-store-humidity | 2 | harmattan
+circuits:tomato-cold-box | 2 | kano lagos
+build:gradient-descent | 1 | harmattan
+build:decision-trees | 1 | africa
+circuits:drip-irrigation-timer | 1 | borehole
