@@ -11,7 +11,7 @@ import { track, who } from '../shared/analytics.js';
 const $ = s => document.querySelector(s);
 const S = St.state;
 const L = id => LESSONS[id] || { title: id, url: '#', checks: [], site: 'build' };
-const SITE = { build: ['Build', 'spark'], circuits: ['Circuits', 'bolt'], cutaways: ['Cutaways', 'gear'] };
+const SITE = { build: ['AI and code', 'spark'], circuits: ['Electronics', 'bolt'], cutaways: ['Machines', 'gear'] };
 const hook = id => HOOKS[id] || L(id).blurb || L(id).title;
 const courseOf = id => COURSES.find(c => c.lessons.includes(id));
 const colorOf = id => (courseOf(id) || {}).color || '#3E2A6B';

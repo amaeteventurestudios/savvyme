@@ -30,7 +30,7 @@ jobs:
       - name: Check the course data loads
         run: node -e "Promise.all([import('./shared/courses.js'), import('./shared/lessons.js')]).then(([c, l]) => { const miss = c.COURSES.flatMap(x => x.lessons).filter(id => !l.LESSONS[id]); if (miss.length) { console.error('Missing lessons:', miss); process.exit(1); } console.log('Courses OK') })"
       - name: Pack the site
-        run: tar czf savvyme.tgz index.html home.css home.js favicon.svg site.webmanifest robots.txt shared start app vendor server/pb_migrations server/pb_hooks
+        run: tar czf savvyme.tgz index.html home.css home.js favicon.svg og.png site.webmanifest robots.txt sitemap.xml llms.txt shared start app vendor server/pb_migrations server/pb_hooks
       - name: Copy to the server
         env:
           HOST: ${{ secrets.SERVER_HOST }}

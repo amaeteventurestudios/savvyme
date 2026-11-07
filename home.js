@@ -19,6 +19,7 @@ const F = [['play', 'Hands-on 3D', 'Every lesson is a live model you can turn, o
   ['share', 'Listen on the go', 'Every lesson is narrated. Listen mode works with your phone in your pocket.', '#13877A']];
 $('#feats').innerHTML = F.map(([i, h, p, c], k) => `<div class="card feat notch rv" style="--d:${k}"><div class="ic" style="background:${c}">${icon(i, 24, i === 'flame')}</div><h3>${h}</h3><p>${p}</p></div>`).join('');
 
+{ const n = new Set(COURSES.flatMap(c => c.lessons)).size; $('#nCourses').textContent = `${COURSES.length} courses`; $('#nLessons').textContent = `${n} hands-on lessons`; }
 const chips = COURSES.map(c => `<span style="background:${c.color}">${icon(c.icon, 16)} ${c.title}</span>`).join('');
 $('#marq').innerHTML = chips + chips;
 
