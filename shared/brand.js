@@ -22,6 +22,7 @@ export const isPart = p => PARTS.includes(p);
 
 const I = {
   spark: '<path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/>',
+  leaf: '<path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 19L14 10"/>',
   bolt: '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
   gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>',
   hand: '<path d="M7 11V5.5a1.5 1.5 0 013 0V11m0-1V4a1.5 1.5 0 013 0v6m0 0V5.5a1.5 1.5 0 013 0V13c0 5-3 8-7 8s-6-2.5-7.5-6L4 12a1.5 1.5 0 012.6-1.4L8 13"/>',
