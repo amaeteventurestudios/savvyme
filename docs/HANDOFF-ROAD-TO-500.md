@@ -74,7 +74,8 @@ PRs (all from `claude/road-to-500`, none merged by Claude): cutaways #3, build #
 - Done: On the farm (21 new cutaways, course `farm`, goal nature). Total in courses: 463 (25 courses).
 - Vercel: cutaways vercel.json now only deploys `main` (owner's request, 2026-11-09). Don't merge until everything is done.
 - Done: Medicine (21 new cutaways, course `medicine`, new goal `health`). Total in courses: 484 (26 courses).
-- **Next up:** Space and science (14 wishlist + 7 extras), then task 7 narration last.
+- Done: Space and science (21 new cutaways, course `science`, new goal `space`). **Total in courses: 505 (27 courses). Target reached.**
+- **Next up:** task 7, Kokoro "Heart" narration.
 
 ## The task list, in order
 

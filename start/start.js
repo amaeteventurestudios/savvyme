@@ -13,7 +13,7 @@ const A = {};               // answers
 let score = 0;              // right guesses on the three try-it steps
 let engine = null;
 
-const goalCourse = { ai: 'ai-explained', gadgets: 'electronics', machines: 'machines', car: 'car', home: 'home', made: 'made', travel: 'around', city: 'city', health: 'medicine', nature: 'nature' };
+const goalCourse = { ai: 'ai-explained', gadgets: 'electronics', machines: 'machines', car: 'car', home: 'home', made: 'made', travel: 'around', city: 'city', health: 'medicine', space: 'science', nature: 'nature' };
 
 const STEPS = [
   { id: 'goals', stage: 0, type: 'multi', title: 'What do you want to get savvy about?', hint: 'Pick as many as you like.',

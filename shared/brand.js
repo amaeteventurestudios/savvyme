@@ -38,6 +38,7 @@ const I = {
   plane: '<path d="M21 15.5l-8-5V4.5a1.5 1.5 0 00-3 0v6l-8 5v2l8-2.5V20l-2.5 1.5V23l4-1 4 1v-1.5L13 20v-5.5l8 2.5z"/>',
   city: '<path d="M3 21h18M5 21V9l5-3v15M10 21V4h6v17M16 21V10h3v11"/>',
   heart: '<path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/><path d="M7 12h3l1.5-2 2 4 1.5-2h2"/>',
+  rocket: '<path d="M12 2c3 2 5 6 5 10l-2 4H9l-2-4c0-4 2-8 5-10z"/><circle cx="12" cy="10" r="1.6"/><path d="M9 16l-2 4 3-1M15 16l2 4-3-1"/>',
   music: '<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
   check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
   x: '<path d="M6 6l12 12M18 6L6 18"/>',

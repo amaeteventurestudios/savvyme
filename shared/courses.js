@@ -222,6 +222,17 @@ export const COURSES = [
     ],
   },
   {
+    id: 'science', title: 'Space and science', days: 21, color: '#283593', icon: 'rocket',
+    goal: 'space', blurb: 'Spacesuits, telescopes, lasers and atom smashers: the machines that explore space and the smallest things.',
+    outcome: 'Explain how we live and travel in space, how we watch the sky, and how scientists measure the very small and the very faint.',
+    units: ['Living and travelling in space', 'Watching the sky', 'Instruments of discovery'],
+    lessons: [
+      ...k('spacesuit space-toilet weather-balloon solar-sail ion-thruster mars-helicopter satellite-internet'),
+      ...k('backyard-telescope planetarium weather-satellite radio-telescope seismometer ligo atomic-clock'),
+      ...k('light-microscope electron-microscope laser geiger-counter cloud-chamber particle-collider fusion-reactor'),
+    ],
+  },
+  {
     id: 'music', title: 'Music and sound', days: 14, color: '#7A3FA0', icon: 'music',
     goal: 'made', blurb: 'Guitars, drums, horns, synths and headphones: how instruments and audio gear make and shape sound.',
     outcome: 'Explain how instruments make sound, and how speakers, records and headphones carry it to your ears.',
@@ -303,7 +314,7 @@ export const COURSES = [
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'around', 'city', 'made', 'factory', 'food', 'farm', 'industry', 'toys', 'sports', 'music', 'medicine', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
+const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'around', 'city', 'made', 'factory', 'food', 'farm', 'industry', 'toys', 'sports', 'music', 'medicine', 'science', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
@@ -325,6 +336,7 @@ export const GOALS = [
   { id: 'travel', label: 'Know how planes, trains and boats work', icon: 'plane' },
   { id: 'city', label: 'Understand how my city works', icon: 'city' },
   { id: 'health', label: 'Know how medical machines work', icon: 'heart' },
+  { id: 'space', label: 'Explore space and science', icon: 'rocket' },
   { id: 'nature', label: 'Understand the body and nature', icon: 'leaf' },
   { id: 'gadgets', label: 'Build gadgets and electronics', icon: 'bolt' },
   { id: 'ai', label: 'Understand how AI really works', icon: 'spark' },

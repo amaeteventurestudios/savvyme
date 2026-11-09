@@ -90,6 +90,10 @@ First week: The acoustic guitar, The violin, The drum kit, The trumpet, The saxo
 Scanners, pacemakers, pumps and robots: the machines doctors use to see inside us and keep us well. By the end: Explain how medical scanners see inside the body, and how the devices that monitor, support and repair it work.
 First week: The stethoscope, The X-ray machine, The CT scanner, The ultrasound scanner, The blood pressure cuff, The pulse oximeter, The forehead thermometer.
 
+### Space and science (21 days)
+Spacesuits, telescopes, lasers and atom smashers: the machines that explore space and the smallest things. By the end: Explain how we live and travel in space, how we watch the sky, and how scientists measure the very small and the very faint.
+First week: The spacesuit, The space toilet, The weather balloon, The solar sail, The ion thruster, The Mars helicopter, The satellite internet.
+
 ### Your body and the natural world (21 days)
 Your heart, eyes and brain, plus bees, storms, volcanoes and the whole Earth, opened up while they work. By the end: Explain how your own body works and the natural forces around you.
 First week: The human heart, The lungs, The eye, The inner ear, Neuron firing, The kidney, The digestive system.
@@ -119,4 +123,4 @@ How machines learn, see and talk, and where they go wrong. No maths degree neede
 First week: What is machine learning?, Linear regression, Gradient descent, Logistic regression: the chance of rain, Decision trees: twenty questions for data, Model evaluation: how good is it really?, Bias and variance: too stiff, too floppy.
 
 ## About
-SavvyMe has 26 courses and 484 hands-on lessons, and adds new ones every week.
+SavvyMe has 27 courses and 505 hands-on lessons, and adds new ones every week.
