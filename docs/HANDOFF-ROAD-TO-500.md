@@ -73,7 +73,8 @@ PRs (all from `claude/road-to-500`, none merged by Claude): cutaways #3, build #
 - Gotcha: pose colours must be `hex('#...')` arrays; a bare string breaks `tools/pages.mjs` thumbnails and silently stops every page after it.
 - Done: On the farm (21 new cutaways, course `farm`, goal nature). Total in courses: 463 (25 courses).
 - Vercel: cutaways vercel.json now only deploys `main` (owner's request, 2026-11-09). Don't merge until everything is done.
-- **Next up:** Medicine (21), then Space; task 7 narration last.
+- Done: Medicine (21 new cutaways, course `medicine`, new goal `health`). Total in courses: 484 (26 courses).
+- **Next up:** Space and science (14 wishlist + 7 extras), then task 7 narration last.
 
 ## The task list, in order
 

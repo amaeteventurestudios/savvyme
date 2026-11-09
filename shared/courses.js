@@ -211,6 +211,17 @@ export const COURSES = [
     ],
   },
   {
+    id: 'medicine', title: 'Medicine', days: 21, color: '#C2185B', icon: 'heart',
+    goal: 'health', blurb: 'Scanners, pacemakers, pumps and robots: the machines doctors use to see inside us and keep us well.',
+    outcome: 'Explain how medical scanners see inside the body, and how the devices that monitor, support and repair it work.',
+    units: ['Seeing inside', 'Monitoring and support', 'Treatments and tools'],
+    lessons: [
+      ...k('stethoscope x-ray ct-scanner ultrasound bp-cuff pulse-oximeter ir-thermometer'),
+      ...k('pacemaker defibrillator insulin-pump ventilator dialysis hearing-aid cochlear-implant'),
+      ...k('prosthetic-hand surgical-robot laser-eye dental-drill inhaler pill-press vaccine-production'),
+    ],
+  },
+  {
     id: 'music', title: 'Music and sound', days: 14, color: '#7A3FA0', icon: 'music',
     goal: 'made', blurb: 'Guitars, drums, horns, synths and headphones: how instruments and audio gear make and shape sound.',
     outcome: 'Explain how instruments make sound, and how speakers, records and headphones carry it to your ears.',
@@ -292,7 +303,7 @@ export const COURSES = [
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'around', 'city', 'made', 'factory', 'food', 'farm', 'industry', 'toys', 'sports', 'music', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
+const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'around', 'city', 'made', 'factory', 'food', 'farm', 'industry', 'toys', 'sports', 'music', 'medicine', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
@@ -313,6 +324,7 @@ export const GOALS = [
   { id: 'made', label: 'See how things are made', icon: 'hand' },
   { id: 'travel', label: 'Know how planes, trains and boats work', icon: 'plane' },
   { id: 'city', label: 'Understand how my city works', icon: 'city' },
+  { id: 'health', label: 'Know how medical machines work', icon: 'heart' },
   { id: 'nature', label: 'Understand the body and nature', icon: 'leaf' },
   { id: 'gadgets', label: 'Build gadgets and electronics', icon: 'bolt' },
   { id: 'ai', label: 'Understand how AI really works', icon: 'spark' },
