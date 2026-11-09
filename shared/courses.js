@@ -94,6 +94,17 @@ export const COURSES = [
     ],
   },
   {
+    id: 'food', title: 'Food and drink', days: 21, color: '#C2571A', icon: 'leaf',
+    goal: 'made', blurb: 'Flour, cheese, ketchup and popcorn: how the food in your kitchen is made, and the science that keeps it fresh.',
+    outcome: 'Explain how everyday food is made and kept safe, from the field to your table.',
+    units: ['Grains and breakfast', 'Dairy and sweets', 'Snacks and the pantry'],
+    lessons: [
+      ...k('flour-mill bread-factory cereal pasta popcorn coffee-maker espresso-machine'),
+      ...k('milk-dairy cheese ice-cream maple-syrup gummy-candy bubble-gum cocoa-to-chocolate'),
+      ...k('peanut-butter potato-chips ketchup canning orange-juice soda-bottling toaster'),
+    ],
+  },
+  {
     id: 'made', title: 'How things are made', days: 35, color: '#B7791F', icon: 'hand',
     goal: 'made', blurb: 'From crayons, chips and soda cans to the dishwasher, fridge and phone in your home.',
     outcome: 'Explain how the everyday things around you are made, and how the machines at home work.',
@@ -165,17 +176,17 @@ export const COURSES = [
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'car', 'home', 'giant', 'made', 'factory', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
+const ORDER = ['machines', 'car', 'home', 'giant', 'made', 'factory', 'food', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
 export const WEEK = [
   { day: 'Sun', theme: 'Fix-it challenge', site: null },
-  { day: 'Mon', theme: 'Inside a machine', pool: k('v8-engine turbocharger automatic-transmission escalator wind-turbine elevator helicopter tower-crane rocket-staging') },
-  { day: 'Tue', theme: 'How it\'s made', pool: k('crayons potato-chips aluminum-cans ice-cream toy-bricks coins glass-bottles soda-bottling toilet-paper pencils') },
+  { day: 'Mon', theme: 'Inside a machine', pool: k('v8-engine turbocharger automatic-transmission escalator wind-turbine elevator helicopter tower-crane rocket-staging roller-coaster moon-rocket booster-landing diesel-locomotive ocean-liner pumpjack') },
+  { day: 'Tue', theme: 'How it\'s made', pool: k('crayons potato-chips aluminum-cans ice-cream toy-bricks coins glass-bottles soda-bottling toilet-paper pencils paper-money baseballs bubble-wrap popcorn cheese ketchup gummy-candy') },
   { day: 'Wed', theme: 'Make it', pool: c('dusk-streetlight traffic-light reaction-time-game push-button-doorbell rgb-mood-light reversing-sensor') },
   { day: 'Thu', theme: 'How AI works', pool: b('tokens next-word word-embeddings rag image-generation-diffusion self-attention gradient-descent') },
-  { day: 'Fri', theme: 'Around the house', pool: k('dishwasher garage-door smoke-detector toaster washing-machine fridge microwave mechanical-watch') },
+  { day: 'Fri', theme: 'Around the house', pool: k('dishwasher garage-door smoke-detector toaster washing-machine fridge microwave mechanical-watch furnace water-heater robot-vacuum air-fryer garbage-disposal led-bulb') },
   { day: 'Sat', theme: 'Nature and the body', pool: k('human-heart eye lungs neuron photosynthesis thunderstorm volcano beehive') },
 ];
 
