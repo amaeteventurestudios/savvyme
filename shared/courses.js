@@ -49,6 +49,17 @@ export const COURSES = [
     ],
   },
   {
+    id: 'car', title: 'Your car', days: 21, color: '#B4372B', icon: 'gear',
+    goal: 'car', blurb: 'Open up the car in your driveway: engine, battery, gears, brakes, seatbelt and the clever little machines in between.',
+    outcome: 'Explain what every part under the hood does, and what is happening when something goes wrong.',
+    units: ['Under the hood', 'Going and stopping', 'Safety and smarts'],
+    lessons: [
+      ...k('v8-engine spark-plug fuel-injector radiator alternator starter-motor car-battery'),
+      ...k('clutch-gearbox automatic-transmission differential turbocharger suspension-steering car-brakes catalytic-converter'),
+      ...k('seatbelt car-airbag windshield-wipers key-fob gas-pump hybrid-car electric-car'),
+    ],
+  },
+  {
     id: 'made', title: 'How things are made', days: 35, color: '#B7791F', icon: 'hand',
     goal: 'made', blurb: 'From crayons, chips and soda cans to the dishwasher, fridge and phone in your home.',
     outcome: 'Explain how the everyday things around you are made, and how the machines at home work.',
@@ -120,7 +131,7 @@ export const COURSES = [
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'made', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
+const ORDER = ['machines', 'car', 'made', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
@@ -136,6 +147,7 @@ export const WEEK = [
 
 export const GOALS = [
   { id: 'machines', label: 'Know how machines work', icon: 'gear' },
+  { id: 'car', label: 'Understand my car', icon: 'gear' },
   { id: 'made', label: 'See how things are made', icon: 'hand' },
   { id: 'nature', label: 'Understand the body and nature', icon: 'leaf' },
   { id: 'gadgets', label: 'Build gadgets and electronics', icon: 'bolt' },
