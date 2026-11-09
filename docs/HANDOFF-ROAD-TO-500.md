@@ -69,7 +69,9 @@ PRs (all from `claude/road-to-500`, none merged by Claude): cutaways #3, build #
 - Done: Music and sound (14 new cutaways, course `music`). Total in courses: 400 (22 courses).
 - Done: Getting around (21 new cutaways, course `around`, new goal `travel` in GOALS and start.js). Total in courses: 421 (23 courses).
 - Gotchas: `smooth(a, b, x)` in engine/core.js is a smoothstep with three arguments; `cyc(t, period, off)` takes its offset in seconds, not a fraction.
-- **Next up:** City and infrastructure, then Farm, Medicine, Space; task 7 narration last.
+- Done: City and infrastructure (21 new cutaways, course `city`, new goal `city`). Total in courses: 442 (24 courses).
+- Gotcha: pose colours must be `hex('#...')` arrays; a bare string breaks `tools/pages.mjs` thumbnails and silently stops every page after it.
+- **Next up:** Farm, Medicine, Space; task 7 narration last.
 
 ## The task list, in order
 

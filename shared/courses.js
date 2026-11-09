@@ -189,6 +189,17 @@ export const COURSES = [
     ],
   },
   {
+    id: 'city', title: 'City and infrastructure', days: 21, color: '#4A5568', icon: 'city',
+    goal: 'city', blurb: 'Water, power, bridges, towers and traffic: the hidden systems that keep a city running.',
+    outcome: 'Explain where your water, power and gas come from, how big structures stand up, and how the city watches its traffic.',
+    units: ['Water, power and gas', 'Big structures', 'The smart street'],
+    lessons: [
+      ...k('water-treatment sewage-treatment storm-drain fire-hydrant gas-pipeline substation pole-transformer'),
+      ...k('skyscraper suspension-bridge drawbridge immersed-tunnel quake-building levee stadium-roof'),
+      ...k('traffic-signals speed-camera electronic-toll cell-tower data-center recycling-plant automatic-doors'),
+    ],
+  },
+  {
     id: 'music', title: 'Music and sound', days: 14, color: '#7A3FA0', icon: 'music',
     goal: 'made', blurb: 'Guitars, drums, horns, synths and headphones: how instruments and audio gear make and shape sound.',
     outcome: 'Explain how instruments make sound, and how speakers, records and headphones carry it to your ears.',
@@ -270,7 +281,7 @@ export const COURSES = [
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'around', 'made', 'factory', 'food', 'industry', 'toys', 'sports', 'music', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
+const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'around', 'city', 'made', 'factory', 'food', 'industry', 'toys', 'sports', 'music', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
@@ -290,6 +301,7 @@ export const GOALS = [
   { id: 'home', label: 'Know how my home works', icon: 'home' },
   { id: 'made', label: 'See how things are made', icon: 'hand' },
   { id: 'travel', label: 'Know how planes, trains and boats work', icon: 'plane' },
+  { id: 'city', label: 'Understand how my city works', icon: 'city' },
   { id: 'nature', label: 'Understand the body and nature', icon: 'leaf' },
   { id: 'gadgets', label: 'Build gadgets and electronics', icon: 'bolt' },
   { id: 'ai', label: 'Understand how AI really works', icon: 'spark' },

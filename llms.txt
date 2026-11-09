@@ -50,6 +50,10 @@ First week: The roller coaster, The revolving door, The elevator, Escalator, Tow
 Planes, trains, boats and big trucks: how the machines that move people and things really work. By the end: Explain how planes fly themselves, how trains are powered and switched, and how boats and trucks do their jobs.
 First week: The autopilot, The cabin pressure, The flight recorder, The air traffic radar, The airport baggage system, The glider, The parachute.
 
+### City and infrastructure (21 days)
+Water, power, bridges, towers and traffic: the hidden systems that keep a city running. By the end: Explain where your water, power and gas come from, how big structures stand up, and how the city watches its traffic.
+First week: The water treatment plant, The sewage treatment plant, The storm drain, The fire hydrant, The gas pipeline, The electrical substation, The pole transformer.
+
 ### How things are made (35 days)
 From crayons, chips and soda cans to the dishwasher, fridge and phone in your home. By the end: Explain how the everyday things around you are made, and how the machines at home work.
 First week: Crayons, Pencils, Coins, Potato chips, Toy bricks, Toilet paper, Aluminum cans.
@@ -107,4 +111,4 @@ How machines learn, see and talk, and where they go wrong. No maths degree neede
 First week: What is machine learning?, Linear regression, Gradient descent, Logistic regression: the chance of rain, Decision trees: twenty questions for data, Model evaluation: how good is it really?, Bias and variance: too stiff, too floppy.
 
 ## About
-SavvyMe has 23 courses and 421 hands-on lessons, and adds new ones every week.
+SavvyMe has 24 courses and 442 hands-on lessons, and adds new ones every week.
