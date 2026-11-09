@@ -66,7 +66,8 @@ PRs (all from `claude/road-to-500`, none merged by Claude): cutaways #3, build #
 - **Garage done.** New cutaways group `garage` with 12 new: power-drill, car-jack, ratchet-wrench, lawn-mower, chainsaw, leaf-blower, pressure-washer, block-and-tackle, sprinkler, bike-pump, stud-finder, air-compressor. New course **Garage, yard and tools** (14), on the `home` goal. Now 19 courses, 363 lessons, 115 new cutaways so far.
 - **Toys done.** New cutaways group `toys` with 11 new: yo-yo, spinning-top, slinky, music-box, kite, kaleidoscope, water-blaster, wind-up-toy, rc-car, claw-machine, pinball. New course **Toys and games** (14), on the `made` goal. Now 20 courses, 374 lessons, 126 new cutaways so far.
 - **Sports done.** New cutaways group `sports` with 12 new: compass, golf-ball, binoculars, ice-skates, e-bike, treadmill, fishing-reel, compound-bow, scuba-regulator, life-jacket, smartwatch-hr, pitching-machine. New course **Sports and outdoors** (14), on the `nature` goal. Now 21 courses, 386 lessons, 138 new cutaways so far.
-- **Next up:** Music and sound (15 candidates), then Getting around, City and infrastructure, Farm, Medicine, Space; task 7 narration last.
+- Done: Music and sound (14 new cutaways, course `music`). Total in courses: 400 (22 courses).
+- **Next up:** Getting around, then City and infrastructure, Farm, Medicine, Space; task 7 narration last.
 
 ## The task list, in order
 

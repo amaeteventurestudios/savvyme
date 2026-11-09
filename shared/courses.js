@@ -178,6 +178,16 @@ export const COURSES = [
     ],
   },
   {
+    id: 'music', title: 'Music and sound', days: 14, color: '#7A3FA0', icon: 'music',
+    goal: 'made', blurb: 'Guitars, drums, horns, synths and headphones: how instruments and audio gear make and shape sound.',
+    outcome: 'Explain how instruments make sound, and how speakers, records and headphones carry it to your ears.',
+    units: ['Make some noise', 'Plug in and listen'],
+    lessons: [
+      ...k('acoustic-guitar violin drum-kit trumpet saxophone harmonica pipe-organ'),
+      ...k('electric-guitar amplifier synthesizer turntable noise-cancelling wireless-earbuds concert-hall'),
+    ],
+  },
+  {
     id: 'made', title: 'How things are made', days: 35, color: '#B7791F', icon: 'hand',
     goal: 'made', blurb: 'From crayons, chips and soda cans to the dishwasher, fridge and phone in your home.',
     outcome: 'Explain how the everyday things around you are made, and how the machines at home work.',
@@ -249,7 +259,7 @@ export const COURSES = [
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'made', 'factory', 'food', 'industry', 'toys', 'sports', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
+const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'made', 'factory', 'food', 'industry', 'toys', 'sports', 'music', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
