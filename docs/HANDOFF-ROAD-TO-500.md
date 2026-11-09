@@ -46,9 +46,14 @@ The owner wants you to **build and not stop**. Don't ask questions and don't wai
 
 ## Progress (updated as work goes)
 
-- Task 1 done: fridge `voice: false`.
-- Task 2, cutaways rewritten (narration off on each): fridge, phone-call (New York to LA), whole-earth, space-station (North America below), headphones (Chicago bus), hydro-dam (Tennessee Valley, 60 Hz), lungs (Phoenix dust storm, Denver), solar-light (Taos adobe cabin), gps (Chicago), espresso-machine (Seattle), cubesat-3u (Cal Poly), ocean-waves (Tybee Island), undersea-cable (Virginia Beach to Spain), electric-kettle (Denver, 120 V), lithium-battery (Reno), steam-locomotive (Durango & Silverton), bicycle-gears (Boulder), helicopter (Denver), cubesat-6u (St. Louis floods), kidney (Las Vegas), microwave (Atlanta), airplane-wing (Denver International), electric-car (San Francisco).
-- Next up: the rest of `docs/western-rewrite-list.txt` from air-conditioner down. Helpers used: a scanner that prints lines with African words, and a replace-all script; any similar approach works. Always `node -e "import('./<slug>/model.js')"` after edits: an unescaped apostrophe in a single-quoted string breaks the page.
+PRs (all from `claude/road-to-500`, none merged by Claude): cutaways #3, build #2, circuits #2, savvyme #5. Merge the three lesson repos first, then savvyme.
+
+- **Task 1 done.** Fridge narration off.
+- **Task 2 done.** All 83 cutaways, 20 Build and 20 Circuits lessons on the list have Western settings, narration off on the cutaways (Build and Circuits only play a clip while its caption still matches, so changed steps are silent until re-recorded). Every cutaway passes `audit()` and loads with no console errors; every changed Circuits project passes `tools/test/projects.test.mjs`; the Build tries and analogies were checked. Pages and share images regenerated.
+- **Task 3 done.** The 55 Circuits projects have Western versions (slugs unchanged; catalog titles and places updated) and sit in three new courses: Build smart gadgets (20), Power, batteries and backup (14), Smart farm, garden and water (21). Goal: `gadgets`.
+- **Task 4 done.** `tools/checks.mjs` has three checks for every Circuits lesson in a course (115 sets). The player now shows options in a fixed shuffled order (seeded by the question), so the right answer isn't always first.
+- **Courses now:** 9 courses, 248 lessons.
+- **Next up:** task 5, new cutaways from the wishlist (cars first), then task 6 courses, then task 7 narration.
 
 ## The task list, in order
 
@@ -639,4 +644,7 @@ Already built and therefore removed from these lists: car engine (V8), automatic
 - whole-earth keeps the East African Rift: the rift *is* the science of the lesson. It got US units, a San Andreas fact, no map and no voice.
 - US units go first in story text, facts, scale lines and intros (`350 °F (175 °C)`). Live gauges and charts computed by the sim stay metric (°C, km/h, kPa), so the maths stays untouched. Grid-frequency lessons were moved to 60 Hz (hydro-dam).
 - British spellings (centre, fibre, colour) are left as they are: it is the house style of the whole cutaways site.
+- Lessons whose subject is itself African (baobab, weaver nest, termite mound, malaria, the East African Rift) keep the subject, lose the map and the voice, and gain US units and a US fact. Cocoa keeps the world facts but is set from Hawaii to Hershey.
+- Circuits sketches keep metric units (sensors and libraries are metric); story text adds US units where it helps. The fridge surge guard stays a 230 V design and says so (US kitchens are 120 V).
+- Circuits slugs never change (links exist); only titles, places and text do. Watch out: a regex on a word like `borehole` also hits the slug `borehole-pump-timer`.
 - Real-world settings chosen for the rewrites: see the list under "Progress" below.
