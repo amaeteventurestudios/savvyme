@@ -44,6 +44,12 @@ The owner wants you to **build and not stop**. Don't ask questions and don't wai
 - Keep a running tally at the top of the savvyme PR description: lessons rewritten, built, added to courses, total in courses.
 - When your context gets long, update this file (tick off what's done, add "Next up") and push, so a fresh session can carry on.
 
+## Progress (updated as work goes)
+
+- Task 1 done: fridge `voice: false`.
+- Task 2, cutaways rewritten (narration off on each): fridge, phone-call (New York to LA), whole-earth, space-station (North America below), headphones (Chicago bus), hydro-dam (Tennessee Valley, 60 Hz), lungs (Phoenix dust storm, Denver), solar-light (Taos adobe cabin), gps (Chicago), espresso-machine (Seattle), cubesat-3u (Cal Poly), ocean-waves (Tybee Island), undersea-cable (Virginia Beach to Spain), electric-kettle (Denver, 120 V), lithium-battery (Reno), steam-locomotive (Durango & Silverton), bicycle-gears (Boulder), helicopter (Denver), cubesat-6u (St. Louis floods), kidney (Las Vegas), microwave (Atlanta), airplane-wing (Denver International), electric-car (San Francisco).
+- Next up: the rest of `docs/western-rewrite-list.txt` from air-conditioner down. Helpers used: a scanner that prints lines with African words, and a replace-all script; any similar approach works. Always `node -e "import('./<slug>/model.js')"` after edits: an unescaped apostrophe in a single-quoted string breaks the page.
+
 ## The task list, in order
 
 1. **Fridge narration is stale.** `cutaways/fridge/model.js` was rewritten for the West (branch `claude/project-thread-vgcwhp` in cutaways, not merged) but its recorded voice clips still say the old Nigerian lines. Set `voice: false` on it until new clips are made (see Narration below), or regenerate them.
@@ -628,4 +634,9 @@ Already built and therefore removed from these lists: car engine (V8), automatic
 
 ## Decisions made on the way
 
-- (add yours here)
+- Branches: `claude/road-to-500` in each repo. Cutaways' is cut from `claude/project-thread-6j533s` plus the fridge commit from `claude/project-thread-vgcwhp` (cutaways PR #3). Savvyme's is cut from `claude/project-thread-vgcwhp` (PR #4), because that PR was still open; merge PR #4 first, or merge only the road-to-500 PR, which contains it.
+- Where a lesson's ground map or globe showed Africa (phone-call, space-station, cubesat-3u), the polygon was swapped for a rough outline of the lower 48 states written inline in the model; `engine/maps.js` is untouched.
+- whole-earth keeps the East African Rift: the rift *is* the science of the lesson. It got US units, a San Andreas fact, no map and no voice.
+- US units go first in story text, facts, scale lines and intros (`350 °F (175 °C)`). Live gauges and charts computed by the sim stay metric (°C, km/h, kPa), so the maths stays untouched. Grid-frequency lessons were moved to 60 Hz (hydro-dam).
+- British spellings (centre, fibre, colour) are left as they are: it is the house style of the whole cutaways site.
+- Real-world settings chosen for the rewrites: see the list under "Progress" below.
