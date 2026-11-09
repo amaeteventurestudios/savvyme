@@ -64,7 +64,8 @@ PRs (all from `claude/road-to-500`, none merged by Claude): cutaways #3, build #
 - **Bathroom done.** New cutaways group `bathroom` with 11 new: hair-dryer, electric-toothbrush, shower-head, drain-trap, water-softener, septic-tank, aerosol-can, soap-pump, hand-dryer, exhaust-fan, electric-shaver. New course **In the bathroom** (14, two units), on the `home` goal. Now 17 courses, 337 lessons, 89 new cutaways so far.
 - **Around the house done.** New cutaways group `house` with 14 new: clothes-dryer, steam-iron, space-heater, mousetrap, sump-pump, door-closer, smart-lock, co-alarm, pendulum-clock, well-pump, wifi-router, quartz-clock, video-doorbell, recliner. New course **Around the house** (21), on the `home` goal. Now 18 courses, 351 lessons, 103 new cutaways so far.
 - **Garage done.** New cutaways group `garage` with 12 new: power-drill, car-jack, ratchet-wrench, lawn-mower, chainsaw, leaf-blower, pressure-washer, block-and-tackle, sprinkler, bike-pump, stud-finder, air-compressor. New course **Garage, yard and tools** (14), on the `home` goal. Now 19 courses, 363 lessons, 115 new cutaways so far.
-- **Next up:** Toys and games (20 candidates), then Sports, Music and sound, Getting around, City and infrastructure, Farm, Medicine, Space; task 7 narration last.
+- **Toys done.** New cutaways group `toys` with 11 new: yo-yo, spinning-top, slinky, music-box, kite, kaleidoscope, water-blaster, wind-up-toy, rc-car, claw-machine, pinball. New course **Toys and games** (14), on the `made` goal. Now 20 courses, 374 lessons, 126 new cutaways so far.
+- **Next up:** Sports and outdoors (20 candidates), then Music and sound, Getting around, City and infrastructure, Farm, Medicine, Space; task 7 narration last.
 
 ## The task list, in order
 

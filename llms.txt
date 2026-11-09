@@ -62,6 +62,10 @@ First week: The flour mill, The bread factory, Breakfast cereal, Pasta, Popcorn,
 Steel, glass, chips and power: the giant plants that make the materials of modern life. By the end: Explain how the basic materials and energy of modern life are made, at enormous scale.
 First week: The steel mill, Window glass, Concrete, Cement kiln, Tunnel boring machine, Tires, The paper mill.
 
+### Toys and games (14 days)
+Yo-yos, tops, Slinkys, kites and pinball: the physics hiding inside your favourite toys. By the end: Explain the physics that makes toys spin, fly, bounce and play.
+First week: The yo-yo, The spinning top, The Slinky, The kite, The wind-up toy, The music box, The kaleidoscope.
+
 ### Your body and the natural world (21 days)
 Your heart, eyes and brain, plus bees, storms, volcanoes and the whole Earth, opened up while they work. By the end: Explain how your own body works and the natural forces around you.
 First week: The human heart, The lungs, The eye, The inner ear, Neuron firing, The kidney, The digestive system.
@@ -91,4 +95,4 @@ How machines learn, see and talk, and where they go wrong. No maths degree neede
 First week: What is machine learning?, Linear regression, Gradient descent, Logistic regression: the chance of rain, Decision trees: twenty questions for data, Model evaluation: how good is it really?, Bias and variance: too stiff, too floppy.
 
 ## About
-SavvyMe has 19 courses and 363 hands-on lessons, and adds new ones every week.
+SavvyMe has 20 courses and 374 hands-on lessons, and adds new ones every week.

@@ -158,6 +158,16 @@ export const COURSES = [
     ],
   },
   {
+    id: 'toys', title: 'Toys and games', days: 14, color: '#D9480F', icon: 'spark',
+    goal: 'made', blurb: 'Yo-yos, tops, Slinkys, kites and pinball: the physics hiding inside your favourite toys.',
+    outcome: 'Explain the physics that makes toys spin, fly, bounce and play.',
+    units: ['Spin, swing and spring', 'Machines that play'],
+    lessons: [
+      ...k('yo-yo spinning-top slinky kite wind-up-toy music-box kaleidoscope'),
+      ...k('water-blaster rc-car claw-machine pinball quadcopter toy-bricks crayons'),
+    ],
+  },
+  {
     id: 'made', title: 'How things are made', days: 35, color: '#B7791F', icon: 'hand',
     goal: 'made', blurb: 'From crayons, chips and soda cans to the dishwasher, fridge and phone in your home.',
     outcome: 'Explain how the everyday things around you are made, and how the machines at home work.',
@@ -229,7 +239,7 @@ export const COURSES = [
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'made', 'factory', 'food', 'industry', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
+const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'made', 'factory', 'food', 'industry', 'toys', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
