@@ -38,6 +38,10 @@ First week: The toilet cistern, The kitchen faucet, The water heater, The shower
 Dryers, pumps, locks, clocks and doorbells: the machines that quietly keep a house running. By the end: Explain how the everyday machines around your house work, and what keeps them safe.
 First week: The washing machine, The clothes dryer, The steam iron, The space heater, Split air conditioner, The recliner, The mousetrap.
 
+### Garage, yard and tools (14 days)
+Drills, jacks, mowers and sprinklers: the tools in the garage and the yard, opened up. By the end: Explain how everyday tools multiply your strength and get the job done safely.
+First week: The power drill, The ratchet wrench, The hydraulic car jack, The block and tackle, The air compressor, The stud finder, The 3D printer.
+
 ### Giant machines (28 days)
 Moon rockets, ocean liners, roller coasters and oil rigs: the biggest machines people have built, opened up. By the end: Explain how the giants work: what lifts them, moves them, powers them and keeps them safe.
 First week: The roller coaster, The revolving door, The elevator, Escalator, Tower crane, Hydraulic excavator, Tunnel boring machine.
@@ -87,4 +91,4 @@ How machines learn, see and talk, and where they go wrong. No maths degree neede
 First week: What is machine learning?, Linear regression, Gradient descent, Logistic regression: the chance of rain, Decision trees: twenty questions for data, Model evaluation: how good is it really?, Bias and variance: too stiff, too floppy.
 
 ## About
-SavvyMe has 18 courses and 351 hands-on lessons, and adds new ones every week.
+SavvyMe has 19 courses and 363 hands-on lessons, and adds new ones every week.
