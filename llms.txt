@@ -22,6 +22,10 @@ First week: Car engine (V8), Automatic transmission, Car brakes and ABS, The dif
 Open up the car in your driveway: engine, battery, gears, brakes, seatbelt and the clever little machines in between. By the end: Explain what every part under the hood does, and what is happening when something goes wrong.
 First week: Car engine (V8), Spark plug and ignition coil, The fuel injector, Radiator and cooling system, The alternator, The starter motor, The 12-volt car battery.
 
+### Machines at home (21 days)
+The furnace, the water heater, the fridge and the faucet: open up the machines that run your home. By the end: Explain how the machines in your home work, and what to check when one stops.
+First week: The furnace, The water heater, The smart thermostat, Split air conditioner, The LED bulb, The kitchen faucet, The toilet cistern.
+
 ### How things are made (35 days)
 From crayons, chips and soda cans to the dishwasher, fridge and phone in your home. By the end: Explain how the everyday things around you are made, and how the machines at home work.
 First week: Crayons, Pencils, Coins, Potato chips, Toy bricks, Toilet paper, Aluminum cans.
@@ -55,4 +59,4 @@ How machines learn, see and talk, and where they go wrong. No maths degree neede
 First week: What is machine learning?, Linear regression, Gradient descent, Logistic regression: the chance of rain, Decision trees: twenty questions for data, Model evaluation: how good is it really?, Bias and variance: too stiff, too floppy.
 
 ## About
-SavvyMe has 10 courses and 262 hands-on lessons, and adds new ones every week.
+SavvyMe has 11 courses and 273 hands-on lessons, and adds new ones every week.
