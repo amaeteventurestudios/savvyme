@@ -60,6 +60,18 @@ export const COURSES = [
     ],
   },
   {
+    id: 'giant', title: 'Giant machines', days: 28, color: '#1F5F8B', icon: 'gear',
+    goal: 'machines', blurb: 'Moon rockets, ocean liners, roller coasters and oil rigs: the biggest machines people have built, opened up.',
+    outcome: 'Explain how the giants work: what lifts them, moves them, powers them and keeps them safe.',
+    units: ['Big on land', 'On the move', 'Sky and space', 'Power and water'],
+    lessons: [
+      ...k('roller-coaster revolving-door elevator escalator tower-crane excavator tunnel-boring'),
+      ...k('diesel-locomotive steam-locomotive ocean-liner ship-engine submarine canal-lock carrier-catapult'),
+      ...k('helicopter moon-rocket space-shuttle booster-landing rocket-staging space-station mars-rover'),
+      ...k('water-tower pumpjack offshore-rig oil-refinery hydro-dam nuclear-reactor wind-turbine'),
+    ],
+  },
+  {
     id: 'home', title: 'Machines at home', days: 21, color: '#2F7D6B', icon: 'home',
     goal: 'home', blurb: 'The furnace, the water heater, the fridge and the faucet: open up the machines that run your home.',
     outcome: 'Explain how the machines in your home work, and what to check when one stops.',
@@ -142,7 +154,7 @@ export const COURSES = [
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'car', 'home', 'made', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
+const ORDER = ['machines', 'car', 'home', 'giant', 'made', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
