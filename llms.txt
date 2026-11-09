@@ -42,6 +42,10 @@ First week: Paper money, Coins, Pencils, Crayons, The ballpoint pen, Cardboard b
 Flour, cheese, ketchup and popcorn: how the food in your kitchen is made, and the science that keeps it fresh. By the end: Explain how everyday food is made and kept safe, from the field to your table.
 First week: The flour mill, The bread factory, Breakfast cereal, Pasta, Popcorn, The drip coffee maker, Espresso machine.
 
+### Big industry (21 days)
+Steel, glass, chips and power: the giant plants that make the materials of modern life. By the end: Explain how the basic materials and energy of modern life are made, at enormous scale.
+First week: The steel mill, Window glass, Concrete, Cement kiln, Tunnel boring machine, Tires, The paper mill.
+
 ### Your body and the natural world (21 days)
 Your heart, eyes and brain, plus bees, storms, volcanoes and the whole Earth, opened up while they work. By the end: Explain how your own body works and the natural forces around you.
 First week: The human heart, The lungs, The eye, The inner ear, Neuron firing, The kidney, The digestive system.
@@ -71,4 +75,4 @@ How machines learn, see and talk, and where they go wrong. No maths degree neede
 First week: What is machine learning?, Linear regression, Gradient descent, Logistic regression: the chance of rain, Decision trees: twenty questions for data, Model evaluation: how good is it really?, Bias and variance: too stiff, too floppy.
 
 ## About
-SavvyMe has 14 courses and 308 hands-on lessons, and adds new ones every week.
+SavvyMe has 15 courses and 316 hands-on lessons, and adds new ones every week.
