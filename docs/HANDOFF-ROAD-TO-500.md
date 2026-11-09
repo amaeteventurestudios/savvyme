@@ -29,18 +29,29 @@ Written 2026-11-07 for a fresh Claude Code session on another account. Read this
 | Subtotal | 248 |
 | **New lessons still to build** | **about 252** |
 
-The 17 Africa-only cutaways (kente-loom, palm-oil-mill, garri, talking-drum, kora, benin-bronze, nok-kiln, adire, lagos-generator, keke-napep, danfo-bus, coffee-ceremony, shadoof, pyramids, great-zimbabwe, lalibela, swahili-dhow) are left out for the Western audience. Pyramids could go into "How things are made" if the owner wants; ask.
+The 17 Africa-only cutaways (kente-loom, palm-oil-mill, garri, talking-drum, kora, benin-bronze, nok-kiln, adire, lagos-generator, keke-napep, danfo-bus, coffee-ceremony, shadoof, pyramids, great-zimbabwe, lalibela, swahili-dhow) are left out for the Western audience. Pyramids is fine for the West: add it to "How things are made".
 
 The wishlist below has **415 candidates** (71 left from the first list plus 344 from "Road to 500"). Build about 252 of them, starting at the top of each section. Cars, home machines and classic factory products first: that is where US interest is biggest.
+
+## Work mode: build nonstop (owner, 2026-11-09)
+
+The owner wants you to **build and not stop**. Don't ask questions and don't wait for reviews or merges. Every decision is already made in this file; where something is unclear, choose the sensible option, write it down in "Decisions made on the way" at the bottom of this file, and keep going.
+
+- Work on branch `claude/road-to-500` in each repo (create it from the live branch: cutaways `claude/project-thread-6j533s`, savvyme `main`, circuits and build their default branches). Commit and push after every lesson or small batch so nothing is lost.
+- Open one PR per repo early and keep adding commits to it. Don't merge it yourself; the owner merges when they wake up.
+- Since the PRs aren't merged yet, add the new lessons to `shared/courses.js` on the savvyme branch anyway; they go live together when the owner merges the cutaways PR first, then the savvyme PR. Say that order in the savvyme PR description.
+- Run the screenshot checks on a sample of each batch (one or two lessons at each size), not every lesson, so you keep moving. Fix console errors and audit failures before moving on.
+- Keep a running tally at the top of the savvyme PR description: lessons rewritten, built, added to courses, total in courses.
+- When your context gets long, update this file (tick off what's done, add "Next up") and push, so a fresh session can carry on.
 
 ## The task list, in order
 
 1. **Fridge narration is stale.** `cutaways/fridge/model.js` was rewritten for the West (branch `claude/project-thread-vgcwhp` in cutaways, not merged) but its recorded voice clips still say the old Nigerian lines. Set `voice: false` on it until new clips are made (see Narration below), or regenerate them.
 2. **Western rewrite of the 123 lessons with African references** (list at the bottom, worst first; full scan in `docs/western-rewrite-list.txt`). The fridge is the reference: Lagos kitchen became a Houston kitchen, NEPA became a blackout, stabiliser became a surge protector, 230 V became 120 V, jollof became leftover chili, the Africa-only `where` map was removed. Rules:
    - Rewrite story steps, callouts, `place`, glossary, quiz, controls labels and comments. Use US places and everyday US life (suburbs, highways, grocery stores, school, the DMV). Keep the science identical.
-   - Remove `where` (the maps in `engine/maps.js` are Africa only). Don't build a US map unless the owner asks.
-   - Units: the owner hasn't answered yet whether to switch to °F, miles and pounds. Ask once; until then keep the units as they are.
-   - Where the rewrite goes: the owner was asked whether SavvyMe should get Western versions while the free sites stay as they are, or whether the free sites change too. Until they answer, rewrite in place on a cutaways branch and open the PR, but don't merge it into the live branch yourself.
+   - Remove `where` (the maps in `engine/maps.js` are Africa only). Don't build a US map.
+   - Units: US units first, metric in brackets (350°F (175°C), 60 mph (100 km/h), 10 lb (4.5 kg)).
+   - Rewrite in place in each lesson's own repo (SavvyMe opens those pages, so that is the only way it shows up). Set `voice: false` on every rewritten lesson, because the old clips no longer match.
    - Same job for the 20 Build lessons and 20 Circuits lessons in the list (Build lesson text is in `<slug>/lesson.js`, Circuits in `<slug>/project.js`).
    - After each batch: `node tools/pages.mjs` (and `node tools/og.mjs <slug>`) in cutaways, the screenshot checks from its CLAUDE.md, then in savvyme `LESSON_ROOT=<folder holding the repos> node tools/lessons.mjs` so blurbs and checks update.
 3. **Bring in the 55 Circuits projects.** Many are Nigerian (nepa-is-back, pure-water-vending, keke-tracker, okada-helmet, pepper-soup-thermometer, ugu-soil-moisture...). Give each a Western version (rename the slug only if the owner agrees, since links exist), then add them to the electronics and smart-home courses or new courses (for example "Build smart gadgets" and "Smart farm and garden"). Each needs three checks in savvyme `tools/checks.mjs` (Circuits pages have no quiz of their own).
@@ -50,8 +61,8 @@ The wishlist below has **415 candidates** (71 left from the first list plus 344 
    - US setting from the start (no rewrite needed later). Generic brands only.
    - Once the owner merges and the page is live: in savvyme add the ids (`cutaways:<slug>`) to a course in `shared/courses.js` (units of 7, one lesson a day), run `node tools/lessons.mjs`, `node tools/seo.mjs` (rewrites robots.txt, sitemap.xml, llms.txt), and check the course data loads (`node -e` line in the deploy workflow). PR into savvyme `main`.
 6. **New courses as the lessons arrive** (from the wishlist plan): Your car (21), Machines at home (21), Giant machines (30), Classic factory (21), Food and drink (21), Big industry (21), then Kitchen, Bathroom, Around the house, Garage and tools, Toys and games, Sports, Music and sound, Getting around, City and infrastructure, Farm and food, Medicine, Space. Add a goal in `GOALS` and the quiz mapping in `start/start.js` (`goalCourse`) for each new course, and a Discover pool in `WEEK` if it fits a weekday theme. Keep `ORDER` sensible: machines and making first.
-7. **Narration.** The cutaways' recorded voices are Nigerian (Azure, quota nearly used). For the Western audience use the free Kokoro "Heart" voice (US English), as Amaete Build and Circuits do (`build/tools/voice/kokoro.py`). This needs a change to the cutaways viewer's voice picker (today it offers Idara and Tari). Ask the owner before changing the free site's voices.
-8. **Open questions for the owner** (ask once each, keep working meanwhile): Western versions only in SavvyMe or on the free sites too; US units; the contact email in the footer (it says hello@savvymeapp.com, a domain they don't own).
+7. **Narration.** The cutaways' recorded voices are Nigerian (Azure, quota nearly used). For the Western audience use the free Kokoro "Heart" voice (US English), as Amaete Build and Circuits do (`build/tools/voice/kokoro.py`). This needs a change to the cutaways viewer's voice picker (today it offers Idara and Tari). Do this last, after the lessons are built.
+8. Leave the footer contact email as it is.
 
 ## Rules that bite (from the repos' CLAUDE.md files)
 
@@ -613,3 +624,8 @@ Already built and therefore removed from these lists: car engine (V8), automatic
 | Space toilet | How do astronauts use the bathroom? |
 | Mars helicopter | How does it fly in such thin air? |
 | Solar sail | How does sunlight push a spacecraft? |
+
+
+## Decisions made on the way
+
+- (add yours here)
