@@ -30,6 +30,10 @@ First week: The furnace, The water heater, The smart thermostat, Split air condi
 Stoves, cookers, mixers and timers: the clever machines on your counter, opened up. By the end: Explain how the kitchen's machines heat, chill, mix and measure, and use them better.
 First week: The induction cooktop, The gas stove burner, Microwave oven, Toaster, The air fryer, The pressure cooker, The rice cooker.
 
+### In the bathroom (14 days)
+Showers, drains, toothbrushes and hair dryers: the bathroom, opened up. By the end: Explain where the water comes from and goes, and how the bathroom's gadgets work.
+First week: The toilet cistern, The kitchen faucet, The water heater, The shower, The sink drain trap, The water softener, The septic tank.
+
 ### Giant machines (28 days)
 Moon rockets, ocean liners, roller coasters and oil rigs: the biggest machines people have built, opened up. By the end: Explain how the giants work: what lifts them, moves them, powers them and keeps them safe.
 First week: The roller coaster, The revolving door, The elevator, Escalator, Tower crane, Hydraulic excavator, Tunnel boring machine.
@@ -79,4 +83,4 @@ How machines learn, see and talk, and where they go wrong. No maths degree neede
 First week: What is machine learning?, Linear regression, Gradient descent, Logistic regression: the chance of rain, Decision trees: twenty questions for data, Model evaluation: how good is it really?, Bias and variance: too stiff, too floppy.
 
 ## About
-SavvyMe has 16 courses and 326 hands-on lessons, and adds new ones every week.
+SavvyMe has 17 courses and 337 hands-on lessons, and adds new ones every week.
