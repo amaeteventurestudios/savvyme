@@ -53,7 +53,8 @@ PRs (all from `claude/road-to-500`, none merged by Claude): cutaways #3, build #
 - **Task 3 done.** The 55 Circuits projects have Western versions (slugs unchanged; catalog titles and places updated) and sit in three new courses: Build smart gadgets (20), Power, batteries and backup (14), Smart farm, garden and water (21). Goal: `gadgets`.
 - **Task 4 done.** `tools/checks.mjs` has three checks for every Circuits lesson in a course (115 sets). The player now shows options in a fixed shuffled order (seeded by the question), so the right answer isn't always first.
 - **Courses now:** 9 courses, 248 lessons.
-- **Next up:** task 5, new cutaways from the wishlist (cars first), then task 6 courses, then task 7 narration.
+- **Task 5 started.** New group `car` ("Your car") in cutaways `engine/catalog.js`, with 8 new cutaways built, audited and pushed (cutaways PR #3): seatbelt, windshield-wipers, spark-plug, alternator, starter-motor, radiator, car-battery, fuel-injector. They are not in a SavvyMe course yet.
+- **Next up:** 6 more car cutaways (clutch and manual gearbox, suspension and steering, power steering, hybrid car, key fob, gas pump), then a "Your car" course (the 7 car cutaways already in How machines work plus these 14), then the rest of the wishlist, task 6 courses, task 7 narration. Pattern to copy: `seatbelt/model.js` or `radiator/model.js`; particle kinds are only smoke, steam, fire, spark, glow, drip, flow, dust, ring, bubble, flame. In the iso view the viewer sits at +x, +z, so cut away the +x and +z walls.
 
 ## The task list, in order
 
