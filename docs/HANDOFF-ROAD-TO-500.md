@@ -62,7 +62,8 @@ PRs (all from `claude/road-to-500`, none merged by Claude): cutaways #3, build #
 - **Big industry done.** New cutaways group `industry` with 8 new: steel-mill, tires, chip-fab, concrete, paper-mill, car-assembly, float-glass, solar-cells. New course **Big industry** (21), on the `made` goal. Now 15 courses, 316 lessons, 68 new cutaways so far.
 - **Kitchen done.** New cutaways group `kitchen` with 10 new: induction-cooktop, gas-burner, pressure-cooker, rice-cooker, ice-maker, vacuum-flask, stand-mixer, kitchen-scale, kitchen-timer, grill-igniter. New course **In the kitchen** (21), on the `home` goal. Now 16 courses, 326 lessons, 78 new cutaways so far.
 - **Bathroom done.** New cutaways group `bathroom` with 11 new: hair-dryer, electric-toothbrush, shower-head, drain-trap, water-softener, septic-tank, aerosol-can, soap-pump, hand-dryer, exhaust-fan, electric-shaver. New course **In the bathroom** (14, two units), on the `home` goal. Now 17 courses, 337 lessons, 89 new cutaways so far.
-- **Next up:** Around the house (30 candidates: space heater, wood stove, video doorbell, Wi-Fi router, TV, laptop, laser printer, clothes dryer, steam iron, door closer, smart lock, sump pump, well pump, CO alarm, mousetrap, clocks...), then Garage and tools, Toys and games, Sports, Music and sound, Getting around, City and infrastructure, Farm, Medicine, Space; task 7 narration last.
+- **Around the house done.** New cutaways group `house` with 14 new: clothes-dryer, steam-iron, space-heater, mousetrap, sump-pump, door-closer, smart-lock, co-alarm, pendulum-clock, well-pump, wifi-router, quartz-clock, video-doorbell, recliner. New course **Around the house** (21), on the `home` goal. Now 18 courses, 351 lessons, 103 new cutaways so far.
+- **Next up:** Garage, yard and tools (30 candidates), then Toys and games, Sports, Music and sound, Getting around, City and infrastructure, Farm, Medicine, Space; task 7 narration last.
 
 ## The task list, in order
 

@@ -81,6 +81,17 @@ export const COURSES = [
     ],
   },
   {
+    id: 'house', title: 'Around the house', days: 21, color: '#6A7F3A', icon: 'home',
+    goal: 'home', blurb: 'Dryers, pumps, locks, clocks and doorbells: the machines that quietly keep a house running.',
+    outcome: 'Explain how the everyday machines around your house work, and what keeps them safe.',
+    units: ['Chores and comfort', 'Safe and secure', 'Water, time and the web'],
+    lessons: [
+      ...k('washing-machine clothes-dryer steam-iron space-heater air-conditioner recliner mousetrap'),
+      ...k('lock-and-key smart-lock video-doorbell smoke-detector co-alarm garage-door door-closer'),
+      ...k('sump-pump well-pump wifi-router pendulum-clock quartz-clock mechanical-watch solar-light'),
+    ],
+  },
+  {
     id: 'giant', title: 'Giant machines', days: 28, color: '#1F5F8B', icon: 'gear',
     goal: 'machines', blurb: 'Moon rockets, ocean liners, roller coasters and oil rigs: the biggest machines people have built, opened up.',
     outcome: 'Explain how the giants work: what lifts them, moves them, powers them and keeps them safe.',
@@ -208,7 +219,7 @@ export const COURSES = [
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'giant', 'made', 'factory', 'food', 'industry', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
+const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'giant', 'made', 'factory', 'food', 'industry', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
