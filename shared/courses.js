@@ -85,10 +85,42 @@ export const COURSES = [
       ...k('seed-germination photosynthesis baobab-tree thunderstorm ocean-waves volcano whole-earth'),
     ],
   },
+  {
+    id: 'farm-water', title: 'Smart farm, garden and water', days: 21, color: '#5A8A2E', icon: 'leaf',
+    goal: 'gadgets', blurb: 'Wire boards that water the garden, run the well pump, hatch chicks and warn of floods.',
+    outcome: 'Build sensors and timers that look after plants, animals and water by themselves.',
+    units: ['Garden and greenhouse', 'Chickens, fish and grain', 'Tanks, pumps and floods'],
+    lessons: [
+      ...c('ugu-soil-moisture harmattan-heat-index drip-irrigation-timer tomato-cold-box solar-dryer-monitor bird-scarer smart-farm'),
+      ...c('egg-incubator chick-brooder poultry-feeder-timer catfish-pond grain-store-humidity is-the-water-clean school-water-dispenser'),
+      ...c('tank-level-gauge pump-stops-when-full borehole-pump-timer rainwater-tank-switcher water-vendor-flow-meter gutter-flood-warning lora-village-radio'),
+    ],
+  },
+  {
+    id: 'power-gadgets', title: 'Power, batteries and backup', days: 14, color: '#C2410C', icon: 'bolt',
+    goal: 'gadgets', blurb: 'Measure batteries, watch the generator, ride out a blackout and run a solar grid.',
+    outcome: 'Build meters and controllers that keep the power on and the batteries healthy.',
+    units: ['Batteries and blackouts', 'Solar and the grid'],
+    lessons: [
+      ...c('car-battery-voltage lamp-battery-meter nepa-is-back generator-fuel-gauge generator-hour-counter generator-fumes-alarm fridge-surge-guard'),
+      ...c('inverter-battery-monitor solar-charge-tracker charging-kiosk-timer load-shedding-scheduler solar-home-kit prepaid-energy-meter village-mini-grid'),
+    ],
+  },
+  {
+    id: 'smart-gadgets', title: 'Build smart gadgets', days: 20, color: '#7C3AED', icon: 'robot',
+    goal: 'gadgets', blurb: 'Robots, gates, scales, ticket machines and trackers: real gadgets, wired and coded by you.',
+    outcome: 'Build moving machines and everyday gadgets for shops, streets and the road.',
+    units: ['Make it move', 'Gadgets for the shop', 'On the street, and your own'],
+    lessons: [
+      ...c('sweep-a-servo stepper-camera-slider h-bridge-toy-car line-following-robot robot-arm bean-sorter automatic-estate-gate'),
+      ...c('pepper-soup-thermometer phone-drop-detector tomato-market-scale scale-with-receipt charging-kiosk-billing pure-water-vending clinic-queue-caller'),
+      ...c('keke-tracker brt-arrival-board market-stall-fire-alarm okada-helmet afrobeats-beat-box your-own-invention'),
+    ],
+  },
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'made', 'nature', 'electronics', 'smart-home', 'ai-explained'];
+const ORDER = ['machines', 'made', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).

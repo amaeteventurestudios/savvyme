@@ -34,9 +34,21 @@ First week: What electricity is, Volts, amps and ohms, How a breadboard works, M
 Wi-Fi boards, phone alerts and dashboards for your home. By the end: Build sensors and alarms that talk to your phone.
 First week: 3.3 V vs 5 V: meet the ESP32, Hello ESP32: your first web page from the board, Security light at dusk with motion, Doorbell that rings your phone, A clock that sets itself (internet time), Phone control over Bluetooth, Live sensor dashboard in the browser.
 
+### Build smart gadgets (20 days)
+Robots, gates, scales, ticket machines and trackers: real gadgets, wired and coded by you. By the end: Build moving machines and everyday gadgets for shops, streets and the road.
+First week: Sweep a servo, Stepper precision: camera slider, Forward and reverse: H-bridge toy car, Line-following robot, Robotic arm: pick and place, Bean sorter by colour, Automatic driveway gate.
+
+### Power, batteries and backup (14 days)
+Measure batteries, watch the generator, ride out a blackout and run a solar grid. By the end: Build meters and controllers that keep the power on and the batteries healthy.
+First week: Read a car battery voltage, Rechargeable lamp battery meter, Power is back! light-up alert, Generator fuel gauge, Generator hour counter for servicing, Generator fumes alarm (carbon monoxide), Voltage guard that cuts the fridge off on surges.
+
+### Smart farm, garden and water (21 days)
+Wire boards that water the garden, run the well pump, hatch chicks and warn of floods. By the end: Build sensors and timers that look after plants, animals and water by themselves.
+First week: Soil moisture for a potted basil plant, Desert humidity and heat index, Drip irrigation timer, Tomato cold box with an evaporative fan, Solar dryer monitor, Bird scarer for a rice field, Smart farm: soil, weather, irrigation and SMS.
+
 ### AI, explained (30 days)
 How machines learn, see and talk, and where they go wrong. No maths degree needed. By the end: Explain how a chatbot really works, and spot when it is making things up.
 First week: What is machine learning?, Linear regression, Gradient descent, Logistic regression: the chance of rain, Decision trees: twenty questions for data, Model evaluation: how good is it really?, Bias and variance: too stiff, too floppy.
 
 ## About
-SavvyMe has 6 courses and 193 hands-on lessons, and adds new ones every week.
+SavvyMe has 9 courses and 248 hands-on lessons, and adds new ones every week.
