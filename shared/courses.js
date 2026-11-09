@@ -178,6 +178,17 @@ export const COURSES = [
     ],
   },
   {
+    id: 'around', title: 'Getting around', days: 21, color: '#1F6FB2', icon: 'plane',
+    goal: 'travel', blurb: 'Planes, trains, boats and big trucks: how the machines that move people and things really work.',
+    outcome: 'Explain how planes fly themselves, how trains are powered and switched, and how boats and trucks do their jobs.',
+    units: ['Up in the air', 'On rails', 'Road and water'],
+    lessons: [
+      ...k('autopilot cabin-pressure flight-recorder air-traffic-radar baggage-system glider parachute'),
+      ...k('subway-train high-speed-train maglev railroad-switch cable-car kneeling-bus truck-air-brakes'),
+      ...k('motorcycle garbage-truck cement-mixer sailboat jet-ski hovercraft container-crane'),
+    ],
+  },
+  {
     id: 'music', title: 'Music and sound', days: 14, color: '#7A3FA0', icon: 'music',
     goal: 'made', blurb: 'Guitars, drums, horns, synths and headphones: how instruments and audio gear make and shape sound.',
     outcome: 'Explain how instruments make sound, and how speakers, records and headphones carry it to your ears.',
@@ -259,7 +270,7 @@ export const COURSES = [
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'made', 'factory', 'food', 'industry', 'toys', 'sports', 'music', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
+const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'around', 'made', 'factory', 'food', 'industry', 'toys', 'sports', 'music', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
@@ -278,6 +289,7 @@ export const GOALS = [
   { id: 'car', label: 'Understand my car', icon: 'gear' },
   { id: 'home', label: 'Know how my home works', icon: 'home' },
   { id: 'made', label: 'See how things are made', icon: 'hand' },
+  { id: 'travel', label: 'Know how planes, trains and boats work', icon: 'plane' },
   { id: 'nature', label: 'Understand the body and nature', icon: 'leaf' },
   { id: 'gadgets', label: 'Build gadgets and electronics', icon: 'bolt' },
   { id: 'ai', label: 'Understand how AI really works', icon: 'spark' },

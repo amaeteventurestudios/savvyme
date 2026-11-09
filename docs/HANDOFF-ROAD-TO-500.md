@@ -67,7 +67,9 @@ PRs (all from `claude/road-to-500`, none merged by Claude): cutaways #3, build #
 - **Toys done.** New cutaways group `toys` with 11 new: yo-yo, spinning-top, slinky, music-box, kite, kaleidoscope, water-blaster, wind-up-toy, rc-car, claw-machine, pinball. New course **Toys and games** (14), on the `made` goal. Now 20 courses, 374 lessons, 126 new cutaways so far.
 - **Sports done.** New cutaways group `sports` with 12 new: compass, golf-ball, binoculars, ice-skates, e-bike, treadmill, fishing-reel, compound-bow, scuba-regulator, life-jacket, smartwatch-hr, pitching-machine. New course **Sports and outdoors** (14), on the `nature` goal. Now 21 courses, 386 lessons, 138 new cutaways so far.
 - Done: Music and sound (14 new cutaways, course `music`). Total in courses: 400 (22 courses).
-- **Next up:** Getting around, then City and infrastructure, Farm, Medicine, Space; task 7 narration last.
+- Done: Getting around (21 new cutaways, course `around`, new goal `travel` in GOALS and start.js). Total in courses: 421 (23 courses).
+- Gotchas: `smooth(a, b, x)` in engine/core.js is a smoothstep with three arguments; `cyc(t, period, off)` takes its offset in seconds, not a fraction.
+- **Next up:** City and infrastructure, then Farm, Medicine, Space; task 7 narration last.
 
 ## The task list, in order
 

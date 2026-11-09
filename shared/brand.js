@@ -35,6 +35,7 @@ const I = {
   shelf: '<path d="M3 20h18M3 14h18M5 14V8h4v6M11 14V5h3v9M16 14l2-7 3 1-2 6"/>',
   user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
   compass: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+  plane: '<path d="M21 15.5l-8-5V4.5a1.5 1.5 0 00-3 0v6l-8 5v2l8-2.5V20l-2.5 1.5V23l4-1 4 1v-1.5L13 20v-5.5l8 2.5z"/>',
   music: '<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
   check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
   x: '<path d="M6 6l12 12M18 6L6 18"/>',
