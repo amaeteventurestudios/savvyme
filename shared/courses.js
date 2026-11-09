@@ -60,6 +60,17 @@ export const COURSES = [
     ],
   },
   {
+    id: 'kitchen', title: 'In the kitchen', days: 21, color: '#B5523B', icon: 'flame',
+    goal: 'home', blurb: 'Stoves, cookers, mixers and timers: the clever machines on your counter, opened up.',
+    outcome: 'Explain how the kitchen\'s machines heat, chill, mix and measure, and use them better.',
+    units: ['Heat and cooking', 'Hot and cold', 'Kitchen helpers'],
+    lessons: [
+      ...k('induction-cooktop gas-burner microwave toaster air-fryer pressure-cooker rice-cooker'),
+      ...k('electric-kettle coffee-maker espresso-machine vacuum-flask fridge ice-maker blender'),
+      ...k('stand-mixer kitchen-scale kitchen-timer grill-igniter dishwasher garbage-disposal faucet'),
+    ],
+  },
+  {
     id: 'giant', title: 'Giant machines', days: 28, color: '#1F5F8B', icon: 'gear',
     goal: 'machines', blurb: 'Moon rockets, ocean liners, roller coasters and oil rigs: the biggest machines people have built, opened up.',
     outcome: 'Explain how the giants work: what lifts them, moves them, powers them and keeps them safe.',
@@ -187,7 +198,7 @@ export const COURSES = [
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'car', 'home', 'giant', 'made', 'factory', 'food', 'industry', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
+const ORDER = ['machines', 'car', 'home', 'kitchen', 'giant', 'made', 'factory', 'food', 'industry', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
