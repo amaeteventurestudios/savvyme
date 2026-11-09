@@ -200,6 +200,17 @@ export const COURSES = [
     ],
   },
   {
+    id: 'farm', title: 'On the farm', days: 21, color: '#6B8E23', icon: 'leaf',
+    goal: 'nature', blurb: 'Tractors, silos, sprinklers, milking machines and greenhouses: how food gets grown, stored and packed.',
+    outcome: 'Explain how modern farms plant, water, harvest, store and pack the food on your table.',
+    units: ['In the field', 'Animals and storage', 'From farm to package'],
+    lessons: [
+      ...k('tractor corn-planter center-pivot soil-probe spray-drone hay-baler cotton-gin'),
+      ...k('greenhouse hydroponic-farm grain-silo milking-machine egg-incubator fish-farm windmill-pump'),
+      ...k('egg-grading apple-packing pasteurizer sugar-refinery coffee-roaster freeze-dryer bottled-water'),
+    ],
+  },
+  {
     id: 'music', title: 'Music and sound', days: 14, color: '#7A3FA0', icon: 'music',
     goal: 'made', blurb: 'Guitars, drums, horns, synths and headphones: how instruments and audio gear make and shape sound.',
     outcome: 'Explain how instruments make sound, and how speakers, records and headphones carry it to your ears.',
@@ -281,7 +292,7 @@ export const COURSES = [
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'around', 'city', 'made', 'factory', 'food', 'industry', 'toys', 'sports', 'music', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
+const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'around', 'city', 'made', 'factory', 'food', 'farm', 'industry', 'toys', 'sports', 'music', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).

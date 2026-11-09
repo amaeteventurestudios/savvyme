@@ -71,7 +71,9 @@ PRs (all from `claude/road-to-500`, none merged by Claude): cutaways #3, build #
 - Gotchas: `smooth(a, b, x)` in engine/core.js is a smoothstep with three arguments; `cyc(t, period, off)` takes its offset in seconds, not a fraction.
 - Done: City and infrastructure (21 new cutaways, course `city`, new goal `city`). Total in courses: 442 (24 courses).
 - Gotcha: pose colours must be `hex('#...')` arrays; a bare string breaks `tools/pages.mjs` thumbnails and silently stops every page after it.
-- **Next up:** Farm, Medicine, Space; task 7 narration last.
+- Done: On the farm (21 new cutaways, course `farm`, goal nature). Total in courses: 463 (25 courses).
+- Vercel: cutaways vercel.json now only deploys `main` (owner's request, 2026-11-09). Don't merge until everything is done.
+- **Next up:** Medicine (21), then Space; task 7 narration last.
 
 ## The task list, in order
 
