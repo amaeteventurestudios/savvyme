@@ -75,7 +75,7 @@ PRs (all from `claude/road-to-500`, none merged by Claude): cutaways #3, build #
 - Vercel: cutaways vercel.json now only deploys `main` (owner's request, 2026-11-09). Don't merge until everything is done.
 - Done: Medicine (21 new cutaways, course `medicine`, new goal `health`). Total in courses: 484 (26 courses).
 - Done: Space and science (21 new cutaways, course `science`, new goal `space`). **Total in courses: 505 (27 courses). Target reached.**
-- **Next up:** task 7, Kokoro "Heart" narration.
+- **Task 7 done (2026-11-09):** all 377 cutaways narrated in the Kokoro "Heart" voice (2005 clips in `<slug>/voice/h/`, cutaways commit 9843f43); the voice picker is gone. **All tasks done.** Next: the owner reviews and merges the PRs (cutaways: merge to main once, so Vercel deploys once).
 
 ## The task list, in order
 
