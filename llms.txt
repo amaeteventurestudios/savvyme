@@ -14,13 +14,89 @@
 - The first week of every course is free. SavvyMe Pro unlocks every course. No ads.
 
 ## Courses
-### How machines work (35 days)
+### How machines work (47 days)
 Open up your car, engines, dams, cranes and rockets while they run. By the end: Explain the engines, brakes, pumps and wings that move the modern world.
 First week: Car engine (V8), Automatic transmission, Car brakes and ABS, The differential, Turbocharger, Electric car, Car airbag.
+
+### Your car (21 days)
+Open up the car in your driveway: engine, battery, gears, brakes, seatbelt and the clever little machines in between. By the end: Explain what every part under the hood does, and what is happening when something goes wrong.
+First week: Car engine (V8), Spark plug and ignition coil, The fuel injector, Radiator and cooling system, The alternator, The starter motor, The 12-volt car battery.
+
+### Machines at home (21 days)
+The furnace, the water heater, the fridge and the faucet: open up the machines that run your home. By the end: Explain how the machines in your home work, and what to check when one stops.
+First week: The furnace, The water heater, The smart thermostat, Split air conditioner, The LED bulb, The kitchen faucet, The toilet cistern.
+
+### In the kitchen (21 days)
+Stoves, cookers, mixers and timers: the clever machines on your counter, opened up. By the end: Explain how the kitchen's machines heat, chill, mix and measure, and use them better.
+First week: The induction cooktop, The gas stove burner, Microwave oven, Toaster, The air fryer, The pressure cooker, The rice cooker.
+
+### In the bathroom (14 days)
+Showers, drains, toothbrushes and hair dryers: the bathroom, opened up. By the end: Explain where the water comes from and goes, and how the bathroom's gadgets work.
+First week: The toilet cistern, The kitchen faucet, The water heater, The shower, The sink drain trap, The water softener, The septic tank.
+
+### Around the house (21 days)
+Dryers, pumps, locks, clocks and doorbells: the machines that quietly keep a house running. By the end: Explain how the everyday machines around your house work, and what keeps them safe.
+First week: The washing machine, The clothes dryer, The steam iron, The space heater, Split air conditioner, The recliner, The mousetrap.
+
+### Garage, yard and tools (14 days)
+Drills, jacks, mowers and sprinklers: the tools in the garage and the yard, opened up. By the end: Explain how everyday tools multiply your strength and get the job done safely.
+First week: The power drill, The ratchet wrench, The hydraulic car jack, The block and tackle, The air compressor, The stud finder, The 3D printer.
+
+### Giant machines (28 days)
+Moon rockets, ocean liners, roller coasters and oil rigs: the biggest machines people have built, opened up. By the end: Explain how the giants work: what lifts them, moves them, powers them and keeps them safe.
+First week: The roller coaster, The revolving door, The elevator, Escalator, Tower crane, Hydraulic excavator, Tunnel boring machine.
+
+### Getting around (21 days)
+Planes, trains, boats and big trucks: how the machines that move people and things really work. By the end: Explain how planes fly themselves, how trains are powered and switched, and how boats and trucks do their jobs.
+First week: The autopilot, The cabin pressure, The flight recorder, The air traffic radar, The airport baggage system, The glider, The parachute.
+
+### City and infrastructure (21 days)
+Water, power, bridges, towers and traffic: the hidden systems that keep a city running. By the end: Explain where your water, power and gas come from, how big structures stand up, and how the city watches its traffic.
+First week: The water treatment plant, The sewage treatment plant, The storm drain, The fire hydrant, The gas pipeline, The electrical substation, The pole transformer.
 
 ### How things are made (35 days)
 From crayons, chips and soda cans to the dishwasher, fridge and phone in your home. By the end: Explain how the everyday things around you are made, and how the machines at home work.
 First week: Crayons, Pencils, Coins, Potato chips, Toy bricks, Toilet paper, Aluminum cans.
+
+### Classic factory (21 days)
+Dollar bills, baseballs, bubble wrap and bubble gum: the factory lines behind the classics. By the end: Explain how everyday classics are made, and the clever trick inside each one.
+First week: Paper money, Coins, Pencils, Crayons, The ballpoint pen, Cardboard boxes, Toilet paper.
+
+### Food and drink (21 days)
+Flour, cheese, ketchup and popcorn: how the food in your kitchen is made, and the science that keeps it fresh. By the end: Explain how everyday food is made and kept safe, from the field to your table.
+First week: The flour mill, The bread factory, Breakfast cereal, Pasta, Popcorn, The drip coffee maker, Espresso machine.
+
+### On the farm (21 days)
+Tractors, silos, sprinklers, milking machines and greenhouses: how food gets grown, stored and packed. By the end: Explain how modern farms plant, water, harvest, store and pack the food on your table.
+First week: The farm tractor, The corn planter, The center-pivot irrigator, The soil moisture probe, The crop-spraying drone, The hay baler, The cotton gin.
+
+### Big industry (21 days)
+Steel, glass, chips and power: the giant plants that make the materials of modern life. By the end: Explain how the basic materials and energy of modern life are made, at enormous scale.
+First week: The steel mill, Window glass, Concrete, Cement kiln, Tunnel boring machine, Tires, The paper mill.
+
+### Toys and games (14 days)
+Yo-yos, tops, Slinkys, kites and pinball: the physics hiding inside your favourite toys. By the end: Explain the physics that makes toys spin, fly, bounce and play.
+First week: The yo-yo, The spinning top, The Slinky, The kite, The wind-up toy, The music box, The kaleidoscope.
+
+### Sports and outdoors (14 days)
+Golf balls, skates, bows, reels and regulators: the science behind sport and the great outdoors. By the end: Explain the physics and engineering behind the gear you play and explore with.
+First week: The golf ball, The pitching machine, The compound bow, The ice skates, The treadmill, The e-bike, Bicycle gears.
+
+### Music and sound (14 days)
+Guitars, drums, horns, synths and headphones: how instruments and audio gear make and shape sound. By the end: Explain how instruments make sound, and how speakers, records and headphones carry it to your ears.
+First week: The acoustic guitar, The violin, The drum kit, The trumpet, The saxophone, The harmonica, The pipe organ.
+
+### Medicine (21 days)
+Scanners, pacemakers, pumps and robots: the machines doctors use to see inside us and keep us well. By the end: Explain how medical scanners see inside the body, and how the devices that monitor, support and repair it work.
+First week: The stethoscope, The X-ray machine, The CT scanner, The ultrasound scanner, The blood pressure cuff, The pulse oximeter, The forehead thermometer.
+
+### Space and science (21 days)
+Spacesuits, telescopes, lasers and atom smashers: the machines that explore space and the smallest things. By the end: Explain how we live and travel in space, how we watch the sky, and how scientists measure the very small and the very faint.
+First week: The spacesuit, The space toilet, The weather balloon, The solar sail, The ion thruster, The Mars helicopter, The satellite internet.
+
+### Your body and the natural world (21 days)
+Your heart, eyes and brain, plus bees, storms, volcanoes and the whole Earth, opened up while they work. By the end: Explain how your own body works and the natural forces around you.
+First week: The human heart, The lungs, The eye, The inner ear, Neuron firing, The kidney, The digestive system.
 
 ### Electronics from zero (30 days)
 Volts, LEDs, sensors and your first code on a board, wired by your own hand. By the end: Wire and program your own small gadgets.
@@ -30,9 +106,21 @@ First week: What electricity is, Volts, amps and ohms, How a breadboard works, M
 Wi-Fi boards, phone alerts and dashboards for your home. By the end: Build sensors and alarms that talk to your phone.
 First week: 3.3 V vs 5 V: meet the ESP32, Hello ESP32: your first web page from the board, Security light at dusk with motion, Doorbell that rings your phone, A clock that sets itself (internet time), Phone control over Bluetooth, Live sensor dashboard in the browser.
 
+### Build smart gadgets (20 days)
+Robots, gates, scales, ticket machines and trackers: real gadgets, wired and coded by you. By the end: Build moving machines and everyday gadgets for shops, streets and the road.
+First week: Sweep a servo, Stepper precision: camera slider, Forward and reverse: H-bridge toy car, Line-following robot, Robotic arm: pick and place, Bean sorter by colour, Automatic driveway gate.
+
+### Power, batteries and backup (14 days)
+Measure batteries, watch the generator, ride out a blackout and run a solar grid. By the end: Build meters and controllers that keep the power on and the batteries healthy.
+First week: Read a car battery voltage, Rechargeable lamp battery meter, Power is back! light-up alert, Generator fuel gauge, Generator hour counter for servicing, Generator fumes alarm (carbon monoxide), Voltage guard that cuts the fridge off on surges.
+
+### Smart farm, garden and water (21 days)
+Wire boards that water the garden, run the well pump, hatch chicks and warn of floods. By the end: Build sensors and timers that look after plants, animals and water by themselves.
+First week: Soil moisture for a potted basil plant, Desert humidity and heat index, Drip irrigation timer, Tomato cold box with an evaporative fan, Solar dryer monitor, Bird scarer for a rice field, Smart farm: soil, weather, irrigation and SMS.
+
 ### AI, explained (30 days)
 How machines learn, see and talk, and where they go wrong. No maths degree needed. By the end: Explain how a chatbot really works, and spot when it is making things up.
 First week: What is machine learning?, Linear regression, Gradient descent, Logistic regression: the chance of rain, Decision trees: twenty questions for data, Model evaluation: how good is it really?, Bias and variance: too stiff, too floppy.
 
 ## About
-SavvyMe has 5 courses and 160 hands-on lessons, and adds new ones every week.
+SavvyMe has 27 courses and 505 hands-on lessons, and adds new ones every week.

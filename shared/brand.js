@@ -22,6 +22,7 @@ export const isPart = p => PARTS.includes(p);
 
 const I = {
   spark: '<path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/>',
+  leaf: '<path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 19L14 10"/>',
   bolt: '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
   gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>',
   hand: '<path d="M7 11V5.5a1.5 1.5 0 013 0V11m0-1V4a1.5 1.5 0 013 0v6m0 0V5.5a1.5 1.5 0 013 0V13c0 5-3 8-7 8s-6-2.5-7.5-6L4 12a1.5 1.5 0 012.6-1.4L8 13"/>',
@@ -34,6 +35,11 @@ const I = {
   shelf: '<path d="M3 20h18M3 14h18M5 14V8h4v6M11 14V5h3v9M16 14l2-7 3 1-2 6"/>',
   user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
   compass: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+  plane: '<path d="M21 15.5l-8-5V4.5a1.5 1.5 0 00-3 0v6l-8 5v2l8-2.5V20l-2.5 1.5V23l4-1 4 1v-1.5L13 20v-5.5l8 2.5z"/>',
+  city: '<path d="M3 21h18M5 21V9l5-3v15M10 21V4h6v17M16 21V10h3v11"/>',
+  heart: '<path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/><path d="M7 12h3l1.5-2 2 4 1.5-2h2"/>',
+  rocket: '<path d="M12 2c3 2 5 6 5 10l-2 4H9l-2-4c0-4 2-8 5-10z"/><circle cx="12" cy="10" r="1.6"/><path d="M9 16l-2 4 3-1M15 16l2 4-3-1"/>',
+  music: '<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
   check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
   x: '<path d="M6 6l12 12M18 6L6 18"/>',
   back: '<path d="M15 5l-7 7 7 7"/>',

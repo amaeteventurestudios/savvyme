@@ -223,7 +223,11 @@ function play(id, cid, replay = false, paywall = false) {
     }
     if (step === 2) {
       const q = checks[qi];
-      P.innerHTML = bar(2) + `<div class="pbody"><div class="pin q"><span class="chip">Check ${qi + 1} of ${checks.length}</span><h2>${q.q}</h2><div id="opts">${q.a.map((a, k) => `<button class="opt" data-k="${k}">${a}</button>`).join('')}</div><div id="why"></div></div></div>`;
+      // a fixed shuffle per question (seeded by its text), so the right answer isn't always in the same place
+      let seed = [...q.q].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+      const order = q.a.map((_, k) => k);
+      for (let i = order.length - 1; i > 0; i--) { seed = (seed * 1103515245 + 12345) >>> 0; const j = seed % (i + 1); [order[i], order[j]] = [order[j], order[i]]; }
+      P.innerHTML = bar(2) + `<div class="pbody"><div class="pin q"><span class="chip">Check ${qi + 1} of ${checks.length}</span><h2>${q.q}</h2><div id="opts">${order.map(k => `<button class="opt" data-k="${k}">${q.a[k]}</button>`).join('')}</div><div id="why"></div></div></div>`;
       P.querySelectorAll('.opt').forEach(b => b.onclick = () => {
         const k = +b.dataset.k, ok = k === q.ok; if (ok) right++;
         if (ok) burstFrom(b, 36);

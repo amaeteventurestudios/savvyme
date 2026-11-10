@@ -34,16 +34,212 @@ export const COURSES = [
     ],
   },
   {
-    id: 'machines', title: 'How machines work', days: 35, color: '#13877A', icon: 'gear',
+    id: 'machines', title: 'How machines work', days: 47, color: '#13877A', icon: 'gear',
     goal: 'machines', blurb: 'Open up your car, engines, dams, cranes and rockets while they run.',
     outcome: 'Explain the engines, brakes, pumps and wings that move the modern world.',
-    units: ['Your car', 'Power', 'Moving people', 'Building big', 'Flight and space'],
+    units: ['Your car', 'Power', 'Moving people', 'Building big', 'Flight and space', 'Signals and light', 'Space and robots'],
     lessons: [
       ...k('v8-engine automatic-transmission car-brakes differential turbocharger electric-car car-airbag'),
       ...k('hydro-dam wind-turbine nuclear-reactor lithium-battery solar-light steam-locomotive ship-engine'),
       ...k('elevator escalator canal-lock submarine landing-gear bicycle-gears helicopter'),
       ...k('tower-crane excavator tunnel-boring offshore-rig combine-harvester cement-kiln lighthouse'),
       ...k('airplane-wing wind-tunnel quadcopter hot-air-balloon gps rocket-staging mars-rover'),
+      ...k('transistor phone-call fibre-optic undersea-cable headphones lidar mri-scanner'),
+      ...k('robotic-arm cubesat-3u cubesat-6u space-telescope space-station'),
+    ],
+  },
+  {
+    id: 'car', title: 'Your car', days: 21, color: '#B4372B', icon: 'gear',
+    goal: 'car', blurb: 'Open up the car in your driveway: engine, battery, gears, brakes, seatbelt and the clever little machines in between.',
+    outcome: 'Explain what every part under the hood does, and what is happening when something goes wrong.',
+    units: ['Under the hood', 'Going and stopping', 'Safety and smarts'],
+    lessons: [
+      ...k('v8-engine spark-plug fuel-injector radiator alternator starter-motor car-battery'),
+      ...k('clutch-gearbox automatic-transmission differential turbocharger suspension-steering car-brakes catalytic-converter'),
+      ...k('seatbelt car-airbag windshield-wipers key-fob gas-pump hybrid-car electric-car'),
+    ],
+  },
+  {
+    id: 'kitchen', title: 'In the kitchen', days: 21, color: '#B5523B', icon: 'flame',
+    goal: 'home', blurb: 'Stoves, cookers, mixers and timers: the clever machines on your counter, opened up.',
+    outcome: 'Explain how the kitchen\'s machines heat, chill, mix and measure, and use them better.',
+    units: ['Heat and cooking', 'Hot and cold', 'Kitchen helpers'],
+    lessons: [
+      ...k('induction-cooktop gas-burner microwave toaster air-fryer pressure-cooker rice-cooker'),
+      ...k('electric-kettle coffee-maker espresso-machine vacuum-flask fridge ice-maker blender'),
+      ...k('stand-mixer kitchen-scale kitchen-timer grill-igniter dishwasher garbage-disposal faucet'),
+    ],
+  },
+  {
+    id: 'bathroom', title: 'In the bathroom', days: 14, color: '#3E8E9E', icon: 'home',
+    goal: 'home', blurb: 'Showers, drains, toothbrushes and hair dryers: the bathroom, opened up.',
+    outcome: 'Explain where the water comes from and goes, and how the bathroom\'s gadgets work.',
+    units: ['Water in, water out', 'Gadgets and gizmos'],
+    lessons: [
+      ...k('toilet-cistern faucet water-heater shower-head drain-trap water-softener septic-tank'),
+      ...k('hair-dryer electric-toothbrush electric-shaver aerosol-can soap-pump hand-dryer exhaust-fan'),
+    ],
+  },
+  {
+    id: 'house', title: 'Around the house', days: 21, color: '#6A7F3A', icon: 'home',
+    goal: 'home', blurb: 'Dryers, pumps, locks, clocks and doorbells: the machines that quietly keep a house running.',
+    outcome: 'Explain how the everyday machines around your house work, and what keeps them safe.',
+    units: ['Chores and comfort', 'Safe and secure', 'Water, time and the web'],
+    lessons: [
+      ...k('washing-machine clothes-dryer steam-iron space-heater air-conditioner recliner mousetrap'),
+      ...k('lock-and-key smart-lock video-doorbell smoke-detector co-alarm garage-door door-closer'),
+      ...k('sump-pump well-pump wifi-router pendulum-clock quartz-clock mechanical-watch solar-light'),
+    ],
+  },
+  {
+    id: 'garage', title: 'Garage, yard and tools', days: 14, color: '#8A5A2B', icon: 'gear',
+    goal: 'home', blurb: 'Drills, jacks, mowers and sprinklers: the tools in the garage and the yard, opened up.',
+    outcome: 'Explain how everyday tools multiply your strength and get the job done safely.',
+    units: ['In the workshop', 'Out in the yard'],
+    lessons: [
+      ...k('power-drill ratchet-wrench car-jack block-and-tackle air-compressor stud-finder 3d-printer'),
+      ...k('lawn-mower chainsaw leaf-blower pressure-washer sprinkler bike-pump bicycle-gears'),
+    ],
+  },
+  {
+    id: 'giant', title: 'Giant machines', days: 28, color: '#1F5F8B', icon: 'gear',
+    goal: 'machines', blurb: 'Moon rockets, ocean liners, roller coasters and oil rigs: the biggest machines people have built, opened up.',
+    outcome: 'Explain how the giants work: what lifts them, moves them, powers them and keeps them safe.',
+    units: ['Big on land', 'On the move', 'Sky and space', 'Power and water'],
+    lessons: [
+      ...k('roller-coaster revolving-door elevator escalator tower-crane excavator tunnel-boring'),
+      ...k('diesel-locomotive steam-locomotive ocean-liner ship-engine submarine canal-lock carrier-catapult'),
+      ...k('helicopter moon-rocket space-shuttle booster-landing rocket-staging space-station mars-rover'),
+      ...k('water-tower pumpjack offshore-rig oil-refinery hydro-dam nuclear-reactor wind-turbine'),
+    ],
+  },
+  {
+    id: 'home', title: 'Machines at home', days: 21, color: '#2F7D6B', icon: 'home',
+    goal: 'home', blurb: 'The furnace, the water heater, the fridge and the faucet: open up the machines that run your home.',
+    outcome: 'Explain how the machines in your home work, and what to check when one stops.',
+    units: ['Heat, water and light', 'In the kitchen', 'Around the house'],
+    lessons: [
+      ...k('furnace water-heater smart-thermostat air-conditioner led-bulb faucet toilet-cistern'),
+      ...k('fridge microwave air-fryer blender coffee-maker garbage-disposal dishwasher'),
+      ...k('washing-machine robot-vacuum ceiling-fan electric-kettle toaster smoke-detector garage-door'),
+    ],
+  },
+  {
+    id: 'factory', title: 'Classic factory', days: 21, color: '#A23B72', icon: 'hand',
+    goal: 'made', blurb: 'Dollar bills, baseballs, bubble wrap and bubble gum: the factory lines behind the classics.',
+    outcome: 'Explain how everyday classics are made, and the clever trick inside each one.',
+    units: ['Paper, pens and money', 'Toys, games and treats', 'Around the house'],
+    lessons: [
+      ...k('paper-money coins pencils crayons ballpoint-pen cardboard toilet-paper'),
+      ...k('toy-bricks balloons baseballs tennis-balls bubble-gum bubble-wrap zipper'),
+      ...k('soap toothpaste candles matches screws aluminum-cans glass-bottles'),
+    ],
+  },
+  {
+    id: 'food', title: 'Food and drink', days: 21, color: '#C2571A', icon: 'leaf',
+    goal: 'made', blurb: 'Flour, cheese, ketchup and popcorn: how the food in your kitchen is made, and the science that keeps it fresh.',
+    outcome: 'Explain how everyday food is made and kept safe, from the field to your table.',
+    units: ['Grains and breakfast', 'Dairy and sweets', 'Snacks and the pantry'],
+    lessons: [
+      ...k('flour-mill bread-factory cereal pasta popcorn coffee-maker espresso-machine'),
+      ...k('milk-dairy cheese ice-cream maple-syrup gummy-candy bubble-gum cocoa-to-chocolate'),
+      ...k('peanut-butter potato-chips ketchup canning orange-juice soda-bottling toaster'),
+    ],
+  },
+  {
+    id: 'industry', title: 'Big industry', days: 21, color: '#4A5A6A', icon: 'gear',
+    goal: 'made', blurb: 'Steel, glass, chips and power: the giant plants that make the materials of modern life.',
+    outcome: 'Explain how the basic materials and energy of modern life are made, at enormous scale.',
+    units: ['Metal, glass and stone', 'Energy', 'High tech'],
+    lessons: [
+      ...k('steel-mill float-glass concrete cement-kiln tunnel-boring tires paper-mill'),
+      ...k('oil-refinery offshore-rig nuclear-reactor hydro-dam wind-turbine solar-cells desalination'),
+      ...k('chip-fab transistor lithium-battery fibre-optic undersea-cable 3d-printer car-assembly'),
+    ],
+  },
+  {
+    id: 'toys', title: 'Toys and games', days: 14, color: '#D9480F', icon: 'spark',
+    goal: 'made', blurb: 'Yo-yos, tops, Slinkys, kites and pinball: the physics hiding inside your favourite toys.',
+    outcome: 'Explain the physics that makes toys spin, fly, bounce and play.',
+    units: ['Spin, swing and spring', 'Machines that play'],
+    lessons: [
+      ...k('yo-yo spinning-top slinky kite wind-up-toy music-box kaleidoscope'),
+      ...k('water-blaster rc-car claw-machine pinball quadcopter toy-bricks crayons'),
+    ],
+  },
+  {
+    id: 'sports', title: 'Sports and outdoors', days: 14, color: '#2F7D4A', icon: 'compass',
+    goal: 'nature', blurb: 'Golf balls, skates, bows, reels and regulators: the science behind sport and the great outdoors.',
+    outcome: 'Explain the physics and engineering behind the gear you play and explore with.',
+    units: ['Play the game', 'Into the wild'],
+    lessons: [
+      ...k('golf-ball pitching-machine compound-bow ice-skates treadmill e-bike bicycle-gears'),
+      ...k('compass binoculars fishing-reel scuba-regulator life-jacket smartwatch-hr hot-air-balloon'),
+    ],
+  },
+  {
+    id: 'around', title: 'Getting around', days: 21, color: '#1F6FB2', icon: 'plane',
+    goal: 'travel', blurb: 'Planes, trains, boats and big trucks: how the machines that move people and things really work.',
+    outcome: 'Explain how planes fly themselves, how trains are powered and switched, and how boats and trucks do their jobs.',
+    units: ['Up in the air', 'On rails', 'Road and water'],
+    lessons: [
+      ...k('autopilot cabin-pressure flight-recorder air-traffic-radar baggage-system glider parachute'),
+      ...k('subway-train high-speed-train maglev railroad-switch cable-car kneeling-bus truck-air-brakes'),
+      ...k('motorcycle garbage-truck cement-mixer sailboat jet-ski hovercraft container-crane'),
+    ],
+  },
+  {
+    id: 'city', title: 'City and infrastructure', days: 21, color: '#4A5568', icon: 'city',
+    goal: 'city', blurb: 'Water, power, bridges, towers and traffic: the hidden systems that keep a city running.',
+    outcome: 'Explain where your water, power and gas come from, how big structures stand up, and how the city watches its traffic.',
+    units: ['Water, power and gas', 'Big structures', 'The smart street'],
+    lessons: [
+      ...k('water-treatment sewage-treatment storm-drain fire-hydrant gas-pipeline substation pole-transformer'),
+      ...k('skyscraper suspension-bridge drawbridge immersed-tunnel quake-building levee stadium-roof'),
+      ...k('traffic-signals speed-camera electronic-toll cell-tower data-center recycling-plant automatic-doors'),
+    ],
+  },
+  {
+    id: 'farm', title: 'On the farm', days: 21, color: '#6B8E23', icon: 'leaf',
+    goal: 'nature', blurb: 'Tractors, silos, sprinklers, milking machines and greenhouses: how food gets grown, stored and packed.',
+    outcome: 'Explain how modern farms plant, water, harvest, store and pack the food on your table.',
+    units: ['In the field', 'Animals and storage', 'From farm to package'],
+    lessons: [
+      ...k('tractor corn-planter center-pivot soil-probe spray-drone hay-baler cotton-gin'),
+      ...k('greenhouse hydroponic-farm grain-silo milking-machine egg-incubator fish-farm windmill-pump'),
+      ...k('egg-grading apple-packing pasteurizer sugar-refinery coffee-roaster freeze-dryer bottled-water'),
+    ],
+  },
+  {
+    id: 'medicine', title: 'Medicine', days: 21, color: '#C2185B', icon: 'heart',
+    goal: 'health', blurb: 'Scanners, pacemakers, pumps and robots: the machines doctors use to see inside us and keep us well.',
+    outcome: 'Explain how medical scanners see inside the body, and how the devices that monitor, support and repair it work.',
+    units: ['Seeing inside', 'Monitoring and support', 'Treatments and tools'],
+    lessons: [
+      ...k('stethoscope x-ray ct-scanner ultrasound bp-cuff pulse-oximeter ir-thermometer'),
+      ...k('pacemaker defibrillator insulin-pump ventilator dialysis hearing-aid cochlear-implant'),
+      ...k('prosthetic-hand surgical-robot laser-eye dental-drill inhaler pill-press vaccine-production'),
+    ],
+  },
+  {
+    id: 'science', title: 'Space and science', days: 21, color: '#283593', icon: 'rocket',
+    goal: 'space', blurb: 'Spacesuits, telescopes, lasers and atom smashers: the machines that explore space and the smallest things.',
+    outcome: 'Explain how we live and travel in space, how we watch the sky, and how scientists measure the very small and the very faint.',
+    units: ['Living and travelling in space', 'Watching the sky', 'Instruments of discovery'],
+    lessons: [
+      ...k('spacesuit space-toilet weather-balloon solar-sail ion-thruster mars-helicopter satellite-internet'),
+      ...k('backyard-telescope planetarium weather-satellite radio-telescope seismometer ligo atomic-clock'),
+      ...k('light-microscope electron-microscope laser geiger-counter cloud-chamber particle-collider fusion-reactor'),
+    ],
+  },
+  {
+    id: 'music', title: 'Music and sound', days: 14, color: '#7A3FA0', icon: 'music',
+    goal: 'made', blurb: 'Guitars, drums, horns, synths and headphones: how instruments and audio gear make and shape sound.',
+    outcome: 'Explain how instruments make sound, and how speakers, records and headphones carry it to your ears.',
+    units: ['Make some noise', 'Plug in and listen'],
+    lessons: [
+      ...k('acoustic-guitar violin drum-kit trumpet saxophone harmonica pipe-organ'),
+      ...k('electric-guitar amplifier synthesizer turntable noise-cancelling wireless-earbuds concert-hall'),
     ],
   },
   {
@@ -72,26 +268,76 @@ export const COURSES = [
       ...c('smart-water shop-security-system'),
     ],
   },
+  {
+    id: 'nature', title: 'Your body and the natural world', days: 21, color: '#2E7D4F', icon: 'leaf',
+    goal: 'nature', blurb: 'Your heart, eyes and brain, plus bees, storms, volcanoes and the whole Earth, opened up while they work.',
+    outcome: 'Explain how your own body works and the natural forces around you.',
+    units: ['Inside your body', 'Living things', 'Earth and sky'],
+    lessons: [
+      ...k('human-heart lungs eye inner-ear neuron kidney digestive-system'),
+      ...k('hand-skeleton whole-body malaria beehive termite-mound weaver-nest bird-wing'),
+      ...k('seed-germination photosynthesis baobab-tree thunderstorm ocean-waves volcano whole-earth'),
+    ],
+  },
+  {
+    id: 'farm-water', title: 'Smart farm, garden and water', days: 21, color: '#5A8A2E', icon: 'leaf',
+    goal: 'gadgets', blurb: 'Wire boards that water the garden, run the well pump, hatch chicks and warn of floods.',
+    outcome: 'Build sensors and timers that look after plants, animals and water by themselves.',
+    units: ['Garden and greenhouse', 'Chickens, fish and grain', 'Tanks, pumps and floods'],
+    lessons: [
+      ...c('ugu-soil-moisture harmattan-heat-index drip-irrigation-timer tomato-cold-box solar-dryer-monitor bird-scarer smart-farm'),
+      ...c('egg-incubator chick-brooder poultry-feeder-timer catfish-pond grain-store-humidity is-the-water-clean school-water-dispenser'),
+      ...c('tank-level-gauge pump-stops-when-full borehole-pump-timer rainwater-tank-switcher water-vendor-flow-meter gutter-flood-warning lora-village-radio'),
+    ],
+  },
+  {
+    id: 'power-gadgets', title: 'Power, batteries and backup', days: 14, color: '#C2410C', icon: 'bolt',
+    goal: 'gadgets', blurb: 'Measure batteries, watch the generator, ride out a blackout and run a solar grid.',
+    outcome: 'Build meters and controllers that keep the power on and the batteries healthy.',
+    units: ['Batteries and blackouts', 'Solar and the grid'],
+    lessons: [
+      ...c('car-battery-voltage lamp-battery-meter nepa-is-back generator-fuel-gauge generator-hour-counter generator-fumes-alarm fridge-surge-guard'),
+      ...c('inverter-battery-monitor solar-charge-tracker charging-kiosk-timer load-shedding-scheduler solar-home-kit prepaid-energy-meter village-mini-grid'),
+    ],
+  },
+  {
+    id: 'smart-gadgets', title: 'Build smart gadgets', days: 20, color: '#7C3AED', icon: 'robot',
+    goal: 'gadgets', blurb: 'Robots, gates, scales, ticket machines and trackers: real gadgets, wired and coded by you.',
+    outcome: 'Build moving machines and everyday gadgets for shops, streets and the road.',
+    units: ['Make it move', 'Gadgets for the shop', 'On the street, and your own'],
+    lessons: [
+      ...c('sweep-a-servo stepper-camera-slider h-bridge-toy-car line-following-robot robot-arm bean-sorter automatic-estate-gate'),
+      ...c('pepper-soup-thermometer phone-drop-detector tomato-market-scale scale-with-receipt charging-kiosk-billing pure-water-vending clinic-queue-caller'),
+      ...c('keke-tracker brt-arrival-board market-stall-fire-alarm okada-helmet afrobeats-beat-box your-own-invention'),
+    ],
+  },
 ];
 
 // The order people see: machines and how things are made lead (what most people want to learn); AI comes later.
-const ORDER = ['machines', 'made', 'electronics', 'smart-home', 'ai-explained'];
+const ORDER = ['machines', 'car', 'home', 'kitchen', 'bathroom', 'house', 'garage', 'giant', 'around', 'city', 'made', 'factory', 'food', 'farm', 'industry', 'toys', 'sports', 'music', 'medicine', 'science', 'nature', 'electronics', 'smart-home', 'smart-gadgets', 'power-gadgets', 'farm-water', 'ai-explained'];
 COURSES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id));
 
 // The Discover feed: one themed lesson a day, like a TV channel (Sunday is the review challenge).
 export const WEEK = [
   { day: 'Sun', theme: 'Fix-it challenge', site: null },
-  { day: 'Mon', theme: 'Inside a machine', pool: k('v8-engine turbocharger automatic-transmission escalator wind-turbine elevator helicopter tower-crane rocket-staging') },
-  { day: 'Tue', theme: 'How it\'s made', pool: k('crayons potato-chips aluminum-cans ice-cream toy-bricks coins glass-bottles soda-bottling toilet-paper pencils') },
+  { day: 'Mon', theme: 'Inside a machine', pool: k('v8-engine turbocharger automatic-transmission escalator wind-turbine elevator helicopter tower-crane rocket-staging roller-coaster moon-rocket booster-landing diesel-locomotive ocean-liner pumpjack') },
+  { day: 'Tue', theme: 'How it\'s made', pool: k('crayons potato-chips aluminum-cans ice-cream toy-bricks coins glass-bottles soda-bottling toilet-paper pencils paper-money baseballs bubble-wrap popcorn cheese ketchup gummy-candy') },
   { day: 'Wed', theme: 'Make it', pool: c('dusk-streetlight traffic-light reaction-time-game push-button-doorbell rgb-mood-light reversing-sensor') },
   { day: 'Thu', theme: 'How AI works', pool: b('tokens next-word word-embeddings rag image-generation-diffusion self-attention gradient-descent') },
-  { day: 'Fri', theme: 'Around the house', pool: k('dishwasher garage-door smoke-detector toaster washing-machine fridge microwave mechanical-watch') },
+  { day: 'Fri', theme: 'Around the house', pool: k('dishwasher garage-door smoke-detector toaster washing-machine fridge microwave mechanical-watch furnace water-heater robot-vacuum air-fryer garbage-disposal led-bulb') },
   { day: 'Sat', theme: 'Nature and the body', pool: k('human-heart eye lungs neuron photosynthesis thunderstorm volcano beehive') },
 ];
 
 export const GOALS = [
   { id: 'machines', label: 'Know how machines work', icon: 'gear' },
+  { id: 'car', label: 'Understand my car', icon: 'gear' },
+  { id: 'home', label: 'Know how my home works', icon: 'home' },
   { id: 'made', label: 'See how things are made', icon: 'hand' },
+  { id: 'travel', label: 'Know how planes, trains and boats work', icon: 'plane' },
+  { id: 'city', label: 'Understand how my city works', icon: 'city' },
+  { id: 'health', label: 'Know how medical machines work', icon: 'heart' },
+  { id: 'space', label: 'Explore space and science', icon: 'rocket' },
+  { id: 'nature', label: 'Understand the body and nature', icon: 'leaf' },
   { id: 'gadgets', label: 'Build gadgets and electronics', icon: 'bolt' },
   { id: 'ai', label: 'Understand how AI really works', icon: 'spark' },
 ];
