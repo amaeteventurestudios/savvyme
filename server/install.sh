@@ -29,12 +29,23 @@ fi
 # migrations and hooks come from the repo; the site folder never serves them
 sudo rm -rf "$OPT/server"; sudo mv "$WEB/server" "$OPT/server"
 sudo chown -R savvyme:savvyme "$DATA"
+# Sign-in through Onyx: the secret Onyx's deploy made for SavvyMe (onyx repo, core/deploy/clients.json). Without it the
+# app keeps email and password sign-in only.
+if sudo test -f /etc/novenique/clients/savvyme.env; then
+  printf 'ONYX_CLIENT_SECRET=%s\n' "$(sudo sed -n 's/^NOVENIQUE_CLIENT_SECRET=//p' /etc/novenique/clients/savvyme.env)" | sudo tee /etc/savvyme-onyx.env >/dev/null
+  sudo chown root:savvyme /etc/savvyme-onyx.env && sudo chmod 640 /etc/savvyme-onyx.env
+  echo 'Sign-in through Onyx: on.'
+else
+  sudo rm -f /etc/savvyme-onyx.env
+  echo 'Note: Onyx has no SavvyMe sign-in secret yet (merge the onyx pull request that adds the savvyme client). Password sign-in only until then.'
+fi
 sudo tee /etc/systemd/system/savvyme-pb.service >/dev/null <<UNIT
 [Unit]
 Description=SavvyMe accounts (PocketBase)
 After=network.target
 [Service]
 User=savvyme
+EnvironmentFile=-/etc/savvyme-onyx.env
 ExecStart=$OPT/pocketbase serve --http 127.0.0.1:8196 --dir $DATA --migrationsDir $OPT/server/pb_migrations --hooksDir $OPT/server/pb_hooks
 Restart=always
 RestartSec=3

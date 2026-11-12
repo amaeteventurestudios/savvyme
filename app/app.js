@@ -146,7 +146,7 @@ function me() {
       <div><span class="k">Preview: fill a few weeks of streak</span><button class="s" id="demo">Fill</button></div>
       <div><span class="k">Reset my progress</span><button class="s" id="rst">Reset</button></div>
     </div>
-    <p class="muted" style="font-size:13px;margin-top:14px">Accounts are coming: for now your progress is saved on this device only.</p>`;
+    ${Acc.enabled() ? '' : '<p class="muted" style="font-size:13px;margin-top:14px">Accounts are coming: for now your progress is saved on this device only.</p>'}`;
   try { $('#th').value = localStorage.getItem('sm-theme') || ''; } catch {}
   $('#th').onchange = e => { try { localStorage.setItem('sm-theme', e.target.value); } catch {} theme(e.target.value || null); };
   $('#goal').onchange = e => { St.setProfile({ weeklyGoal: +e.target.value }); draw(); };
@@ -157,10 +157,56 @@ function me() {
 }
 
 // ---- account: save progress to the server so it follows you to any device ----
+// Sign-in is through Onyx (Google or an email code, one account across the studio's apps) when the server has it on;
+// older email and password accounts still sign in with "Use a password instead".
 let mode = 'up';
+const ox = { on: null, step: 'start', email: '', ticket: '', suggest: '', pw: false };
+function onyxCard() {
+  const p = S().profile;
+  if (ox.step === 'code') return `<form class="card acct" id="oxf"><b>Check your email</b>
+    <p class="muted">We sent a 6-digit code to ${esc(ox.email)}. It works for 10 minutes.</p>
+    <input name="code" inputmode="numeric" autocomplete="one-time-code" placeholder="6-digit code" maxlength="7" required>
+    <div class="err" id="aerr" role="alert"></div>
+    <button class="btn primary block" id="ago">Sign in</button>
+    <button type="button" class="link" id="oxback">Use a different email</button></form>`;
+  if (ox.step === 'profile') return `<form class="card acct" id="oxf"><b>One last thing</b>
+    <p class="muted">Pick the name people see, and an @handle. You can change them later.</p>
+    <input name="name" autocomplete="given-name" placeholder="Your name" maxlength="40" required value="${esc(ox.suggest || p.name || '')}">
+    <input name="handle" autocomplete="username" placeholder="@handle" maxlength="21" required pattern="@?[A-Za-z0-9_]{3,20}">
+    <div class="err" id="aerr" role="alert"></div>
+    <button class="btn primary block" id="ago">Save my progress</button></form>`;
+  return `<form class="card acct" id="oxf"><b>Save your progress</b>
+    <p class="muted">Sign in and your streak and Sparks follow you to any phone or computer. We'll merge this device's progress.</p>
+    <a class="btn ghost block oxg" href="${Acc.googleUrl('/app/')}">${GOOGLE} Continue with Google</a>
+    <div class="or"><span>or</span></div>
+    <input name="email" type="email" autocomplete="email" placeholder="Email" required value="${esc(ox.email)}">
+    <div class="err" id="aerr" role="alert"></div>
+    <button class="btn primary block" id="ago">Email me a code</button>
+    <button type="button" class="link" id="oxpw">I made an account with a password</button></form>`;
+}
+const GOOGLE = '<svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>';
+function signedIn(u, how) {
+  ox.step = 'start'; ox.ticket = ''; who(u.id, { course: S().active, plan: S().plan }); track(how);
+  toast('Signed in. Your progress is saved.'); draw();
+}
+function wireOnyx() {
+  const f = $('#oxf'); if (!f) return;
+  $('#oxpw') && ($('#oxpw').onclick = () => { ox.pw = true; mode = 'in'; draw(); });
+  $('#oxback') && ($('#oxback').onclick = () => { ox.step = 'start'; draw(); });
+  f.onsubmit = async e => {
+    e.preventDefault(); const d = new FormData(f), b = $('#ago'); b.disabled = true; $('#aerr').textContent = '';
+    try {
+      if (ox.step === 'start') { ox.email = String(d.get('email')).trim(); await Acc.emailCode(ox.email); ox.step = 'code'; draw(); $('#oxf input')?.focus(); return; }
+      const r = ox.step === 'code' ? await Acc.emailVerify(ox.email, d.get('code')) : await Acc.profile(ox.ticket, String(d.get('name')), String(d.get('handle')));
+      if (r.needs_profile) { ox.step = 'profile'; ox.ticket = r.ticket; ox.suggest = r.suggest || ''; draw(); return; }
+      signedIn(r.user, 'login_email');
+    } catch (err) { $('#aerr').textContent = err.message; b.disabled = false; }
+  };
+}
 function accountCard() {
   if (!Acc.enabled()) return `<div class="card acct"><b>${icon('lock', 18)} Your progress is saved on this device</b><p class="muted">Accounts open at launch, so your streak can follow you to any phone or computer.</p></div>`;
   const u = Acc.user();
+  if (!u && ox.on && !ox.pw) return onyxCard();
   if (u) return `<div class="card acct on"><b>${icon('check', 18)} Saved to your account</b><p class="muted">${esc(u.email)} · your streak follows you to any device.</p><button class="btn ghost sm" id="out">Sign out</button></div>`;
   const p = S().profile;
   return `<form class="card acct" id="af"><b>${mode === 'up' ? 'Save your progress' : 'Welcome back'}</b>
@@ -170,12 +216,14 @@ function accountCard() {
     <input name="password" type="password" autocomplete="${mode === 'up' ? 'new-password' : 'current-password'}" placeholder="Password (8 or more characters)" minlength="8" required>
     <div class="err" id="aerr" role="alert"></div>
     <button class="btn primary block" id="ago">${mode === 'up' ? 'Create my free account' : 'Sign in'}</button>
-    <button type="button" class="link" id="aswap">${mode === 'up' ? 'I already have an account' : 'New here? Make an account'}</button></form>`;
+    ${ox.on ? '<button type="button" class="link" id="oxnew">Back to Google or an email code</button>' : `<button type="button" class="link" id="aswap">${mode === 'up' ? 'I already have an account' : 'New here? Make an account'}</button>`}</form>`;
 }
 function wireAccount() {
   $('#out') && ($('#out').onclick = () => { Acc.signOut(); who(null); toast('Signed out. Your progress stays on this device too.'); draw(); });
+  wireOnyx();
   const f = $('#af'); if (!f) return;
-  $('#aswap').onclick = () => { mode = mode === 'up' ? 'in' : 'up'; draw(); };
+  $('#aswap') && ($('#aswap').onclick = () => { mode = mode === 'up' ? 'in' : 'up'; draw(); });
+  $('#oxnew') && ($('#oxnew').onclick = () => { ox.pw = false; draw(); });
   f.onsubmit = async e => {
     e.preventDefault(); const d = new FormData(f), b = $('#ago'); b.disabled = true; $('#aerr').textContent = '';
     try {
@@ -264,4 +312,15 @@ addEventListener('keydown', e => { if (e.key === 'Escape' && !P.hidden) $('#px')
 draw();
 // signed in on this device: renew the sign-in, merge with the server's copy, then redraw with the merged progress
 if (Acc.user()) { who(Acc.user().id); Acc.start().then(() => draw()); }
+// sign-in through Onyx: is it on here, and are we coming back from Google (#signin=, #profile=)?
+Acc.onyxOn().then(on => { ox.on = on; if (on && !Acc.user() && tab === 'me') draw(); });
+(() => {
+  const h = new URLSearchParams(location.hash.slice(1)), t = h.get('signin'), pr = h.get('profile');
+  if (!t && !pr) return;
+  history.replaceState(null, '', location.pathname + location.search);
+  if (t === 'failed' || t === 'off') { toast(t === 'off' ? 'Sign-in opens soon.' : 'Sign-in didn\'t finish. Please try again.'); return; }
+  if (pr) { ox.on = true; ox.step = 'profile'; ox.ticket = pr; tab = 'me'; draw(); return; }
+  Acc.claim(t).then(r => r.needs_profile ? (ox.step = 'profile', ox.ticket = r.ticket, tab = 'me', draw()) : signedIn(r.user, 'login_google'))
+    .catch(e => toast(e.message));
+})();
 window.__savvy = { play, St, go: t => { tab = t; sub = null; draw(); } };

@@ -1,4 +1,5 @@
-// Accounts: sign up / sign in with email and password on the SavvyMe PocketBase server, then keep this device's
+// Accounts: sign in through Onyx (Google or a 6-digit email code; server/pb_hooks/onyx*.js), or with an older email and
+// password account, on the SavvyMe PocketBase server, then keep this device's
 // progress and the server's copy in step. Plain fetch calls, no SDK. When there is no server (API is empty) every
 // function here does nothing and the app keeps progress on the device only.
 import { API } from './config.js';
@@ -19,7 +20,7 @@ async function call(path, opt = {}) {
   const d = await r.json().catch(() => ({}));
   if (!r.ok) {
     const f = Object.values(d.data || {})[0];
-    const e = new Error((f && (WORDS[f.code] || f.message)) || (r.status === 400 && /auth/.test(path) ? 'Wrong email or password.' : d.message) || 'Something went wrong. Try again.');
+    const e = new Error((f && (WORDS[f.code] || f.message)) || (d.error && d.error.message) || (r.status === 400 && /auth/.test(path) ? 'Wrong email or password.' : d.message) || 'Something went wrong. Try again.');
     e.status = r.status; throw e;
   }
   return d;
@@ -34,6 +35,24 @@ export async function signUp(email, password, name) {
   return signIn(email, password);
 }
 export function signOut() { auth = null; keep(); }
+
+// ---- sign-in through Onyx: one account for every studio product, shown as SavvyMe ----
+let onyx = null;
+export async function onyxOn() {
+  if (!API) return false;
+  if (onyx === null) { try { onyx = !!(await call('/api/onyx/config')).on; } catch { onyx = false; } }
+  return onyx;
+}
+const post = (path, body) => call(path, { method: 'POST', body: JSON.stringify(body) });
+async function land(r) {  // { token, record } signs in; { needs_profile, ticket } asks for a name first
+  if (r.needs_profile) return r;
+  auth = { token: r.token, record: r.record }; keep(); await sync(); return { user: user() };
+}
+export const emailCode = email => post('/api/onyx/email-start', { email: email.trim() });
+export const emailVerify = async (email, code) => land(await post('/api/onyx/email-verify', { email: email.trim(), code: String(code).replace(/\D/g, '') }));
+export const profile = async (ticket, name, handle) => land(await post('/api/onyx/profile', { ticket, name, handle: handle.replace(/^@/, '') }));
+export const claim = async t => land(await post('/api/onyx/claim', { t }));
+export const googleUrl = (back = location.pathname) => `${API}/api/onyx/google?back=${encodeURIComponent(back)}`;
 
 // pull the server's copy, merge it with this device's, and send the result back
 export async function sync() {
