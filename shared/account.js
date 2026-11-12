@@ -52,6 +52,9 @@ export const emailCode = email => post('/api/onyx/email-start', { email: email.t
 export const emailVerify = async (email, code) => land(await post('/api/onyx/email-verify', { email: email.trim(), code: String(code).replace(/\D/g, '') }));
 export const profile = async (ticket, name, handle) => land(await post('/api/onyx/profile', { ticket, name, handle: handle.replace(/^@/, '') }));
 export const claim = async t => land(await post('/api/onyx/claim', { t }));
+// ---- SavvyMe tips and news by email (sent by Onyx under SavvyMe's name; server/pb_hooks/email*.js) ----
+export const emailMine = () => (API && auth ? call('/api/email/me') : Promise.resolve({ on: false }));
+export const emailChoose = join => post('/api/email/me', { join: !!join });
 export const googleUrl = (back = location.pathname) => `${API}/api/onyx/google?back=${encodeURIComponent(back)}`;
 
 // pull the server's copy, merge it with this device's, and send the result back

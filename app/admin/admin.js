@@ -5,6 +5,7 @@ import { logo } from '../../shared/brand.js';
 import { COURSES } from '../../shared/courses.js';
 import { API } from '../../shared/config.js';
 import { POSTHOG_KEY } from '../../shared/config.js';
+import { emailTab } from './email.js';
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -15,12 +16,12 @@ let token = sessionStorage.getItem(TK) || '';
 async function call(path, opt = {}) {
   const r = await fetch(API + path, { ...opt, headers: { 'content-type': 'application/json', ...(token ? { Authorization: token } : {}) } });
   const d = await r.json().catch(() => ({}));
-  if (!r.ok) { const e = new Error(d.message || 'Request failed'); e.status = r.status; throw e; }
+  if (!r.ok) { const e = new Error(d.message || (d.error && d.error.message) || 'Request failed'); e.status = r.status; throw e; }
   return d;
 }
 
 function login(msg = '') {
-  $('#who').textContent = '';
+  $('#who').textContent = ''; $('#tabs').hidden = true;
   if (!API) { $('#view').innerHTML = `<div class="card login"><h1>Admin</h1><p class="muted">This page works on the live app host (app.your-domain/admin/), where the accounts server answers.</p></div>`; return; }
   $('#view').innerHTML = `<form class="card login" id="f"><h1>Admin sign in</h1><p class="muted">Use the PocketBase superuser email and password.</p>
     <input name="e" type="email" placeholder="Email" autocomplete="username" required><input name="p" type="password" placeholder="Password" autocomplete="current-password" required>
@@ -45,10 +46,22 @@ const dk = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}
 const ago = n => { const d = new Date(); d.setDate(d.getDate() - n); return dk(d); };
 const bars = (rows, total) => `<div class="bars">${rows.map(([k, v]) => `<div><span>${esc(k)}</span><i style="width:${total ? Math.max(1, v / total * 100) : 0}%"></i><em>${v}</em></div>`).join('')}</div>`;
 
+// two tabs once signed in: Learners (below) and Email (email.js)
+let tab = 'learners';
+function tabs() {
+  $('#tabs').hidden = false;
+  $('#tabs').innerHTML = ['learners', 'email'].map(t => `<button class="${t === tab ? 'on' : ''}" data-t="${t}">${t === 'email' ? 'Email' : 'Learners'}</button>`).join('');
+  $('#tabs').querySelectorAll('button').forEach(b => (b.onclick = () => { tab = b.dataset.t; load(); }));
+}
 async function load() {
+  if (tab === 'email') {
+    tabs(); $('#who').innerHTML = `<button class="btn ghost sm" id="out" style="padding:8px 14px;font-size:14px">Sign out</button>`;
+    $('#out').onclick = () => { token = ''; sessionStorage.removeItem(TK); login(); };
+    return emailTab($('#view'), call);
+  }
   $('#view').innerHTML = '<p class="muted">Loading…</p>';
   let U; try { U = await users(); } catch (e) { if (e.status === 401 || e.status === 403) { token = ''; sessionStorage.removeItem(TK); return login('Please sign in again.'); } $('#view').innerHTML = `<p class="err">${esc(e.message)}</p>`; return; }
-  $('#who').innerHTML = `<button class="btn ghost sm" id="out" style="padding:8px 14px;font-size:14px">Sign out</button>`;
+  tabs(); $('#who').innerHTML = `<button class="btn ghost sm" id="out" style="padding:8px 14px;font-size:14px">Sign out</button>`;
   $('#out').onclick = () => { token = ''; sessionStorage.removeItem(TK); login(); };
   const today = dk(new Date()), wk = ago(6), joined = u => (u.created || '').slice(0, 10);
   const n = U.length, act1 = U.filter(u => u.last_day === today).length, act7 = U.filter(u => u.last_day >= wk).length;

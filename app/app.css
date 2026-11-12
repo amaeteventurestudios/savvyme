@@ -146,3 +146,6 @@ h3.sec { font-size: 17px; margin: 22px 0 10px; }
 .acct .oxg { display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
 .acct .or { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 13px; } .acct .or::before, .acct .or::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 .acct .btn.sm { justify-self: start; padding: 9px 16px; font-size: 14px; }
+.acct .mailopt { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border: 1.5px solid var(--line); border-radius: 12px; cursor: pointer; }
+.acct .mailopt input { width: 22px; height: 22px; flex: none; margin: 1px 0 0; padding: 0; accent-color: var(--brand); }
+.acct .mailopt span { display: grid; gap: 2px; } .acct.on .mailopt b { color: var(--ink); font-size: 15px; } .acct .mailopt small { font-size: 13px; }
