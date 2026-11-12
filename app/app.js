@@ -207,7 +207,7 @@ function accountCard() {
   if (!Acc.enabled()) return `<div class="card acct"><b>${icon('lock', 18)} Your progress is saved on this device</b><p class="muted">Accounts open at launch, so your streak can follow you to any phone or computer.</p></div>`;
   const u = Acc.user();
   if (!u && ox.on && !ox.pw) return onyxCard();
-  if (u) return `<div class="card acct on"><b>${icon('check', 18)} Saved to your account</b><p class="muted">${esc(u.email)} · your streak follows you to any device.</p><button class="btn ghost sm" id="out">Sign out</button></div>`;
+  if (u) return `<div class="card acct on"><b>${icon('check', 18)} Saved to your account</b><p class="muted">${esc(u.email)} · your streak follows you to any device.</p>${mailOpt()}<button class="btn ghost sm" id="out">Sign out</button></div>`;
   const p = S().profile;
   return `<form class="card acct" id="af"><b>${mode === 'up' ? 'Save your progress' : 'Welcome back'}</b>
     <p class="muted">${mode === 'up' ? 'Make a free account so your streak and Sparks follow you to any device.' : 'Sign in and we\'ll merge this device\'s progress with your account.'}</p>
@@ -218,8 +218,29 @@ function accountCard() {
     <button class="btn primary block" id="ago">${mode === 'up' ? 'Create my free account' : 'Sign in'}</button>
     ${ox.on ? '<button type="button" class="link" id="oxnew">Back to Google or an email code</button>' : `<button type="button" class="link" id="aswap">${mode === 'up' ? 'I already have an account' : 'New here? Make an account'}</button>`}</form>`;
 }
+// Tips and news by email: only offered once the server has it switched on; the learner's own choice, off by default.
+let mail = null;   // { on, status } from the server, fetched once per sign-in
+function mailOpt() {
+  if (!mail || !mail.on) return '';
+  const on = mail.status === 'active' || mail.status === 'pending';
+  return `<label class="mailopt"><input type="checkbox" id="mchk"${on ? ' checked' : ''}><span><b>Email me tips and news</b>
+    <small class="muted">${mail.status === 'pending' ? 'Check your inbox and tap the link to confirm.' : 'Now and then, never more than once a week. Unsubscribe any time.'}</small></span></label>`;
+}
+function wireMail() {
+  if (!Acc.user()) { mail = null; return; }
+  if (mail === null) { mail = { on: false }; Acc.emailMine().then(r => { mail = r; if (r.on) draw(); }).catch(() => {}); return; }
+  const c = $('#mchk'); if (!c) return;
+  c.onchange = async () => {
+    c.disabled = true;
+    try {
+      const r = await Acc.emailChoose(c.checked); mail = { on: true, status: r.status };
+      toast(!c.checked ? 'You won\'t get our emails.' : r.status === 'pending' ? 'Almost there: check your email to confirm.' : 'You\'re on the list.'); draw();
+    } catch (err) { toast(err.message); c.checked = !c.checked; c.disabled = false; }
+  };
+}
 function wireAccount() {
-  $('#out') && ($('#out').onclick = () => { Acc.signOut(); who(null); toast('Signed out. Your progress stays on this device too.'); draw(); });
+  wireMail();
+  $('#out') && ($('#out').onclick = () => { Acc.signOut(); mail = null; who(null); toast('Signed out. Your progress stays on this device too.'); draw(); });
   wireOnyx();
   const f = $('#af'); if (!f) return;
   $('#aswap') && ($('#aswap').onclick = () => { mode = mode === 'up' ? 'in' : 'up'; draw(); });
