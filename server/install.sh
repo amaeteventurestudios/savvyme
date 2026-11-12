@@ -77,7 +77,22 @@ for n in "${NAMES[@]}"; do
   HOME_N+=("$n"); START_N+=("start.$n"); APP_N+=("app.$n")
 done
 join() { local IFS=,; echo "$*" | sed 's/,/, /g'; }
+# Browser safety headers on every answer. "?" only sets a header the app has not set itself, and the policy below does not
+# limit which scripts or lessons load (the app opens lessons from the other Amaete sites in a frame): it switches off
+# plugins, stops other sites framing SavvyMe and keeps every request on https.
+safe() {
+  cat <<'BLOCK'
+	header {
+		?Strict-Transport-Security "max-age=31536000"
+		?Content-Security-Policy "object-src 'none'; base-uri 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+		?X-Frame-Options SAMEORIGIN
+		?X-Content-Type-Options nosniff
+		?Referrer-Policy strict-origin-when-cross-origin
+	}
+BLOCK
+}
 part() { # $1 = folder for this host's own pages
+  safe
   cat <<BLOCK
 	encode zstd gzip
 	header /vendor/* Cache-Control "public, max-age=31536000, immutable"
@@ -103,12 +118,12 @@ BLOCK
 }
 {
   echo "$(join "${HOME_N[@]}") {"
-  echo "	root * $WEB"; echo "	encode zstd gzip"; echo '	header /vendor/* Cache-Control "public, max-age=31536000, immutable"'; echo "	file_server"; echo "}"
+  safe; echo "	root * $WEB"; echo "	encode zstd gzip"; echo '	header /vendor/* Cache-Control "public, max-age=31536000, immutable"'; echo "	file_server"; echo "}"
   echo "$(join "${START_N[@]}") {"; part start; echo "}"
   echo "$(join "${APP_N[@]}") {"; part app; echo "}"
   if [ ${#WWW_N[@]} -gt 0 ]; then echo "$(join "${WWW_N[@]}") {"; echo "	redir https://${HOME_N[0]}{uri} permanent"; echo "}"; fi
   if [ ${#ONE_N[@]} -gt 0 ]; then
-    echo "$(join "${ONE_N[@]}") {"
+    echo "$(join "${ONE_N[@]}") {"; safe
     printf '\thandle /api/* {\n\t\treverse_proxy 127.0.0.1:8196\n\t}\n\thandle /_/* {\n\t\treverse_proxy 127.0.0.1:8196\n\t}\n'
     printf '\thandle {\n\t\troot * %s\n\t\tencode zstd gzip\n\t\theader /vendor/* Cache-Control "public, max-age=31536000, immutable"\n\t\tfile_server\n\t}\n' "$WEB"
     echo "}"
